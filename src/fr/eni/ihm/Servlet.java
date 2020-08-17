@@ -17,7 +17,8 @@ public class Servlet extends HttpServlet {
     
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/Page_acceuil.jsp").forward(request, response);
+		request.setAttribute("isConnected", Boolean.FALSE);
+		request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request, response);
 	}
 
 	
