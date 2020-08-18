@@ -243,18 +243,6 @@ function affichageListeMesVentes(){
 	listeAchats.classList.remove("active");
 	listeAchats.classList.add("nested");
 }
-/*
-var radios = document.getElementsByTagName('choix');
-var value;
-for (var i = 0; i < radios.length; i++) {
-    if (radios[i].type === 'radio' && radios[i].checked) {
-    	alert("Hello");
-    	document.getElementsByClassName('nested').classList.toggle("active");
-    	this.parentElement.querySelector(".nested").classList.toggle("active");
-        value = radios[i].value;       
-    }
-}
-*/
 </script>
 </body>
 </html>

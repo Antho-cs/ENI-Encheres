@@ -33,7 +33,7 @@
       <li><a href="#">Vendre un article</a></li>
     </ul>s
     <ul class="nav navbar-nav navbar-right">
-   		<li><a href="#"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+   		<li><a href="monProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
       	<li><a href="deconnexion"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
