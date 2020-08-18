@@ -4,15 +4,15 @@ import java.time.LocalDateTime;
 
 public class ArticleVendu {
 	
-	private int noArticle;
-	private String NomArticle;
+	private int no_article;
+	private String nom_article;
 	private String description;
-	private LocalDateTime dateDebutEncheres;
-	private LocalDateTime dateFinEncheres;
-	private int miseAPrix;
-	private int prixVente;
+	private LocalDateTime date_debut_encheres;
+	private LocalDateTime date_fin_encheres;
+	private int prix_initial;
+	private int prix_vente;
 	private String etatVente;
-	private int noCategotie;
+	private int no_categorie;
 	private String categorie;
 	
 	
@@ -22,14 +22,14 @@ public class ArticleVendu {
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
 			LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, int noCategotie, String categorie) {
 		super();
-		this.noArticle = noArticle;
-		NomArticle = nomArticle;
+		this.no_article = noArticle;
+		nom_article = nomArticle;
 		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.noCategotie = noCategotie;
+		this.date_debut_encheres = dateDebutEncheres;
+		this.date_fin_encheres = dateFinEncheres;
+		this.prix_initial = miseAPrix;
+		this.prix_vente = prixVente;
+		this.no_categorie = noCategotie;
 		this.categorie = categorie;
 	}
 
@@ -38,36 +38,36 @@ public class ArticleVendu {
 			LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, String etatVente, int noCategotie,
 			String categorie) {
 		super();
-		this.noArticle = noArticle;
-		NomArticle = nomArticle;
+		this.no_article = noArticle;
+		nom_article = nomArticle;
 		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
+		this.date_debut_encheres = dateDebutEncheres;
+		this.date_fin_encheres = dateFinEncheres;
+		this.prix_initial = miseAPrix;
+		this.prix_vente = prixVente;
 		this.etatVente = etatVente;
-		this.noCategotie = noCategotie;
+		this.no_categorie = noCategotie;
 		this.categorie = categorie;
 	}
 
 
 	public int getNoArticle() {
-		return noArticle;
+		return no_article;
 	}
 
 
 	public void setNoArticle(int noArticle) {
-		this.noArticle = noArticle;
+		this.no_article = noArticle;
 	}
 
 
 	public String getNomArticle() {
-		return NomArticle;
+		return nom_article;
 	}
 
 
 	public void setNomArticle(String nomArticle) {
-		NomArticle = nomArticle;
+		nom_article = nomArticle;
 	}
 
 
@@ -82,42 +82,42 @@ public class ArticleVendu {
 
 
 	public LocalDateTime getDateDebutEncheres() {
-		return dateDebutEncheres;
+		return date_debut_encheres;
 	}
 
 
 	public void setDateDebutEncheres(LocalDateTime dateDebutEncheres) {
-		this.dateDebutEncheres = dateDebutEncheres;
+		this.date_debut_encheres = dateDebutEncheres;
 	}
 
 
 	public LocalDateTime getDateFinEncheres() {
-		return dateFinEncheres;
+		return date_fin_encheres;
 	}
 
 
 	public void setDateFinEncheres(LocalDateTime dateFinEncheres) {
-		this.dateFinEncheres = dateFinEncheres;
+		this.date_fin_encheres = dateFinEncheres;
 	}
 
 
 	public int getMiseAPrix() {
-		return miseAPrix;
+		return prix_initial;
 	}
 
 
 	public void setMiseAPrix(int miseAPrix) {
-		this.miseAPrix = miseAPrix;
+		this.prix_initial = miseAPrix;
 	}
 
 
 	public int getPrixVente() {
-		return prixVente;
+		return prix_vente;
 	}
 
 
 	public void setPrixVente(int prixVente) {
-		this.prixVente = prixVente;
+		this.prix_vente = prixVente;
 	}
 
 
@@ -132,12 +132,12 @@ public class ArticleVendu {
 
 
 	public int getNoCategotie() {
-		return noCategotie;
+		return no_categorie;
 	}
 
 
 	public void setNoCategotie(int noCategotie) {
-		this.noCategotie = noCategotie;
+		this.no_categorie = noCategotie;
 	}
 
 
