@@ -18,8 +18,7 @@ public class seConnecter extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Servlet.setConnected(true);
-		request.getRequestDispatcher("Servlet").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/ConnexionUser.jsp").forward(request, response);
 	}
 
 	/**

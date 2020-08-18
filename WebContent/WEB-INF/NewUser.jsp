@@ -116,7 +116,7 @@
 <div class ="bouton text-center">
 
   <a href ="WEB-INF/Page_acceuil.jsp" class="btn btn-primary">Créer</a>
-  <a href ="WEB-INF/Page_acceuil.jsp" class="btn btn-primary">Annuler</a>
+  <a href ="Servlet" class="btn btn-primary">Annuler</a>
 </div>
 
 
