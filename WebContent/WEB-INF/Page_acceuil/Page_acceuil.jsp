@@ -80,8 +80,7 @@ ul, #myUL {
 				<h4>Filtres:</h4>
 				<form>
 					<div class="input-group">
-						<input type="text" class="form-control"
-							placeholder="Le nom de l'article contient">
+						<input type="text" class="form-control" placeholder ="Le nom de l'article contient">
 						<div class="input-group-btn">
 							<button class="btn btn-default" type="submit">
 								<i class="glyphicon glyphicon-search"></i>
@@ -96,7 +95,7 @@ ul, #myUL {
 					<option>Informatique</option>
 					<option>Ameublement</option>
 					<option>Vetement</option>
-					<option>Sport&Loisirs</option>
+					<option>Sport & Loisirs</option>
 				</select>
 
 				<c:choose>
@@ -174,7 +173,7 @@ ul, #myUL {
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">Prix : 150</li>
 						<li class="list-group-item">Fin de l'enchères : 22/08/2020</li>
-						<li class="list-group-item">Vendeur: Firas :p</li>
+						<li class="list-group-item">Vendeur: Firas :P</li>
 					</ul>
 					<div class="card-body">
 						<a href="#" class="btn btn-primary">Bouton</a>
