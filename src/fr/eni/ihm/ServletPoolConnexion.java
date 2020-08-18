@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 /**
  * Servlet implementation class Servlet connexion
  */
-@WebServlet("ServletTestPoolConnexion")
+@WebServlet("/ServletTestPoolConnexion")
 public class ServletPoolConnexion extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

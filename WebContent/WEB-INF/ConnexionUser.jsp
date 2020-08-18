@@ -10,8 +10,9 @@
 </head>
 
 <body>
+<jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
 
-<h1>ENI-Encheres</h1>
+
 
 <form action="POST">
 

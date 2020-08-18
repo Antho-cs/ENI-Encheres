@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-  <title>ENI-Enchères</title>
+  <title>ENI-EnchÃ¨res</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -38,9 +38,9 @@
   </style>
 </head>
 <body>
-	<jsp:include page="navBar.jsp" />
+	<jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
   <div class="jumbotron text-center">
-    <h1>Liste des enchères</h1>
+    <h2>Liste des enchÃ¨res</h2>
   </div>
 
 <div class="container-fluid">
@@ -76,7 +76,7 @@
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Prix : 150E</li>
-    <li class="list-group-item">Fin de l'enchères : 22/08/2020</li>
+    <li class="list-group-item">Fin de l'enchÃ¨res : 22/08/2020</li>
     <li class="list-group-item">Vendeur: Firas :p</li>
   </ul>
   <div class="card-body">
@@ -93,7 +93,7 @@
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Prix : 150E</li>
-    <li class="list-group-item">Fin de l'enchères : 22/08/2020</li>
+    <li class="list-group-item">Fin de l'enchÃ¨res : 22/08/2020</li>
     <li class="list-group-item">Vendeur: Firas :p</li>
   </ul>
   <div class="card-body">
@@ -110,7 +110,7 @@
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Prix : 150E</li>
-    <li class="list-group-item">Fin de l'enchères : 22/08/2020</li>
+    <li class="list-group-item">Fin de l'enchÃ¨res : 22/08/2020</li>
     <li class="list-group-item">Vendeur: Firas :p</li>
   </ul>
   <div class="card-body">

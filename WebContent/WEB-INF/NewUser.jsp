@@ -5,19 +5,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!-- Latest compiled and minified CSS -->
 <title>ENI Encheres</title>
+
+
+<style>
+
+	#contenu {align:center; padding: 10px 50px 20px;}
+	#bouton { margin-left: auto; margin-right: auto;}
+	/*.titre {text-align:center;}*/
+</style>
+
 
 </head>
 
 <body>
 
-<div>
-	<h2>Mon Profil</h2>
-</div>
+<jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
+
+<div class="jumbotron text-center">
+    <h2>Mon profil</h2>
+  </div>
 
 <form action="POST">
-
+<div id ="contenu"  >
   <div class="row">
   
     <div class="form-group col-md-6">
@@ -97,14 +108,16 @@
   
 </div>
 
+</div>
+
 </form>
 
  
-	
+<div class ="bouton text-center">
 
   <a href ="WEB-INF/Page_acceuil.jsp" class="btn btn-primary">Créer</a>
   <a href ="WEB-INF/Page_acceuil.jsp" class="btn btn-primary">Annuler</a>
-
+</div>
 
 
 </body>
