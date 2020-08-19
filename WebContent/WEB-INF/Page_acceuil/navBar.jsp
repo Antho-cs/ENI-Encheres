@@ -16,7 +16,7 @@
     </div>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="creationCompte"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="ServletCreationCompte"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="seConnecter"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>
@@ -33,7 +33,7 @@
       <li><a href="#">Vendre un article</a></li>
     </ul>s
     <ul class="nav navbar-nav navbar-right">
-   		<li><a href="monProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
+   		<li><a href="ServletMonProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
       	<li><a href="deconnexion"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>

@@ -20,30 +20,30 @@
               <div class="col-sm-3">
                 <div class="well">
                   <h4 class="mb-0">Credit disponible</h4>
-                  <p>2586</p>
+                  <p>${user.getCredit()}</p>
                 </div>
                 </div>
                 <div class="col-4 text-right">
                   <a id="modifier" class="btn btn-sm btn-primary" onClick="modifier()">Modifier</a>
-                  <a id="annuler" class="btn btn-sm btn-warning hidden" onClick="annuler()">Annuler</a>
+                  <a href="ServletMonProfil" id="annuler" class="btn btn-sm btn-warning hidden">Annuler</a>
                 </div>
               </div>
             </div>
             <div class="card-body">
-              <form>
+              <form action="ServletMonProfil" method="post">
                 <h6 class="heading-small text-muted mb-4">User information</h6>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Pseudo</label>
-                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Pseudo" value="Anfila ohlala">
+                        <input type="text" id="input-pseudo" name="pseudo" class="form-control form-control-alternative readonly" placeholder="Pseudo" value="${user.getPseudo()}" readonly>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Email address</label>
-                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="example@example.com">
+                        <input type="email" id="input-email" name="email" class="form-control form-control-alternative readonly" placeholder="example@example.com" value="${user.getEmail()}" readonly>
                       </div>
                     </div>
                   </div>
@@ -51,13 +51,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-first-name">Nom</label>
-                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="Nom" value="AnFiLa">
+                        <input type="text" id="input-first-name" name="nom" class="form-control form-control-alternative readonly" placeholder="Nom" value="${user.getNom()}" readonly>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-last-name">Prenom</label>
-                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Prenom" value="Eni">
+                        <input type="text" id="input-last-name" name="prenom" class="form-control form-control-alternative readonly" placeholder="Prenom" value="${user.getPrenom()}" readonly>
                       </div>
                     </div>
                   </div>
@@ -65,59 +65,61 @@
                 <hr class="my-4">
                 <!-- Address -->
                 <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                <div class="pl-lg-4">
+                
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-address">Rue</label>
-                        <input id="input-address" class="form-control form-control-alternative" placeholder="Rue" value="81 Rue d'allonville" type="text">
+                        <input id="input-address" name="rue" class="form-control form-control-alternative readonly" placeholder="Rue" value="${user.getRue()}" readonly>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-city">Ville</label>
-                        <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Ville" value="Nantes">
+                        <input type="text" id="input-city" name="ville" class="form-control form-control-alternative readonly" placeholder="Ville" value="${user.getVille()}" readonly>
                       </div>
                     </div>
-                    </div>
+                  </div>
                     <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Code postal</label>
-                        <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Code postal" value="44100">
+                        <input type="number" id="input-postal-code" name="codePostal" class="form-control form-control-alternative readonly" placeholder="Code postal" value="${user.getCode_postal()}" readonly>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-4">
+                    </div> 
+                    <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Telephone</label>
-                        <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Numero de telephone">
+                        <input type="number" id="input-telephone" name="telephone" class="form-control form-control-alternative readonly" placeholder="Tel" value="${user.getTelephone()}" readonly>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="hidden" id="modeModification">
-                <h6 class="heading-small text-muted mb-4">Mot de passe</h6>
+                <hr class="my-4">
+                <h6 class="heading-small text-muted mb-4">Sécurité</h6>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="motDePasse">Mot de passe actuel</label>
-                        <input type="password" id="motDePasse" class="form-control form-control-alternative" placeholder="*********">
-                        <label class="form-control-label" for="motDePasse">nouveau mot de passe</label>
-                        <input type="password" id="motDePasse" class="form-control form-control-alternative" placeholder="*********">
+                        <label class="form-control-label" for="motDePasse">Mot de passe</label>
+                        <input type="password" id="motDePasse" class="form-control form-control-alternative readonly" placeholder="votre mdp" readonly>
+                      </div>
+                      </div>
+                   </div>
+                <div class="hidden" id="modeModification">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="nouveauMotDePasse">nouveau mot de passe</label>
+                        <input type="password" id="nouveauMotDePasse" class="form-control form-control-alternative" placeholder="votre nouveau mdp">
                         <label class="form-control-label" for="confirmerMotDePasse">Confirmer votre mot de passe</label>
-                        <input type="password" id="confirmerMotDePasse" class="form-control form-control-alternative" placeholder="*********">
+                        <input type="password" id="confirmerMotDePasse" class="form-control form-control-alternative" placeholder="Confirmer votre mdp">
                       </div>
                       </div>
                    </div>
                    <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
-                      <button class="btn btn-success">Enregistrer</button>
-                      <button class="btn btn-danger">Supprimer mon compte</button>
+                      <button class="btn btn-success" name="btn" value="enregistrer" type="submit">Enregistrer</button>
+                      <button class="btn btn-danger" name="btn" value="supprimer" type="submit">Supprimer mon compte</button>
                       </div>
                     </div>
                    
@@ -133,18 +135,34 @@
 	  var btnModifier = document.getElementById("modifier");
 	  var btnAnnuler = document.getElementById("annuler");
 	  var modeModification = document.getElementById("modeModification");
+	  var readonly = document.querySelectorAll(".readonly");
+	  
 	  btnModifier.classList.add("hidden");
 	  btnAnnuler.classList.remove("hidden");
 	  modeModification.classList.remove("hidden");
+	  var i;
+	  for(i=0; i< readonly.length;++i){
+		  readonly[i].readOnly = false;
+	  }
+	  	  
 	}
-  function annuler() {
+/*  function annuler() {
 	  var btnModifier = document.getElementById("modifier");
 	  var btnAnnuler = document.getElementById("annuler");
 	  var modeModification = document.getElementById("modeModification");
+	  var readonly = document.querySelectorAll(".readonly");
+	  
 	  btnModifier.classList.remove("hidden");
 	  btnAnnuler.classList.add("hidden");
 	  modeModification.classList.add("hidden");
-	}
+	  
+	  var i;
+	  for(i=0; i< readonly.length;++i){
+		  readonly[i].readOnly = true;
+	  }
+	  
+	  
+	}*/
   </script>
 </body>
 </html>

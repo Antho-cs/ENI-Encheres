@@ -23,9 +23,9 @@ public class ServletTest extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		Utilisateur user2 = new Utilisateur("ecasd", "Asdfdn", "FiLa", "anfila@fila.com", "09005000", "Rue Lakanal",
-//				"44000", "Nantes", "AnFiLa23", 1500);
-		Utilisateur user2 = new Utilisateur();
+//		Utilisateur user = new Utilisateur(4,"ecasd", "Asdfdn", "FiLa", "anfila@fila.com", "09005000", "Rue Lakanal",
+//				"44000", "Nantes", "AnFiLa23", 1500,(byte)0);
+		Utilisateur user = new Utilisateur();
 			
 			UtilisateurManager mgr = new UtilisateurManager();
 			
@@ -33,8 +33,10 @@ public class ServletTest extends HttpServlet {
 //				ConnectionProvider.getConnection();
 //				mgr.addUser(user2);
 //				response.getWriter().append("user added");
-				user2= mgr.selectById(4);
-				response.getWriter().append(user2.toString());
+				user= mgr.selectById(8);
+//				mgr.updateUser(user);
+//				
+				response.getWriter().append(user.toString());
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}

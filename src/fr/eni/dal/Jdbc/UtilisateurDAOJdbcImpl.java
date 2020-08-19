@@ -92,6 +92,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.setString(9, data.getMot_de_passe());
 			pStmt.setInt(10, data.getCredit());
 			pStmt.setByte(11, data.getAdministrateur());
+			pStmt.setInt(12,data.getNo_utilisateur());
 
 			pStmt.executeUpdate();
 

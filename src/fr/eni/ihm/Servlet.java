@@ -16,7 +16,7 @@ public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static boolean isConnected = true;
 
-	public boolean isConnected() {
+	public static boolean isConnected() {
 		return isConnected;
 	}
 
@@ -27,10 +27,10 @@ public class Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("isConnected", isConnected);
-		// request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request,
-		// response);
+		 request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request,
+		 response);
 
-		request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
+//		request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
