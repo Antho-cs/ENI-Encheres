@@ -30,7 +30,6 @@ public class UtilisateurManager {
 		} catch (DALException e) {
 			System.out.println(e.getStackTrace());
 			throw new BLLException("Echec création utilisateur");
-			
 
 		}
 
@@ -72,10 +71,11 @@ public class UtilisateurManager {
 	public Utilisateur selectById(int no_utilisateur) throws BLLException {
 
 		try {
-			return  this.daoUtilisateur.selectById(no_utilisateur);
+			return this.daoUtilisateur.selectById(no_utilisateur);
 		} catch (DALException e) {
 			throw new BLLException("Erreur dans la récupération des donnés " + no_utilisateur, e);
 		}
-		
+
 	}
+
 }

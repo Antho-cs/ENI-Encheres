@@ -107,7 +107,9 @@
     </div>
   
 </div>
-
+<input type="hidden" name="id" value="${Utilisateur.no_utilisateur}"   /><br>
+<input type="hidden" name="Credit" value="${Utilisateur.credit}"   /><br>
+<input type="hidden" name="Admin" value="${Utilisateur.administrateur}"   /><br>
 </div>
 
 </form>
