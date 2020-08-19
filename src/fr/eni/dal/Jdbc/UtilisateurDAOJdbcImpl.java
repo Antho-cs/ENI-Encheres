@@ -14,11 +14,10 @@ import fr.eni.dal.UtilisateurDAO;
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	private static final String SQL_INSERT = "insert into utilisateurs (pseudo,nom, prenom, email, telephone, rue, code_postal,ville,mot_de_passe,credit,administrateur) "
-			+ " values (?,?,?,?,?,?,?,?,?,?)";
+			+ " values (?,?,?,?,?,?,?,?,?,?,?)";
 	private static final String SQL_UPDATE = "update utilisateurs set pseudo = ?,nom= ?, prenom= ?, email= ?, telephone= ?, rue= ?, code_postal= ?,ville= ?,mot_de_passe= ?, credit =?, administrateur=? where no_utilisateur = ?";
 	private static final String SQL_DELETE = "delete from utilisateurs where no_utilisateur = ?";
-	private static final String SQL_SELECTBYID = "select pseudo,nom, prenom, email, telephone, rue, code_postal,ville,mot_de_passe,credit,administrateur"
-			+ "from Utilisateurs where no_uillisateur = ?";
+	private static final String SQL_SELECTBYID = "select * from utilisateurs where no_utilisateur = ?";
 
 	/*
 	 * (non-Javadoc) permet de créer un nouvel utilisateur dans la BDD
@@ -47,13 +46,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.setByte(11, user.getAdministrateur());
 
 			pStmt.executeUpdate();
-
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if (rs.next()) {
+				System.out.println(rs.getInt(1));
 				user.setNo_utilisateur(rs.getInt(1));
 			}
 
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			throw new DALException("Erreur à l'ajout de l'utilisateur : " + user, e);
 
 		} finally {
@@ -138,7 +138,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
 		Utilisateur user = null;
-
+		
 		try {
 			cnx = ConnectionProvider.getConnection();
 
@@ -149,7 +149,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rs = pStmt.executeQuery();
 			rs.next();
 
-			user = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+			user = new Utilisateur( no_utilisateur, rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 					rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
 					rs.getByte("administrateur"));
