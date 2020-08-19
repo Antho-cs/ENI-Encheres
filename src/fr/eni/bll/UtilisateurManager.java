@@ -9,7 +9,7 @@ public class UtilisateurManager {
 
 	private UtilisateurDAO daoUtilisateur;
 
-	private UtilisateurManager() {
+	public UtilisateurManager() {
 		this.daoUtilisateur = DAOFactory.getUtilisateurDAO();
 	}
 
@@ -75,4 +75,25 @@ public class UtilisateurManager {
 			throw new BLLException("Erreur dans la récupération des donnés " + no_utilisateur, e);
 		}
 	}
+
+	public Utilisateur selectByPseudo(String Pseudo) throws BLLException {
+
+		try {
+			return this.daoUtilisateur.selectByPseudo(Pseudo);
+
+		} catch (DALException e) {
+			throw new BLLException("Erreur dans la récupération des donnés " + Pseudo, e);
+		}
+	}
+
+	public Utilisateur selectByMail(String Pseudo) throws BLLException {
+
+		try {
+			return this.daoUtilisateur.selectByMail(Pseudo);
+
+		} catch (DALException e) {
+			throw new BLLException("Erreur dans la récupération des donnés " + Pseudo, e);
+		}
+	}
+
 }
