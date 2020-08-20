@@ -42,14 +42,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.setString(7, user.getCode_postal());
 			pStmt.setString(8, user.getVille());
 			pStmt.setString(9, user.getMot_de_passe());
-			pStmt.setInt(10, user.getCredit());
-			pStmt.setByte(11, user.getAdministrateur());
+			pStmt.setInt(10, user.getCredit()); // créditer à 0
+			pStmt.setByte(11, user.getAdministrateur()); // mettre utilisateur par défaut
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if (rs.next()) {
 				System.out.println(rs.getInt(1));
 				user.setNo_utilisateur(rs.getInt(1));
+				// user.setCredit(0); //créditer à 0
+				// user.setAdministrateur(0); //mettre utilisateur par défaut
 			}
 
 		} catch (SQLException e) {
@@ -92,7 +94,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.setString(9, data.getMot_de_passe());
 			pStmt.setInt(10, data.getCredit());
 			pStmt.setByte(11, data.getAdministrateur());
-			pStmt.setInt(12,data.getNo_utilisateur());
+			pStmt.setInt(12, data.getNo_utilisateur());
 
 			pStmt.executeUpdate();
 
@@ -139,7 +141,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
 		Utilisateur user = null;
-		
+
 		try {
 			cnx = ConnectionProvider.getConnection();
 
@@ -150,7 +152,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rs = pStmt.executeQuery();
 			rs.next();
 
-			user = new Utilisateur( no_utilisateur, rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+			user = new Utilisateur(no_utilisateur, rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 					rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
 					rs.getByte("administrateur"));
