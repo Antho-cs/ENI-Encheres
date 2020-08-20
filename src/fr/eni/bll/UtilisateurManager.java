@@ -28,6 +28,7 @@ public class UtilisateurManager {
 			this.daoUtilisateur.insertNewUser(user);
 			System.out.println("utilisateur inséré dans la BDD");
 		} catch (DALException e) {
+			System.out.println(e.getStackTrace());
 			throw new BLLException("Echec création utilisateur");
 
 		}
@@ -67,13 +68,14 @@ public class UtilisateurManager {
 	 * @throws BLLException
 	 */
 
-	public void selectById(int no_utilisateur) throws BLLException {
+	public Utilisateur selectById(int no_utilisateur) throws BLLException {
 
 		try {
-			this.daoUtilisateur.selectById(no_utilisateur);
+			return this.daoUtilisateur.selectById(no_utilisateur);
 		} catch (DALException e) {
 			throw new BLLException("Erreur dans la récupération des donnés " + no_utilisateur, e);
 		}
+
 	}
 
 	public Utilisateur selectByPseudo(String Pseudo) throws BLLException {

@@ -41,7 +41,6 @@ public class ServletSeConnecter extends HttpServlet {
 
 		// id est-il existant ?
 		UtilisateurManager mgr = new UtilisateurManager();
-		Utilisateur user = new Utilisateur();
 
 		try {
 			// Test des Identifiants utlilisateurs //
@@ -54,13 +53,24 @@ public class ServletSeConnecter extends HttpServlet {
 			if (Mdp_Saisie.equals(mdp_Compare)) {
 				Servlet.setConnected(true);
 			} else {
-				msg = "Ceci est un message d'erreur";
-				response.getWriter().append("/Connection");
+				msg = "Le mot de passe saisie n'est pas correct";
+				System.out.println(msg);
+				// response.getWriter().append("/Connection");
 			}
 
 		} catch (BLLException e) {
 			try {
 				Utilisateur userMail = mgr.selectByMail(Id_Saisie);
+				String mdp_Compare = userMail.getMot_de_passe();
+				System.out.println(userMail);
+
+				if (Mdp_Saisie.equals(mdp_Compare)) {
+					Servlet.setConnected(true);
+				} else {
+					msg = "Le mot de passe saisie n'est pas correct";
+					System.out.println(msg);
+					// response.getWriter().append("/Connection");
+				}
 
 			} catch (BLLException e1) {
 				System.out.println("Aucun Identifiant trouvé");
