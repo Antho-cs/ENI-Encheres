@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bll.BLLException;
 import fr.eni.bll.UtilisateurManager;
-import fr.eni.bo.Utilisateur;
 
 /**
  * Servlet implementation class seConnecter
@@ -26,7 +25,7 @@ public class ServletSeConnecter extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("Erreur", msg);
+		request.setAttribute("msg", msg);
 		request.getRequestDispatcher("/WEB-INF/ConnexionUser.jsp").forward(request, response);
 	}
 
@@ -42,43 +41,52 @@ public class ServletSeConnecter extends HttpServlet {
 		// id est-il existant ?
 		UtilisateurManager mgr = new UtilisateurManager();
 
+		// Test des Identifiants utlilisateurs //
+		// Utilisateur userPseudo = mgr.selectByPseudo(Id_Saisie);
+		// Utilisateur userMail = mgr.selectByMail(Id_Saisie);
+		String mdp_Compare;
+		// String mdp_Compare2 = userMail.getMot_de_passe();
+
+		// System.out.println(mdp_Compare);
+		// System.out.println(Mdp_Saisie);
+		// System.out.println(Id_Saisie);
+		// System.out.println(mgr.selectByMail(Id_Saisie).getEmail());
+		// System.out.println(Id_Saisie.equals(mgr.selectByMail(Id_Saisie).getEmail()));
 		try {
-			// Test des Identifiants utlilisateurs //
-			Utilisateur userPseudo = mgr.selectByPseudo(Id_Saisie);
 
-			String mdp_Compare = userPseudo.getMot_de_passe();
-			System.out.println(mdp_Compare);
-			System.out.println(Mdp_Saisie);
+			if (Id_Saisie.equals(mgr.selectByPseudo(Id_Saisie).getPseudo())) {
 
-			if (Mdp_Saisie.equals(mdp_Compare)) {
-				Servlet.setConnected(true);
-			} else {
-				msg = "Le mot de passe saisie n'est pas correct";
-				System.out.println(msg);
-				// response.getWriter().append("/Connection");
-			}
-
-		} catch (BLLException e) {
-			try {
-				Utilisateur userMail = mgr.selectByMail(Id_Saisie);
-				String mdp_Compare = userMail.getMot_de_passe();
-				System.out.println(userMail);
+				mdp_Compare = mgr.selectByPseudo(Id_Saisie).getMot_de_passe();
+				System.out.println("1er IF");
 
 				if (Mdp_Saisie.equals(mdp_Compare)) {
 					Servlet.setConnected(true);
+					response.sendRedirect("Servlet");
 				} else {
 					msg = "Le mot de passe saisie n'est pas correct";
-					System.out.println(msg);
-					// response.getWriter().append("/Connection");
+					doGet(request, response);
 				}
 
-			} catch (BLLException e1) {
-				System.out.println("Aucun Identifiant trouvé");
+			}
+		} catch (BLLException e) {
+			try {
+				if (Id_Saisie.equals(mgr.selectByMail(Id_Saisie).getEmail())) {
+					mdp_Compare = mgr.selectByMail(Id_Saisie).getMot_de_passe();
+					if (Mdp_Saisie.equals(mdp_Compare)) {
+						Servlet.setConnected(true);
+						response.sendRedirect("Servlet");
+
+					} else {
+						msg = "Le mot de passe saisie n'est pas correct";
+						doGet(request, response);
+					}
+				}
+			} catch (BLLException k) {
+				msg = "Identifiant Inconnu";
+				doGet(request, response);
 			}
 		}
-
-		// si oui le mdp saisie est-il celui de l'utilisateur existant
-
 	}
-
 }
+
+// si oui le mdp saisie est-il celui de l'utilisateur existant

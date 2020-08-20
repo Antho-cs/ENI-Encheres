@@ -40,7 +40,7 @@
   		
 	</div>
 	
-	<p>${Erreur} </p>
+	<p> ${msg} </p>
 
 	
 </form>
