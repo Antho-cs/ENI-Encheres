@@ -54,12 +54,7 @@ public class ServletCreationCompte extends HttpServlet {
 		Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville,
 				mot_de_passe);
 		try {
-			// try {
-			// ConnectionProvider.getConnection();
-			// } catch (SQLException e) {
-			// // TODO Auto-generated catch block
-			// e.printStackTrace();
-			// }
+
 			manager.addUser(user);
 
 		} catch (BLLException e) {
