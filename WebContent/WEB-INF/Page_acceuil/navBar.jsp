@@ -12,12 +12,12 @@
         <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/WEB-INF/Page_acceuil/Page_acceuil.jsp">ENI-Encheres</a>
+      <a class="navbar-brand" href="Servlet">ENI-Encheres</a>
     </div>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="creationCompte"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="ServletSeConnecter"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="CreationCompte"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="Connection"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>
 </nav>
@@ -31,7 +31,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="/WEB-INF/Page_acceuil/Page_acceuil.jsp">Enchères</a></li>
       <li><a href="#">Vendre un article</a></li>
-    </ul>s
+    </ul>
     <ul class="nav navbar-nav navbar-right">
    		<li><a href="monProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
       	<li><a href="deconnexion"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
