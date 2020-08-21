@@ -55,6 +55,7 @@
 							title="8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre" required>
 					</div>
 					
+					
 					// modification pour Git //
 
 					<div class="form-group col-md-6">
