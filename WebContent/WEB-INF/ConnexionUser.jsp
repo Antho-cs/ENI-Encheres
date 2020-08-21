@@ -14,11 +14,11 @@
 
 
 
-<form action="POST">
+<form  action="${pageContext.request.contextPath}/Connection" method ="POST" >
 
 	<div>
 		<label for="uname">Identifiant :</label>
-		<input type="text" id="Id" name="Id" >
+		<input type="text" id="Identifiant" name="Identifiant" >
 	</div>
 	
 	<div>
@@ -27,7 +27,7 @@
 	</div>
 	
 	<div>
-		<button name="button_Connexion">Connexion</button>
+		<button name="button_Connexion" type ="submit" >Connexion</button>
 	</div>
 	
 	<div>
@@ -40,9 +40,7 @@
   		
 	</div>
 	
-	
-	
-	
+	<p> ${msg} </p>
 
 	
 </form>

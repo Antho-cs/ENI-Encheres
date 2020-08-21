@@ -78,4 +78,24 @@ public class UtilisateurManager {
 
 	}
 
+	public Utilisateur selectByPseudo(String Pseudo) throws BLLException {
+
+		try {
+			return this.daoUtilisateur.selectByPseudo(Pseudo);
+
+		} catch (DALException e) {
+			throw new BLLException("Erreur dans la récupération des donnés " + Pseudo, e);
+		}
+	}
+
+	public Utilisateur selectByMail(String Pseudo) throws BLLException {
+
+		try {
+			return this.daoUtilisateur.selectByMail(Pseudo);
+
+		} catch (DALException e) {
+			throw new BLLException("Erreur dans la récupération des donnés " + Pseudo, e);
+		}
+	}
+
 }
