@@ -184,7 +184,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rs = pStmt.executeQuery();
 			rs.next();
 
-			user = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+			user = new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 					rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
 					rs.getByte("administrateur"));
@@ -215,7 +215,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rs = pStmt.executeQuery();
 			rs.next();
 
-			user = new Utilisateur(rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
+			user = new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
 					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
 					rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
 					rs.getByte("administrateur"));

@@ -7,6 +7,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import fr.eni.bo.Utilisateur;
 
 /**
  * Servlet implementation class Servlet
@@ -14,21 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Servlet")
 public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static boolean isConnected = true;
-
-	public static boolean isConnected() {
-		return isConnected;
-	}
-
-	public static void setConnected(boolean bool) {
-		isConnected = bool;
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("isConnected", isConnected);
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			Utilisateur user = (Utilisateur)session.getAttribute("user");
+			 request.setAttribute("user", user);
+		}
 		 request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request,
 		 response);
+		
 
 //		request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
 	}
