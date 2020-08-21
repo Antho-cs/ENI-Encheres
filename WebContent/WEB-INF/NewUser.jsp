@@ -54,6 +54,8 @@
 							placeholder="Mot de passe" pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" onkeyup='chexk();'
 							title="8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre" required>
 					</div>
+					
+					// modification pour Git //
 
 					<div class="form-group col-md-6">
 						<label for="inputZip">Confirmation :</label> <input
