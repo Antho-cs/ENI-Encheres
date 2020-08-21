@@ -26,11 +26,11 @@
         <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">ENI-Encheres</a>
+      <a class="navbar-brand" href="Servlet">ENI-Encheres</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/WEB-INF/Page_acceuil/Page_acceuil.jsp">Enchères</a></li>
-      <li><a href="#">Vendre un article</a></li>
+      <li><a href="/WebContent/WEB-INF/NewVente2.jsp">Vendre un article</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
    		<li><a href="monProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>

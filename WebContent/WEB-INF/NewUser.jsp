@@ -56,7 +56,7 @@
 					</div>
 					
 					
-					// modification pour Git //
+				
 
 					<div class="form-group col-md-6">
 						<label for="inputZip">Confirmation :</label> <input

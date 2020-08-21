@@ -18,8 +18,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SQL_UPDATE = "update utilisateurs set pseudo = ?,nom= ?, prenom= ?, email= ?, telephone= ?, rue= ?, code_postal= ?,ville= ?,mot_de_passe= ?, credit =?, administrateur=? where no_utilisateur = ?";
 	private static final String SQL_DELETE = "delete from utilisateurs where no_utilisateur = ?";
 
-	private static final String SQL_SELECTBYID = "select pseudo,nom, prenom, email, telephone, rue, code_postal,ville,mot_de_passe,credit,administrateur"
-			+ "from utilisateurs where no_utilisateur = ?";
+	private static final String SQL_SELECTBYID = "select * from utilisateurs where no_utilisateur = ?";
 	private static final String SQL_SELECTBYPSEUDO = "select * from utilisateurs where pseudo = ?";
 	private static final String SQL_SELECTBYMAIL = "select * from utilisateurs where email = ?";
 
