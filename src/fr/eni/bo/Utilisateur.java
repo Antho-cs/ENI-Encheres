@@ -15,12 +15,6 @@ public class Utilisateur {
 	private int credit;
 	private byte administrateur;
 
-	public Utilisateur() {
-		super();
-		
-	}
-
-
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, int credit, byte administrateur) {
 		super();
@@ -37,7 +31,6 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
-
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone, String rue,
 			String code_postal, String ville, String mot_de_passe, int credit) {
