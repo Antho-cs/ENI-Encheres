@@ -19,8 +19,7 @@ public class ServletMonProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UtilisateurManager mgr = new UtilisateurManager();
 	Utilisateur user = new Utilisateur();
-	boolean mdpIncorrect = false;
-	boolean confirmerMdp = false;
+
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,10 +29,9 @@ public class ServletMonProfil extends HttpServlet {
 			try {
 				user= mgr.selectById(1);
 				request.setAttribute("user", user);
-				request.setAttribute("mdpIncorrect", mdpIncorrect);
-				request.setAttribute("confirmerMdp", confirmerMdp);
 				request.getRequestDispatcher("/WEB-INF/monProfil.jsp").forward(request, response);
 			} catch (BLLException e) {
+				e.printStackTrace();
 				response.sendRedirect("Servlet");
 			}
 		}else {
@@ -63,13 +61,13 @@ public class ServletMonProfil extends HttpServlet {
 					if(request.getParameter("nouveauMotDePasse").equals(request.getParameter("confirmerMotDePasse"))) {
 						user.setMot_de_passe(request.getParameter("nouveauMotDePasse"));
 					}else {
-						confirmerMdp = true;
+						
 						System.out.println("nouveau mot de passe != confirmer mot de passe");
 					}
 				}
 			mgr.updateUser(user);
 			}else {
-				mdpIncorrect = true;
+				
 				System.out.println("Mot de passe incorrect");
 			}
 		} catch (BLLException e) {
