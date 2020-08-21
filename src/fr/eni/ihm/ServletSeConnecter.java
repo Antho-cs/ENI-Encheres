@@ -61,6 +61,8 @@ public class ServletSeConnecter extends HttpServlet {
 
 				if (Mdp_Saisie.equals(mdp_Compare)) {
 					Servlet.setConnected(true);
+
+					System.out.println(mgr.selectByPseudo(Id_Saisie).getNo_utilisateur());
 					response.sendRedirect("Servlet");
 				} else {
 					msg = "Le mot de passe saisie n'est pas correct";
@@ -74,6 +76,8 @@ public class ServletSeConnecter extends HttpServlet {
 					mdp_Compare = mgr.selectByMail(Id_Saisie).getMot_de_passe();
 					if (Mdp_Saisie.equals(mdp_Compare)) {
 						Servlet.setConnected(true);
+
+						System.out.println(mgr.selectByPseudo(Id_Saisie).getNo_utilisateur());
 
 						response.sendRedirect("Servlet");
 

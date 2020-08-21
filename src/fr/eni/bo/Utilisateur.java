@@ -78,7 +78,7 @@ public class Utilisateur {
 	}
 
 	public Utilisateur() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	public int getNo_utilisateur() {

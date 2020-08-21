@@ -8,30 +8,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.bll.ArticleManager;
 import fr.eni.bll.BLLException;
-import fr.eni.bll.UtilisateurManager;
-import fr.eni.bo.Utilisateur;
+import fr.eni.bo.ArticleVendu;
 
 /**
- * Servlet implementation class monProfil
+ * Servlet implementation class ServletMonArticle
  */
-@WebServlet("/monProfil")
-public class ServletMonProfil extends HttpServlet {
+@WebServlet("/ServletMonArticle")
+public class ServletMonArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	UtilisateurManager mgr = new UtilisateurManager();
-	Utilisateur user = new Utilisateur();
+	ArticleManager mgr = new ArticleManager();
+	ArticleVendu Article = new ArticleVendu();
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#HttpServlet()
 	 */
+	public ServletMonArticle() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (Servlet.isConnected()) {
 			try {
-				user = mgr.selectById(2);
-				request.setAttribute("user", user);
-				request.getRequestDispatcher("/WEB-INF/monProfil.jsp").forward(request, response);
+				Article = mgr.selectByNo(2);
+				request.setAttribute("user", Article);
+				request.getRequestDispatcher("/WEB-INF/MonArticle.jsp").forward(request, response);
 			} catch (BLLException e) {
 				e.printStackTrace();
 				response.sendRedirect("Servlet");
@@ -42,23 +46,19 @@ public class ServletMonProfil extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (request.getParameter("btn").equalsIgnoreCase("enregistrer")) {
 			try {
-				if (user.getMot_de_passe().equals(request.getParameter("motDePasse"))) {
-					user.setPseudo(request.getParameter("pseudo"));
-					user.setEmail(request.getParameter("email"));
-					user.setNom(request.getParameter("nom"));
-					user.setPrenom(request.getParameter("prenom"));
-					user.setCode_postal(request.getParameter("codePostal"));
-					user.setTelephone(request.getParameter("telephone"));
-					user.setVille(request.getParameter("ville"));
-					user.setRue(request.getParameter("rue"));
+				if (Article.getMot_de_passe().equals(request.getParameter("motDePasse"))) {
+					Article.setPseudo(request.getParameter("pseudo"));
+					Article.setEmail(request.getParameter("email"));
+					Article.setNom(request.getParameter("nom"));
+					Article.setPrenom(request.getParameter("prenom"));
+					Article.setCode_postal(request.getParameter("codePostal"));
+					Article.setTelephone(request.getParameter("telephone"));
+					Article.setVille(request.getParameter("ville"));
+					Article.setRue(request.getParameter("rue"));
 					if (request.getParameter("nouveauMotDePasse") != null) {
 						if (request.getParameter("nouveauMotDePasse")
 								.equals(request.getParameter("confirmerMotDePasse"))) {
@@ -68,7 +68,7 @@ public class ServletMonProfil extends HttpServlet {
 							System.out.println("nouveau mot de passe != confirmer mot de passe");
 						}
 					}
-					mgr.updateUser(user);
+					mgr.updateArticle(Article);
 				} else {
 
 					System.out.println("Mot de passe incorrect");
@@ -79,7 +79,7 @@ public class ServletMonProfil extends HttpServlet {
 			}
 		} else if (request.getParameter("btn").equalsIgnoreCase("supprimer")) {
 			try {
-				mgr.deleteUser(user.getNo_utilisateur());
+				mgr.deleteUser(Article.getNo_utilisateur());
 				Servlet.setConnected(false);
 			} catch (BLLException e) {
 				// TODO Auto-generated catch block
