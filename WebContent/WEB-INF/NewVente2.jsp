@@ -73,9 +73,6 @@ ul, #myUL {
 
 .UploadPhoto {Margin-left : 40%; Margin-right : 40%; margin-top : 5% }
 
-
-
-
 </style>
 </head>
 <body>

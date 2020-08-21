@@ -74,6 +74,7 @@ public class ServletSeConnecter extends HttpServlet {
 					mdp_Compare = mgr.selectByMail(Id_Saisie).getMot_de_passe();
 					if (Mdp_Saisie.equals(mdp_Compare)) {
 						Servlet.setConnected(true);
+
 						response.sendRedirect("Servlet");
 
 					} else {

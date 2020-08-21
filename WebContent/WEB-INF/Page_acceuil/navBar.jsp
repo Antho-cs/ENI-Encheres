@@ -31,7 +31,7 @@
     <ul class="nav navbar-nav">
       <li class="active"><a href="/WEB-INF/Page_acceuil/Page_acceuil.jsp">Enchères</a></li>
       <li><a href="#">Vendre un article</a></li>
-    </ul>s
+    </ul>
     <ul class="nav navbar-nav navbar-right">
    		<li><a href="monProfil"><span class="glyphicon glyphicon-user"></span> Mon profil</a></li>
       	<li><a href="deconnexion"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

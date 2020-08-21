@@ -15,7 +15,7 @@ import fr.eni.bo.Utilisateur;
 /**
  * Servlet implementation class monProfil
  */
-@WebServlet("/ServletMonProfil")
+@WebServlet("/monProfil")
 public class ServletMonProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UtilisateurManager mgr = new UtilisateurManager();
