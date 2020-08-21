@@ -23,17 +23,17 @@ public class ServletTest extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		Utilisateur user = new Utilisateur(4,"ecasd", "Asdfdn", "FiLa", "anfila@fila.com", "09005000", "Rue Lakanal",
-//				"44000", "Nantes", "AnFiLa23", 1500,(byte)0);
-		Utilisateur user = new Utilisateur();
+		Utilisateur user = new Utilisateur("firas", "hm", "FiLa", "anfila@fila.com", "09005000", "Rue Lakanal",
+				"44000", "Nantes", "AnFiLa23", 1500,(byte)0);
+//		Utilisateur user = new Utilisateur();
 			
 			UtilisateurManager mgr = new UtilisateurManager();
 			
 			try {
 //				ConnectionProvider.getConnection();
-//				mgr.addUser(user2);
+				mgr.addUser(user);
 //				response.getWriter().append("user added");
-				user= mgr.selectById(8);
+//				user= mgr.selectById(8);
 //				mgr.updateUser(user);
 //				
 				response.getWriter().append(user.toString());
