@@ -63,7 +63,7 @@ public class ServletSeConnecter extends HttpServlet {
 					Servlet.setConnected(true);
 					response.sendRedirect("Servlet");
 				} else {
-					msg = "Le mot de passe saisie n'est pas correct";
+					msg = "Le mot de passe saisi n'est pas correct";
 					doGet(request, response);
 				}
 
@@ -78,7 +78,7 @@ public class ServletSeConnecter extends HttpServlet {
 						response.sendRedirect("Servlet");
 
 					} else {
-						msg = "Le mot de passe saisie n'est pas correct";
+						msg = "Le mot de passe saisi n'est pas correct";
 						doGet(request, response);
 					}
 				}
