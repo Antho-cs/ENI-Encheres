@@ -1,82 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>ENI-Enchères</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<style>
-/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-.row.content {
-	height: 1500px
-}
-
-/* Set gray background color and 100% height */
-.sidenav {
-	background-color: #f1f1f1;
-	height: 100%;
-}
-
-/* Set black background color, white text and some padding */
-footer {
-	background-color: #555;
-	color: white;
-	padding: 15px;
-}
-
-/* On small screens, set height to 'auto' for sidenav and grid */
-@media screen and (max-width: 767px) {
-	.sidenav {
-		height: auto;
-		padding: 15px;
-	}
-	.row.content {
-		height: auto;
-		
-	}
-}
-
-.form-group {
-	margin-top: 5%;
-}
-
-ul, #myUL {
-	list-style-type: none;
-}
-
-#myUL {
-	margin: 0;
-	padding: 0;
-}
-
-.nested {
-	display: none;
-}
-
-.active {
-	display: block;
-}
-.Retrait { Margin-left : 40%; Margin-right : 40%; margin-top : 5%}
-
-.Article { Margin-left : 40%; Margin-right : 40%; margin-top : 5%}
-
-.Bouton { margin : auto ; margin-top : 5%}
-
-.UploadPhoto {Margin-left : 40%; Margin-right : 40%; margin-top : 5% }
-
-</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
+
+<jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
 
 
 
@@ -110,7 +42,7 @@ ul, #myUL {
 					</div>
 
 					<div>
-						<label for="Categorie">Catégorie :</label> 
+						<label for="Categorie">CatÃ©gorie :</label> 
 						<select name="Categorie" id="Categorie-select">
 
 							<option>Toutes</option>
@@ -130,17 +62,17 @@ ul, #myUL {
 
 
 					<div>
-						<label for="Prix">Mise à prix :</label> <input type="number"
+						<label for="Prix">Mise Ã  prix :</label> <input type="number"
 							id="Prix" name="Prix" min="10" max="10000000" size="20" required>
 					</div>
 
 					<div>
-						<label for="DateDebut">Début de l'enchère :</label> <input
+						<label for="DateDebut">DÃ©but de l'enchÃ¨re :</label> <input
 							type="Date" name="DateDebut" size="20" required>
 					</div>
 
 					<div>
-						<label for="DateDebut">Fin de l'enchère :</label> <input
+						<label for="DateDebut">Fin de l'enchÃ¨re :</label> <input
 							type="Date" name="DateFin" size="20" required>
 					</div>
 

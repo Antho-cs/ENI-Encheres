@@ -15,21 +15,17 @@ import javax.servlet.http.Part;
  * Servlet implementation class ServletArticle
  */
 @WebServlet("/Article")
-public class ServletArticle extends HttpServlet {
+public class ServletNewArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServletArticle() {
+	public ServletNewArticle() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/NewVente2.jsp");

@@ -61,7 +61,14 @@
 							title="8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre" required>
 						<p> </p>
 					</div>
+<<<<<<< HEAD
 							
+=======
+					
+					
+				
+
+>>>>>>> e43c91395909a963ed1ce28d0eb779f70947b384
 					<div class="form-group col-md-6">
 						<label for="inputZip">Confirmation :</label> <input
 							type="password" class="form-control" name="ConfirmMdp"

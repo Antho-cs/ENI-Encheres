@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.bll.BLLException;
 import fr.eni.bll.UtilisateurManager;
@@ -18,27 +19,25 @@ import fr.eni.bo.Utilisateur;
 public class ServletMonProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UtilisateurManager mgr = new UtilisateurManager();
-	Utilisateur user = new Utilisateur();
-	boolean mdpIncorrect = false;
-	boolean confirmerMdp = false;
+	Utilisateur user = null;
+	HttpSession session;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(Servlet.isConnected()) {
+		session=request.getSession(false);  
+        user = (Utilisateur) session.getAttribute("user");
+        System.out.println(session.getAttribute("user"));
+        
 			try {
-				user= mgr.selectById(1);
+				user= mgr.selectById(user.getNo_utilisateur());
 				request.setAttribute("user", user);
-				request.setAttribute("mdpIncorrect", mdpIncorrect);
-				request.setAttribute("confirmerMdp", confirmerMdp);
 				request.getRequestDispatcher("/WEB-INF/monProfil.jsp").forward(request, response);
 			} catch (BLLException e) {
+				e.printStackTrace();
 				response.sendRedirect("Servlet");
 			}
-		}else {
-			response.sendRedirect("Servlet");
-		}
 		
 		
 		
@@ -63,13 +62,13 @@ public class ServletMonProfil extends HttpServlet {
 					if(request.getParameter("nouveauMotDePasse").equals(request.getParameter("confirmerMotDePasse"))) {
 						user.setMot_de_passe(request.getParameter("nouveauMotDePasse"));
 					}else {
-						confirmerMdp = true;
+						
 						System.out.println("nouveau mot de passe != confirmer mot de passe");
 					}
 				}
 			mgr.updateUser(user);
 			}else {
-				mdpIncorrect = true;
+				
 				System.out.println("Mot de passe incorrect");
 			}
 		} catch (BLLException e) {
@@ -79,7 +78,7 @@ public class ServletMonProfil extends HttpServlet {
 		}else if(request.getParameter("btn").equalsIgnoreCase("supprimer")) {
 			try {
 				mgr.deleteUser(user.getNo_utilisateur());
-				Servlet.setConnected(false);
+//				Servlet.setConnected(false);
 			} catch (BLLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
