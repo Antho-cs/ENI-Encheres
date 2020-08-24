@@ -44,8 +44,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.setString(7, user.getCode_postal());
 			pStmt.setString(8, user.getVille());
 			pStmt.setString(9, user.getMot_de_passe());
-			pStmt.setInt(10, user.getCredit()); // créditer à 0
-			pStmt.setByte(11, user.getAdministrateur()); // mettre utilisateur par défaut
+			pStmt.setInt(10, user.getCredit(100)); 
+			pStmt.setByte(11, user.getAdministrateur(0)); 
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
