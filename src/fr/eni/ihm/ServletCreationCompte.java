@@ -63,6 +63,8 @@ public class ServletCreationCompte extends HttpServlet {
 		}
 
 		response.sendRedirect("Servlet");
+		
+		/dddd
 
 	}
 }
