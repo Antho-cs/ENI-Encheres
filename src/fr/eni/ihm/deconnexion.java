@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class deconnexion
@@ -18,7 +19,8 @@ public class deconnexion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Servlet.setConnected(false);
+		HttpSession session=request.getSession(false);  
+        session.invalidate(); 
 		request.getRequestDispatcher("Servlet").forward(request, response);
 	}
 

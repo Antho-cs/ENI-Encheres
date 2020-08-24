@@ -99,7 +99,7 @@ ul, #myUL {
 				</select>
 
 				<c:choose>
-					<c:when test="${isConnected}">
+					<c:when test="${user != null}">
 						<fieldset class="form-group">
 							<ul id="myUL">
 								<li>

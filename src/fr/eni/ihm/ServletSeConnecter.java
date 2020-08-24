@@ -7,9 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.bll.BLLException;
 import fr.eni.bll.UtilisateurManager;
+import fr.eni.bo.Utilisateur;
 
 /**
  * Servlet implementation class seConnecter
@@ -18,6 +20,8 @@ import fr.eni.bll.UtilisateurManager;
 public class ServletSeConnecter extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	String msg = "";
+	Utilisateur user = new Utilisateur();
+	HttpSession session;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -53,32 +57,35 @@ public class ServletSeConnecter extends HttpServlet {
 		// System.out.println(mgr.selectByMail(Id_Saisie).getEmail());
 		// System.out.println(Id_Saisie.equals(mgr.selectByMail(Id_Saisie).getEmail()));
 		try {
+			user = mgr.selectByPseudo(Id_Saisie);
+			if (Id_Saisie.equals(user.getPseudo())) {
 
-			if (Id_Saisie.equals(mgr.selectByPseudo(Id_Saisie).getPseudo())) {
-
-				mdp_Compare = mgr.selectByPseudo(Id_Saisie).getMot_de_passe();
+				mdp_Compare = user.getMot_de_passe();
 				System.out.println("1er IF");
 
 				if (Mdp_Saisie.equals(mdp_Compare)) {
-					Servlet.setConnected(true);
+					//session
+					session=request.getSession();
+					
+					System.out.println(user.getNo_utilisateur());
+			        session.setAttribute("user",user); 
 					response.sendRedirect("Servlet");
 				} else {
-					msg = "Le mot de passe saisie n'est pas correct";
+					msg = "Le mot de passe saisi n'est pas correct";
 					doGet(request, response);
 				}
 
 			}
 		} catch (BLLException e) {
 			try {
-				if (Id_Saisie.equals(mgr.selectByMail(Id_Saisie).getEmail())) {
-					mdp_Compare = mgr.selectByMail(Id_Saisie).getMot_de_passe();
+				user = mgr.selectByMail(Id_Saisie);
+				if (Id_Saisie.equals(user.getEmail())) {
+					mdp_Compare = user.getMot_de_passe();
 					if (Mdp_Saisie.equals(mdp_Compare)) {
-						Servlet.setConnected(true);
-
 						response.sendRedirect("Servlet");
 
 					} else {
-						msg = "Le mot de passe saisie n'est pas correct";
+						msg = "Le mot de passe saisi n'est pas correct";
 						doGet(request, response);
 					}
 				}

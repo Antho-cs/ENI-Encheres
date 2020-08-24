@@ -7,6 +7,11 @@
 
 <title>ENI Encheres</title>
 <style>
+.jumbotron {
+  background-image: url("https://happier1.imgix.net/img/blog/20150319-20150319-shutterstock_81215629.jpg?w=700");
+  background-size: cover;
+  height:250px;
+}
 .container {
 margin-top : 10%;
 }
@@ -18,7 +23,6 @@ margin-top : 10%;
 <jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
 <div class="container" style="width: 500px">
 <div class="jumbotron text-center">
-		<h1>Connexion</h1>
 	</div>
 
 <form action="${pageContext.request.contextPath}/Connection" method ="POST">
