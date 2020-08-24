@@ -28,8 +28,6 @@ public class Servlet extends HttpServlet {
 		 request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request,
 		 response);
 		
-
-//		request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
