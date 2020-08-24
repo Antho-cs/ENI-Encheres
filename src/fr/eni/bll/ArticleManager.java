@@ -1,5 +1,7 @@
 package fr.eni.bll;
 
+import java.util.List;
+
 import fr.eni.bo.ArticleVendu;
 import fr.eni.dal.ArticleVenduDAO;
 import fr.eni.dal.DALException;
@@ -67,7 +69,7 @@ public class ArticleManager {
 	 * @throws BLLException
 	 */
 
-	public ArticleVendu selectAll() throws BLLException {
+	public List<ArticleVendu> selectAll() throws BLLException {
 
 		try {
 			return this.daoArticle.selectAll();
@@ -87,13 +89,13 @@ public class ArticleManager {
 		}
 	}
 
-	public ArticleVendu selectByCategorie(String categorie) throws BLLException {
+	public List<ArticleVendu> selectByCategorie(int no_categorie) throws BLLException {
 
 		try {
-			return this.daoArticle.selectByCategorie(categorie);
+			return this.daoArticle.selectByCategorie(no_categorie);
 
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des donnés " + categorie, e);
+			throw new BLLException("Erreur dans la récupération des donnés " + no_categorie, e);
 		}
 	}
 

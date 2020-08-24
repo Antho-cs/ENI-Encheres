@@ -160,11 +160,11 @@ ul, #myUL {
 					</c:when>
 				</c:choose>
 			</div>
-			<div class="col-sm-3" style="width: 18rem;">
+			<div class="col-sm-3">
 				<div class="w3-card-4">
 					<img
 						src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYAHZ0lpBtlP8lXebTIEtnA5-gDxLrPaL-CA&usqp=CAU"
-						alt="Alps" width="240">
+						alt="Alps" style="width:100%">
 					<div class="w3-container w3-center">
 						<h5>Card title</h5>
 						<p>Some quick example text to build on the card title and make
@@ -180,11 +180,11 @@ ul, #myUL {
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-3" style="width: 18rem;">
+			<div class="col-sm-3">
 				<div class="w3-card-4">
 					<img
 						src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYAHZ0lpBtlP8lXebTIEtnA5-gDxLrPaL-CA&usqp=CAU"
-						alt="Alps" width="240">
+						alt="Alps" style="width:100%">
 					<div class="w3-container w3-center">
 						<h5>Card title</h5>
 						<p>Some quick example text to build on the card title and make
@@ -200,13 +200,13 @@ ul, #myUL {
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-3" style="width: 18rem;">
+			<div class="col-sm-3">
 				<div class="w3-card-4">
 					<img
 						src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYAHZ0lpBtlP8lXebTIEtnA5-gDxLrPaL-CA&usqp=CAU"
-						alt="Alps" width="240">
+						alt="Alps" style="width:100%">
 					<div class="w3-container w3-center">
-						<h5>Card title</h5>
+						<h5>Card title 3</h5>
 						<p>Some quick example text to build on the card title and make
 							up the bulk of the card's content.</p>
 					</div>
@@ -222,8 +222,8 @@ ul, #myUL {
 			</div>
 		</div>
 	</div>
-	<footer class="container-fluid">
-	<p>Footer Text</p>
+	<footer class="container-fluid text-center">
+		<p>Footer Text</p>
 	</footer>
 <script>
 function myFunction() {
