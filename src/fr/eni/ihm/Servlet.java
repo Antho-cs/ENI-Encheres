@@ -35,6 +35,7 @@ public class Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		request.getRequestDispatcher("WEB-INF/ArticleUtilisateur.jsp").forward(request, response);
 	}
 
 }

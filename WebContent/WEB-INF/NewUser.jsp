@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<!-- Latest compiled and minified CSS -->
+
 <title>ENI Encheres</title>
 
 
@@ -55,8 +55,8 @@
 					<div class="form-group col-md-6">
 						<label for="inputZip">Mot de passe :</label> <input
 							type="password" class="form-control" name="Mdp"
-							value = "${user.getMot_de_passe()}" placeholder="Mot de passe" pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-							title="8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre" required>
+							value = "${user.getMot_de_passe()}" placeholder="8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre"  pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+							 required>
 
 					</div>
 
