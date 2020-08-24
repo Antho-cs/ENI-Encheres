@@ -13,10 +13,10 @@ import fr.eni.dal.UtilisateurDAO;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
-	private static final String SQL_INSERT = "insert into utilisateurs (pseudo,nom, prenom, email, telephone, rue, code_postal,ville,mot_de_passe,credit,administrateur) "
-			+ " values (?,?,?,?,?,?,?,?,?,?,?)";
+	private static final String SQL_INSERT = "insert into utilisateurs (pseudo,nom, prenom, email, telephone, rue, code_postal,ville,mot_de_passe) "
+			+ " values (?,?,?,?,?,?,?,?,?)";
 	private static final String SQL_UPDATE = "update utilisateurs set pseudo = ?,nom= ?, prenom= ?, email= ?, telephone= ?, rue= ?, code_postal= ?,ville= ?,mot_de_passe= ?, credit =?, administrateur=? where no_utilisateur = ?";
-	private static final String SQL_DELETE = "delete from utilisateurs where no_utilisateur = ?";
+	private static final String SQL_DELETE = "delete pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe from utilisateurs where no_utilisateur = ?";
 	private static final String SQL_SELECTBYID = "select * from utilisateurs where no_utilisateur = ?";
 	private static final String SQL_SELECTBYPSEUDO = "select * from utilisateurs where pseudo = ?";
 	private static final String SQL_SELECTBYMAIL = "select * from utilisateurs where email = ?";
@@ -44,8 +44,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.setString(7, user.getCode_postal());
 			pStmt.setString(8, user.getVille());
 			pStmt.setString(9, user.getMot_de_passe());
-			pStmt.setInt(10, user.getCredit());
-			pStmt.setByte(11, user.getAdministrateur());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();

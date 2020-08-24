@@ -29,7 +29,6 @@ public class ServletMonProfil extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		session = request.getSession(false);
 		user = (Utilisateur) session.getAttribute("user");
 		System.out.println(session.getAttribute("user"));
