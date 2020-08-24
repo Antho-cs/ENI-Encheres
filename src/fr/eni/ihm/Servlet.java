@@ -21,15 +21,15 @@ public class Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if(session != null) {
-			Utilisateur user = (Utilisateur)session.getAttribute("user");
-			 request.setAttribute("user", user);
+		if (session != null) {
+			Utilisateur user = (Utilisateur) session.getAttribute("user");
+			request.setAttribute("user", user);
+			System.out.println(session.getAttribute("user"));
 		}
-		 request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request,
-		 response);
-		
+		request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request, response);
 
-//		request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
+		// request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request,
+		// response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

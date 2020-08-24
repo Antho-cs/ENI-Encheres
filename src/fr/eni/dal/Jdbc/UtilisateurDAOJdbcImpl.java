@@ -44,16 +44,15 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.setString(7, user.getCode_postal());
 			pStmt.setString(8, user.getVille());
 			pStmt.setString(9, user.getMot_de_passe());
-			pStmt.setInt(10, user.getCredit()); // créditer à 0
-			pStmt.setByte(11, user.getAdministrateur()); // mettre utilisateur par défaut
+			pStmt.setInt(10, user.getCredit());
+			pStmt.setByte(11, user.getAdministrateur());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if (rs.next()) {
 				System.out.println(rs.getInt(1));
 				user.setNo_utilisateur(rs.getInt(1));
-				// user.setCredit(0); //créditer à 0
-				// user.setAdministrateur(0); //mettre utilisateur par défaut
+
 			}
 
 		} catch (SQLException e) {
@@ -151,7 +150,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt = cnx.prepareStatement(SQL_SELECTBYID);
 
 			pStmt.setInt(1, no_utilisateur);
-			
+
 			rs = pStmt.executeQuery();
 			rs.next();
 			user = new Utilisateur(no_utilisateur, rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
@@ -161,7 +160,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			throw new DALException("selectById failed - id = " + no_utilisateur, e);
 		}
-		
+
 		return user;
 
 	}
@@ -184,10 +183,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rs = pStmt.executeQuery();
 			rs.next();
 
-			user = new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
-					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
-					rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
-					rs.getByte("administrateur"));
+			user = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"),
+					rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
+					rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"),
+					rs.getInt("credit"), rs.getByte("administrateur"));
 
 		} catch (SQLException e) {
 			throw new DALException("selectById failed - id = " + Pseudo, e);
@@ -215,10 +214,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			rs = pStmt.executeQuery();
 			rs.next();
 
-			user = new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo"), rs.getString("nom"), rs.getString("prenom"),
-					rs.getString("email"), rs.getString("telephone"), rs.getString("rue"), rs.getString("code_postal"),
-					rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
-					rs.getByte("administrateur"));
+			user = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"),
+					rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
+					rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"),
+					rs.getInt("credit"), rs.getByte("administrateur"));
 
 		} catch (SQLException e) {
 			throw new DALException("selectByMail failed - id = " + Pseudo, e);
