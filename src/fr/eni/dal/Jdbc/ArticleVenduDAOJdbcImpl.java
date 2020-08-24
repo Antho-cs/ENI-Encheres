@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import fr.eni.bo.ArticleVendu;
+import fr.eni.bo.Utilisateur;
 import fr.eni.dal.ArticleVenduDAO;
 import fr.eni.dal.ConnectionProvider;
 import fr.eni.dal.DALException;
@@ -32,9 +33,11 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 	/**
 	 * permet de créer un nouvel article par l'utilisateur (vendeur)
+	 * 
+	 * @return
 	 */
 	@Override
-	public void insertNewArt(ArticleVendu articleVendu) throws DALException {
+	public ArticleVendu insertNewArt(ArticleVendu articleVendu) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
 
@@ -51,20 +54,21 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			pStmt.setInt(6, articleVendu.getMiseAPrix());
 			pStmt.setInt(7, articleVendu.getPrixVente());
 			pStmt.setInt(8, articleVendu.getNoCategotie());
-			pStmt.setInt(9, articleVendu.get);
+			pStmt.setString(9, articleVendu.getCategorie());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if (rs.next()) {
 				System.out.println(rs.getInt(1));
-				user.setNo_utilisateur(rs.getInt(1));
+				articleVendu.setNoArticle(rs.getInt(1));
+
 				// user.setCredit(0); //créditer à 0
 				// user.setAdministrateur(0); //mettre utilisateur par défaut
 			}
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			throw new DALException("Erreur à l'ajout de l'utilisateur : " + user, e);
+			throw new DALException("Erreur � l'ajout de l'article : " + articleVendu, e);
 
 		} finally {
 
@@ -76,7 +80,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 				e.printStackTrace();
 			}
 		}
-		return user;
+		return articleVendu;
 	}
 
 	/**
@@ -84,9 +88,49 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	 * (vendeur)
 	 */
 	@Override
-	public void updateArt(ArticleVendu data) throws DALException {
-		// TODO Auto-generated method stub
+	public void updateArt(ArticleVendu articleVendu) throws DALException {
+		Connection cnx = null;
+		PreparedStatement pStmt = null;
 
+		try {
+			cnx = ConnectionProvider.getConnection();
+
+			pStmt = cnx.prepareStatement(SQL_UPDATE, Statement.RETURN_GENERATED_KEYS);
+
+			pStmt.setInt(1, articleVendu.getNoArticle());
+			pStmt.setString(2, articleVendu.getNomArticle());
+			pStmt.setString(3, articleVendu.getDescription());
+			pStmt.setTimestamp(4, Timestamp.valueOf(articleVendu.getDateDebutEncheres()));
+			pStmt.setTimestamp(5, Timestamp.valueOf(articleVendu.getDateFinEncheres()));
+			pStmt.setInt(6, articleVendu.getMiseAPrix());
+			pStmt.setInt(7, articleVendu.getPrixVente());
+			pStmt.setInt(8, articleVendu.getNoCategotie());
+			pStmt.setString(9, articleVendu.getCategorie());
+
+			pStmt.executeUpdate();
+			ResultSet rs = pStmt.getGeneratedKeys();
+			if (rs.next()) {
+				System.out.println(rs.getInt(1));
+				articleVendu.setNoArticle(rs.getInt(1));
+
+				// user.setCredit(0); //créditer à 0
+				// user.setAdministrateur(0); //mettre utilisateur par défaut
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DALException("Erreur de la mise � jour de : " + articleVendu, e);
+
+		} finally {
+
+			try {
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -94,8 +138,31 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	 */
 	@Override
 	public void deleteArt(int noArticle) throws DALException {
-		// TODO Auto-generated method stub
+		Connection cnx = null;
+		PreparedStatement pStmt = null;
 
+		try {
+			cnx = ConnectionProvider.getConnection();
+
+			pStmt = cnx.prepareStatement(SQL_DELETE);
+
+			pStmt.setInt(1, noArticle);
+			pStmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DALException("Erreur à la suppression de l'article : " + noArticle, e);
+
+		} finally {
+
+			try {
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -103,8 +170,37 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	 */
 	@Override
 	public ArticleVendu selectByNo(int noArticle) throws DALException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Connection cnx = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		ArticleVendu Article = null;
+
+		try {
+			cnx = ConnectionProvider.getConnection();
+
+			pStmt = cnx.prepareStatement(SQL_SELECTBYNO);
+
+			pStmt.setInt(1, noArticle);
+			
+			rs = pStmt.executeQuery();
+			rs.next();
+			Article = new ArticleVendu(noArticle), 
+					rs.getInt("no_article"), 
+					rs.getString("nom_article"), 
+					rs.getString("description"),
+					rs.getTimestamp("date_debut_encheres").toLocalDateTime(), 
+					rs.getTimestamp("date_fin_encheres").toLocalDateTime(),
+					rs.getInt("prix_initial"), 
+					rs.getInt("prix_vente"),
+					rs.getInt("no_categorie"), 
+					
+		} catch (SQLException e) {
+			throw new DALException("selectByNo failed - No = " + noArticle, e);
+		}
+		
+		return Article;
+
 	}
 
 	/**

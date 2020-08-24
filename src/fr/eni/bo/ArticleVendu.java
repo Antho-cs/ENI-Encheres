@@ -14,9 +14,10 @@ public class ArticleVendu {
 	private String etatVente;
 	private int no_categorie;
 	private String categorie;
+	private int no_utilisateur;
 
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
-			LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, int noCategotie, String categorie) {
+			LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, int noCategotie, int no_utilisateur) {
 		super();
 		this.no_article = noArticle;
 		nom_article = nomArticle;
@@ -26,7 +27,7 @@ public class ArticleVendu {
 		this.prix_initial = miseAPrix;
 		this.prix_vente = prixVente;
 		this.no_categorie = noCategotie;
-		this.categorie = categorie;
+		this.no_utilisateur = no_utilisateur;
 	}
 
 	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
