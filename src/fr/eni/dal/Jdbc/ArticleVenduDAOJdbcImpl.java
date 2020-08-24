@@ -31,7 +31,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			+ "from articles_vendus where categorie = ?";
 
 	/**
-	 * permet de crÃ©er un nouvel article par l'utilisateur (vendeur)
+	 * permet de créer un nouvel article par l'utilisateur (vendeur)
 	 */
 	@Override
 	public void insertNewArt(ArticleVendu articleVendu) throws DALException {
@@ -51,20 +51,20 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			pStmt.setInt(6, articleVendu.getMiseAPrix());
 			pStmt.setInt(7, articleVendu.getPrixVente());
 			pStmt.setInt(8, articleVendu.getNoCategotie());
-			pStmt.setInt(9, articleVendu.get);
+			pStmt.setString(9, articleVendu.getCategorie());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if (rs.next()) {
 				System.out.println(rs.getInt(1));
-				user.setNo_utilisateur(rs.getInt(1));
-				// user.setCredit(0); //crÃ©diter Ã  0
-				// user.setAdministrateur(0); //mettre utilisateur par dÃ©faut
+				articleVendu.setNoArticle(rs.getInt(1));
+				// user.setCredit(0); //créditer à 0
+				// user.setAdministrateur(0); //mettre utilisateur par défaut
 			}
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			throw new DALException("Erreur Ã  l'ajout de l'utilisateur : " + user, e);
+			throw new DALException("Erreur à l'ajout de l'utilisateur : " + articleVendu, e);
 
 		} finally {
 
@@ -76,11 +76,10 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 				e.printStackTrace();
 			}
 		}
-		return user;
 	}
 
 	/**
-	 * permet de mettre Ã  jour les donnÃ©es d'un article par l'utilisateur
+	 * permet de mettre à jour les données d'un article par l'utilisateur
 	 * (vendeur)
 	 */
 	@Override
@@ -99,7 +98,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 
 	/**
-	 * permet Ã  l'utilisateur de visualiser un article (acquÃ©reur)
+	 * permet à l'utilisateur de visualiser un article (acquéreur)
 	 */
 	@Override
 	public ArticleVendu selectByNo(int noArticle) throws DALException {
@@ -108,8 +107,8 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 
 	/**
-	 * permet Ã  l'utilisateur (acquÃ©reur) de visualiser tous les articles d'une
-	 * catÃ©gorie
+	 * permet à l'utilisateur (acquéreur) de visualiser tous les articles d'une
+	 * catégorie
 	 */
 	@Override
 	public List<ArticleVendu> selectByCategorie(String categorie) throws DALException {
@@ -118,7 +117,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	}
 
 	/**
-	 * permet Ã  l'utilisateur (acquÃ©reur) de visualiser tous les articles
+	 * permet à l'utilisateur (acquéreur) de visualiser tous les articles
 	 */
 	@Override
 	public List<ArticleVendu> selectAll() throws DALException {

@@ -15,6 +15,7 @@
 	align: center;
 	padding: 10px 50px 20px;
 }
+
 #bouton {
 	margin-left: auto;
 	margin-right: auto;
@@ -61,8 +62,7 @@
 
 					<div class="form-group col-md-6">
 						<label for="inputZip">Confirmation :</label> <input
-							type="password" class="form-control" name="ConfirmMdp"
-							placeholder="Confirmez votre mot de passe" 
+							type="password" class="form-control" name="ConfirmMdp" placeholder="Confirmez votre mot de passe" 
 							required>
 							
 					</div>

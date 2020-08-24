@@ -36,5 +36,6 @@
 	<classpathentry kind="lib" path="C:/Users/Administrateur/Downloads/apache-tomcat-8.5.57/apache-tomcat-8.5.57/lib/tomcat-util-scan.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Administrateur/Downloads/apache-tomcat-8.5.57/apache-tomcat-8.5.57/lib/tomcat-websocket.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Administrateur/Downloads/apache-tomcat-8.5.57/apache-tomcat-8.5.57/lib/websocket-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrateur/Downloads/apache-tomcat-8.5.57/apache-tomcat-8.5.57/lib/annotations-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
