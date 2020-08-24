@@ -64,11 +64,9 @@ public class ServletSeConnecter extends HttpServlet {
 				System.out.println("1er IF");
 
 				if (Mdp_Saisie.equals(mdp_Compare)) {
-					//session
-					session=request.getSession();
-					
-					System.out.println(user.getNo_utilisateur());
-			        session.setAttribute("user",user); 
+					// session
+					session = request.getSession();
+					session.setAttribute("user", user);
 					response.sendRedirect("Servlet");
 				} else {
 					msg = "Le mot de passe saisie n'est pas correct";
