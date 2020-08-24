@@ -46,16 +46,11 @@ public class ServletSeConnecter extends HttpServlet {
 		UtilisateurManager mgr = new UtilisateurManager();
 
 		// Test des Identifiants utlilisateurs //
+
 		// Utilisateur userPseudo = mgr.selectByPseudo(Id_Saisie);
 		// Utilisateur userMail = mgr.selectByMail(Id_Saisie);
 		String mdp_Compare;
-		// String mdp_Compare2 = userMail.getMot_de_passe();
 
-		// System.out.println(mdp_Compare);
-		// System.out.println(Mdp_Saisie);
-		// System.out.println(Id_Saisie);
-		// System.out.println(mgr.selectByMail(Id_Saisie).getEmail());
-		// System.out.println(Id_Saisie.equals(mgr.selectByMail(Id_Saisie).getEmail()));
 		try {
 			user = mgr.selectByPseudo(Id_Saisie);
 			if (Id_Saisie.equals(user.getPseudo())) {
@@ -65,6 +60,7 @@ public class ServletSeConnecter extends HttpServlet {
 
 				if (Mdp_Saisie.equals(mdp_Compare)) {
 					// session
+
 					session = request.getSession();
 					session.setAttribute("user", user);
 					response.sendRedirect("Servlet");
@@ -80,6 +76,8 @@ public class ServletSeConnecter extends HttpServlet {
 				if (Id_Saisie.equals(user.getEmail())) {
 					mdp_Compare = user.getMot_de_passe();
 					if (Mdp_Saisie.equals(mdp_Compare)) {
+						session = request.getSession();
+						session.setAttribute("user", user);
 						response.sendRedirect("Servlet");
 
 					} else {

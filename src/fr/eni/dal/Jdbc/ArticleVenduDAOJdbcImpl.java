@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +15,8 @@ import fr.eni.dal.DALException;
 
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
-	private static final String SQL_INSERT = "insert into articles_vendus (no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_categorie,categorie)"
-			+ "values (?,?,?,?,?,?,?,?,?,?)";
+	private static final String SQL_INSERT = "insert into articles_vendus (no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_categorie,no_utilisateur)"
+			+ "values (?,?,?,?,?,?,?,?,?)";
 	private static final String SQL_UPDATE = "update articles_vendus set = no_article?,set nom_article= ?,set description= ?,set date_debut_encheres= ?,set date_fin_encheres= ?,set prix_initial= ?,set prix_vente= ?,set no_categorie= ?,set categorie= ?";
 
 	private static final String SQL_DELETE = "delete from articles_vendus where no_article =?";
@@ -48,12 +47,12 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			pStmt.setInt(1, articleVendu.getNoArticle());
 			pStmt.setString(2, articleVendu.getNomArticle());
 			pStmt.setString(3, articleVendu.getDescription());
-			pStmt.setTimestamp(4, Timestamp.valueOf(articleVendu.getDateDebutEncheres()));
-			pStmt.setTimestamp(5, Timestamp.valueOf(articleVendu.getDateFinEncheres()));
+			pStmt.setDate(4, articleVendu.getDateDebutEncheres());
+			pStmt.setDate(5, articleVendu.getDateFinEncheres());
 			pStmt.setInt(6, articleVendu.getMiseAPrix());
 			pStmt.setInt(7, articleVendu.getPrixVente());
 			pStmt.setInt(8, articleVendu.getNoCategotie());
-			pStmt.setString(9, articleVendu.getCategorie());
+			pStmt.setInt(9, articleVendu.getNo_utilisateur());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
@@ -97,12 +96,12 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			pStmt.setInt(1, articleVendu.getNoArticle());
 			pStmt.setString(2, articleVendu.getNomArticle());
 			pStmt.setString(3, articleVendu.getDescription());
-			pStmt.setTimestamp(4, Timestamp.valueOf(articleVendu.getDateDebutEncheres()));
-			pStmt.setTimestamp(5, Timestamp.valueOf(articleVendu.getDateFinEncheres()));
+			pStmt.setDate(4, articleVendu.getDateDebutEncheres());
+			pStmt.setDate(5, articleVendu.getDateFinEncheres());
 			pStmt.setInt(6, articleVendu.getMiseAPrix());
 			pStmt.setInt(7, articleVendu.getPrixVente());
 			pStmt.setInt(8, articleVendu.getNoCategotie());
-			pStmt.setString(9, articleVendu.getCategorie());
+			pStmt.setInt(9, articleVendu.getNo_utilisateur());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
@@ -183,8 +182,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			rs = pStmt.executeQuery();
 			rs.next();
 			Article = new ArticleVendu(noArticle, rs.getString("nom_article"), rs.getString("description"),
-					rs.getTimestamp("date_debut_encheres").toLocalDateTime(),
-					rs.getTimestamp("date_fin_encheres").toLocalDateTime(), rs.getInt("prix_initial"),
+					rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"),
 					rs.getInt("prix_vente"), rs.getInt("no_categorie"), rs.getInt("no_utilisateur"));
 
 		} catch (SQLException e) {

@@ -86,8 +86,8 @@ footer {
 						</div>
 
 						<div class="row">
-							<label for="DateDebut">Fin de l'enchère :</label> <input
-								type="Date" name="DateFin" size="20" required>
+							<label for="DateDebut">Fin de l'enchère :</label> 
+							<input type="Date" name="DateFin" size="20" required>
 						</div>
 					</div>
 					<div class="well">

@@ -1,14 +1,14 @@
 package fr.eni.bo;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class ArticleVendu {
 
 	private int no_article;
 	private String nom_article;
 	private String description;
-	private LocalDateTime date_debut_encheres;
-	private LocalDateTime date_fin_encheres;
+	private Date date_debut_encheres;
+	private Date date_fin_encheres;
 	private int prix_initial;
 	private int prix_vente;
 	private String etatVente;
@@ -16,8 +16,8 @@ public class ArticleVendu {
 	private String categorie;
 	private int no_utilisateur;
 
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
-			LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, int noCategotie, int no_utilisateur) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int miseAPrix, int prixVente, int noCategotie, int no_utilisateur) {
 		super();
 		this.no_article = noArticle;
 		nom_article = nomArticle;
@@ -30,9 +30,8 @@ public class ArticleVendu {
 		this.no_utilisateur = no_utilisateur;
 	}
 
-	public ArticleVendu(int noArticle, String nomArticle, String description, LocalDateTime dateDebutEncheres,
-			LocalDateTime dateFinEncheres, int miseAPrix, int prixVente, String etatVente, int noCategotie,
-			String categorie) {
+	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
+			Date dateFinEncheres, int miseAPrix, int prixVente, String etatVente, int noCategotie, String categorie) {
 		super();
 		this.no_article = noArticle;
 		nom_article = nomArticle;
@@ -74,19 +73,19 @@ public class ArticleVendu {
 		this.description = description;
 	}
 
-	public LocalDateTime getDateDebutEncheres() {
+	public Date getDateDebutEncheres() {
 		return date_debut_encheres;
 	}
 
-	public void setDateDebutEncheres(LocalDateTime dateDebutEncheres) {
+	public void setDateDebutEncheres(Date dateDebutEncheres) {
 		this.date_debut_encheres = dateDebutEncheres;
 	}
 
-	public LocalDateTime getDateFinEncheres() {
+	public Date getDateFinEncheres() {
 		return date_fin_encheres;
 	}
 
-	public void setDateFinEncheres(LocalDateTime dateFinEncheres) {
+	public void setDateFinEncheres(Date dateFinEncheres) {
 		this.date_fin_encheres = dateFinEncheres;
 	}
 
@@ -102,8 +101,8 @@ public class ArticleVendu {
 		return prix_vente;
 	}
 
-	public void setPrixVente(int prixVente) {
-		this.prix_vente = prixVente;
+	public void setPrixVente(int Prix) {
+		this.prix_vente = Prix;
 	}
 
 	public String getEtatVente() {
@@ -136,6 +135,10 @@ public class ArticleVendu {
 
 	public void setNo_utilisateur(int no_utilisateur) {
 		this.no_utilisateur = no_utilisateur;
+	}
+
+	public void setVille(String ville) {
+
 	}
 
 }
