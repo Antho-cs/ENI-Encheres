@@ -16,7 +16,7 @@
     </div>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="CreationCompte"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="ServletCreationCompte"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
       <li><a href="Connection"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
   </div>
@@ -30,7 +30,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/WEB-INF/Page_acceuil/Page_acceuil.jsp">Enchères</a></li>
-      <li><a href="/WebContent/WEB-INF/NewVente2.jsp">Vendre un article</a></li>
+      <li><a href="ServletMonArticle">Vendre un article</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
    		<li><a href="monProfil"><span class="glyphicon glyphicon-user"></span> ${user.getPseudo()}</a></li>
