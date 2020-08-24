@@ -44,14 +44,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.setString(7, user.getCode_postal());
 			pStmt.setString(8, user.getVille());
 			pStmt.setString(9, user.getMot_de_passe());
-			pStmt.setInt(10, user.getCredit(100)); 
-			pStmt.setByte(11, user.getAdministrateur(0)); 
+			pStmt.setInt(10, user.getCredit()); // créditer à 0
+			pStmt.setByte(11, user.getAdministrateur()); // mettre utilisateur par défaut
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if (rs.next()) {
 				System.out.println(rs.getInt(1));
 				user.setNo_utilisateur(rs.getInt(1));
+				// user.setCredit(0); //créditer à 0
+				// user.setAdministrateur(0); //mettre utilisateur par défaut
 			}
 
 		} catch (SQLException e) {
@@ -196,7 +198,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur selectByMail(String email) throws DALException {
+	public Utilisateur selectByMail(String Pseudo) throws DALException {
 
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
@@ -208,7 +210,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 			pStmt = cnx.prepareStatement(SQL_SELECTBYMAIL);
 
-			pStmt.setString(1, email);
+			pStmt.setString(1, Pseudo);
 
 			rs = pStmt.executeQuery();
 			rs.next();
@@ -219,7 +221,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 					rs.getByte("administrateur"));
 
 		} catch (SQLException e) {
-			throw new DALException("selectByMail failed - id = " + email, e);
+			throw new DALException("selectByMail failed - id = " + Pseudo, e);
 		}
 
 		return user;

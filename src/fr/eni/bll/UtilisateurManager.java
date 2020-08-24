@@ -73,7 +73,7 @@ public class UtilisateurManager {
 		try {
 			return this.daoUtilisateur.selectById(no_utilisateur);
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des données " + no_utilisateur, e);
+			throw new BLLException("Erreur dans la récupération des donnés " + no_utilisateur, e);
 		}
 
 	}
@@ -84,17 +84,17 @@ public class UtilisateurManager {
 			return this.daoUtilisateur.selectByPseudo(Pseudo);
 
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des données " + Pseudo, e);
+			throw new BLLException("Erreur dans la récupération des donnés " + Pseudo, e);
 		}
 	}
 
-	public Utilisateur selectByMail(String email) throws BLLException {
+	public Utilisateur selectByMail(String Pseudo) throws BLLException {
 
 		try {
-			return this.daoUtilisateur.selectByMail(email);
+			return this.daoUtilisateur.selectByMail(Pseudo);
 
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des données " + email, e);
+			throw new BLLException("Erreur dans la récupération des donnés " + Pseudo, e);
 		}
 	}
 

@@ -39,9 +39,23 @@ public class ServletSeConnecter extends HttpServlet {
 		String Id_Saisie = request.getParameter("Identifiant");
 		String Mdp_Saisie = request.getParameter("Mdp");
 
+		// System.out.println(Id_Saisie);
+		// System.out.println(Mdp_Saisie);
+
 		// id est-il existant ?
 		UtilisateurManager mgr = new UtilisateurManager();
+
+		// Test des Identifiants utlilisateurs //
+		// Utilisateur userPseudo = mgr.selectByPseudo(Id_Saisie);
+		// Utilisateur userMail = mgr.selectByMail(Id_Saisie);
 		String mdp_Compare;
+		// String mdp_Compare2 = userMail.getMot_de_passe();
+
+		// System.out.println(mdp_Compare);
+		// System.out.println(Mdp_Saisie);
+		// System.out.println(Id_Saisie);
+		// System.out.println(mgr.selectByMail(Id_Saisie).getEmail());
+		// System.out.println(Id_Saisie.equals(mgr.selectByMail(Id_Saisie).getEmail()));
 		try {
 			user = mgr.selectByPseudo(Id_Saisie);
 			if (Id_Saisie.equals(user.getPseudo())) {
@@ -53,10 +67,11 @@ public class ServletSeConnecter extends HttpServlet {
 					//session
 					session=request.getSession();
 					
+					System.out.println(user.getNo_utilisateur());
 			        session.setAttribute("user",user); 
 					response.sendRedirect("Servlet");
 				} else {
-					msg = "Le mot de passe saisi n'est pas correct";
+					msg = "Le mot de passe saisie n'est pas correct";
 					doGet(request, response);
 				}
 
@@ -70,7 +85,7 @@ public class ServletSeConnecter extends HttpServlet {
 						response.sendRedirect("Servlet");
 
 					} else {
-						msg = "Le mot de passe saisi n'est pas correct";
+						msg = "Le mot de passe saisie n'est pas correct";
 						doGet(request, response);
 					}
 				}
@@ -82,3 +97,4 @@ public class ServletSeConnecter extends HttpServlet {
 	}
 }
 
+// si oui le mdp saisie est-il celui de l'utilisateur existant
