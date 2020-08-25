@@ -23,11 +23,11 @@ public class ArticleManager {
 	public void insertNewArt(ArticleVendu Article) throws BLLException {
 
 		if (Article.getNoArticle() != 0) {
-			throw new BLLException("Utilisateur déjà créé");
+			throw new BLLException("Article déjà créé");
 		}
 		try {
 			 this.daoArticle.insertNewArt(Article);
-			System.out.println("utilisateur inséré dans la BDD");
+			System.out.println("Article inséré dans la BDD");
 		} catch (DALException e) {
 			System.out.println(e.getStackTrace());
 			throw new BLLException("Echec création Article ");

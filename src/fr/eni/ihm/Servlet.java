@@ -28,20 +28,22 @@ public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ArticleManager mgr = new ArticleManager();
 	ArticleVendu Article = new ArticleVendu();
-	List<ArticleVendu> articles = new ArrayList<ArticleVendu>();
-	List<ArticleAvecVendeur> articleAvecVendeur = new ArrayList<ArticleAvecVendeur>();
 	CategorieManager catMGR = new CategorieManager();
 	List<Categorie> categories = new ArrayList<Categorie>();
 	Utilisateur vendeur;
 	UtilisateurManager userMGR = new UtilisateurManager();
+	List<ArticleAvecVendeur> articleAvecVendeur;
+	List<ArticleVendu> articles;
 
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 
 		try {
+			articleAvecVendeur = new ArrayList<ArticleAvecVendeur>();
+			articles = new ArrayList<ArticleVendu>();
 			articles = mgr.selectAll();
 			for(ArticleVendu art: articles) {
 
@@ -70,7 +72,8 @@ public class Servlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.getWriter().append("hello");
+		doGet(request,response);
+//		response.getWriter().append("hello");
 	}
 
 }

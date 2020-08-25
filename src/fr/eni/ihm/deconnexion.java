@@ -20,8 +20,9 @@ public class deconnexion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);  
-        session.invalidate(); 
-		request.getRequestDispatcher("Servlet").forward(request, response);
+        session.invalidate();
+        response.sendRedirect("Servlet");
+//		request.getRequestDispatcher("Servlet").forward(request, response);
 	}
 
 	/**

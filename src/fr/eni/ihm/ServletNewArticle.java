@@ -25,33 +25,39 @@ import fr.eni.bo.Utilisateur;
 public class ServletNewArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ArticleManager mgr = new ArticleManager();
-	ArticleVendu Article = new ArticleVendu();
 	CategorieManager catMGR = new CategorieManager();
+	ArticleVendu Article;
 	List<Categorie> categories = new ArrayList<Categorie>();
 	Utilisateur user = null;
 	HttpSession session;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		try {
-			categories = catMGR.selectAll();
-			request.setAttribute("categories", categories);
-			session = request.getSession(false);
-			user = (Utilisateur) session.getAttribute("user");
-			request.setAttribute("user", user);
-			request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
+		if (Article == null || Article.getNoArticle()==0) {
+			try {
+				categories = catMGR.selectAll();
+				request.setAttribute("categories", categories);
+				session = request.getSession(false);
+				user = (Utilisateur) session.getAttribute("user");
+				request.setAttribute("user", user);
+				request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
 
-		} catch (BLLException e) {
-			e.printStackTrace();
+			} catch (BLLException e) {
+				e.printStackTrace();
+				response.sendRedirect("Servlet");
+			}
+		}else {
+			Article = null;
 			response.sendRedirect("Servlet");
 		}
+		 
+		
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		Article = new ArticleVendu();
 		try {
 			Article.setNomArticle(request.getParameter("article"));
 			Article.setDescription(request.getParameter("description"));
@@ -60,9 +66,10 @@ public class ServletNewArticle extends HttpServlet {
 			Article.setDateDebutEncheres(java.sql.Date.valueOf(request.getParameter("DateDebut")));
 			Article.setDateFinEncheres(java.sql.Date.valueOf(request.getParameter("DateFin")));
 			Article.setNo_utilisateur(Integer.parseInt(request.getParameter("noUtilisateur")));
-			System.out.println(Integer.parseInt(request.getParameter("categorie")));
+			
 
 			mgr.insertNewArt(Article);
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

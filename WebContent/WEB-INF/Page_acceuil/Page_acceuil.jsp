@@ -17,13 +17,17 @@
 <style>
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 .row.content {
-	height: 1500px
+	height: 1500px;
 }
 
 /* Set gray background color and 100% height */
 .sidenav {
 	background-color: #f1f1f1;
-	height: 100%;
+	height: 25%;
+}
+
+.col-sm-3 {
+	margin-bottom: 1%;
 }
 
 /* Set black background color, white text and some padding */
@@ -161,49 +165,52 @@ ul, #myUL {
 					</c:when>
 				</c:choose>
 			</div>
-			<c:choose>
-				<c:when test="${articles.size() == 0}">
-					<div class="text-center">
-						<h1>Hi bitch</h1>
-					</div>
-
-				</c:when>
-				<c:otherwise>
-					<c:forEach var="i" begin="0" end="${articles.size()-1}">
-						<div class="col-sm-3">
-							<div class="w3-card-4">
-								<img
-									src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYAHZ0lpBtlP8lXebTIEtnA5-gDxLrPaL-CA&usqp=CAU"
-									alt="Alps" style="width: 100%"/>
-								<div class="w3-container w3-center">
-									<h3>
-										<c:out value="${articles.get(i).getNomArticle()}" />
-									</h3>
-									<p>
-										<c:out value="${articles.get(i).getDescription()}" />
-									</p>
-								</div>
-								<ul class="list-group list-group-flush">
-									<li class="list-group-item"><c:out
-											value="Prix : ${articles.get(i).getMiseAPrix()}" /></li>
-									<li class="list-group-item"><c:out
-											value="Fin de l'enchères : ${articles.get(i).getDateFinEncheres()}" />
-									</li>
-									<li class="list-group-item"><c:out
-											value="Vendeur: ${articles.get(i).getNomDeVendeur()}" /></li>
-								</ul>
-								<form action="ServletArticleVente" method="POST">
-									<input class="hidden" name="NoArticle"
-										value="<c:out value = "NoArticle ${articles.get(i).getNoArticle()}"/>">
-									<div class="card-body">
-										<button class="btn btn-primary btn-block" type="submit">Détails</button>
-									</div>
-								</form>
-							</div>
+			<div class="col-sm-9">
+				<c:choose>
+					<c:when test="${articles.size() == 0}">
+						<div class="text-center">
+							<h1>Hi bitch</h1>
 						</div>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
+
+					</c:when>
+					<c:otherwise>
+
+						<c:forEach var="i" begin="0" end="${articles.size()-1}">
+							<div class="col-sm-3">
+								<div class="w3-card-4">
+									<img
+										src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYAHZ0lpBtlP8lXebTIEtnA5-gDxLrPaL-CA&usqp=CAU"
+										alt="Alps" style="width: 100%; height: 100%" />
+									<div class="w3-container w3-center">
+										<h3>
+											<c:out value="${articles.get(i).getNomArticle()}" />
+										</h3>
+										<p>
+											<c:out value="${articles.get(i).getDescription()}" />
+										</p>
+									</div>
+									<ul class="list-group list-group-flush">
+										<li class="list-group-item"><c:out
+												value="Prix : ${articles.get(i).getMiseAPrix()}" /></li>
+										<li class="list-group-item"><c:out
+												value="Fin de l'enchères : ${articles.get(i).getDateFinEncheres()}" />
+										</li>
+										<li class="list-group-item"><c:out
+												value="Vendeur: ${articles.get(i).getNomDeVendeur()}" /></li>
+									</ul>
+									<form action="ServletArticleVente" method="POST">
+										<input class="hidden" name="NoArticle"
+											value="<c:out value = "NoArticle ${articles.get(i).getNoArticle()}"/>">
+										<div class="card-body">
+											<button class="btn btn-primary btn-block" type="submit">Détails</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 	</div>
 	<footer class="container-fluid text-center">
@@ -211,7 +218,6 @@ ul, #myUL {
 	</footer>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
-		
 		function myFunction() {
 			var listeAchats = document.getElementById("listeAchats");
 			var listeMesVentes = document.getElementById("listeMesVentes");
