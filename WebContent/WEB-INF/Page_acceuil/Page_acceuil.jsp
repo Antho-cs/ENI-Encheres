@@ -43,8 +43,9 @@ footer {
 		height: auto;
 	}
 }
-.form-group{
-	margin-top:5%;
+
+.form-group {
+	margin-top: 5%;
 }
 
 ul, #myUL {
@@ -80,7 +81,8 @@ ul, #myUL {
 				<h4>Filtres:</h4>
 				<form>
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder ="Le nom de l'article contient">
+						<input type="text" class="form-control"
+							placeholder="Le nom de l'article contient">
 						<div class="input-group-btn">
 							<button class="btn btn-default" type="submit">
 								<i class="glyphicon glyphicon-search"></i>
@@ -91,8 +93,9 @@ ul, #myUL {
 
 				<label for="Categorie">Catégorie: </label> <select id="Categorie"
 					class="form-control form-control-lg">
-					<c:forEach var = "i" begin = "0" end = "${categories.size()-1}">
-							<option value="${i+1}"><c:out value = "${categories.get(i).getLibelle()}"/></option>
+					<c:forEach var="i" begin="0" end="${categories.size()-1}">
+						<option value="${i+1}"><c:out
+								value="${categories.get(i).getLibelle()}" /></option>
 					</c:forEach>
 				</select>
 
@@ -102,8 +105,8 @@ ul, #myUL {
 							<ul id="myUL">
 								<li>
 									<div class="form-check">
-										<input class="form-check-input" type="radio" name="choix" onclick="myFunction()"
-											id="achats" value="Achats"> <label
+										<input class="form-check-input" type="radio" name="choix"
+											onclick="myFunction()" id="achats" value="Achats"> <label
 											class="form-check-label" for="achats"> Achats </label>
 									</div>
 								</li>
@@ -128,10 +131,10 @@ ul, #myUL {
 								</ul>
 								<li>
 									<div class="form-check">
-										<input class="form-check-input" type="radio" name="choix" onclick="affichageListeMesVentes()"
-											id="mesVentes" value="Mes ventes"> <label
-											class="form-check-label" for="mesVentes"> Mes ventes
-										</label>
+										<input class="form-check-input" type="radio" name="choix"
+											onclick="affichageListeMesVentes()" id="mesVentes"
+											value="Mes ventes"> <label class="form-check-label"
+											for="mesVentes"> Mes ventes </label>
 									</div>
 								</li>
 								<ul class="nested" id="listeMesVentes">
@@ -158,54 +161,73 @@ ul, #myUL {
 					</c:when>
 				</c:choose>
 			</div>
-			
-			<c:forEach var = "i" begin = "0" end = "${articles.size()-1}">
-			<div class="col-sm-3">
-				<div class="w3-card-4">
-					<img
-						src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYAHZ0lpBtlP8lXebTIEtnA5-gDxLrPaL-CA&usqp=CAU"
-						alt="Alps" style="width:100%">
-					<div class="w3-container w3-center">
-						<h5><c:out value = "${articles.get(i).getNomArticle()}"/></h5>
-						<p><c:out value = "${articles.get(i).getDescription()}"/></p>
+			<c:choose>
+				<c:when test="${articles.size() == 0}">
+					<div class="text-center">
+						<h1>Hi bitch</h1>
 					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item"><c:out value = "Prix : ${articles.get(i).getMiseAPrix()}"/></li>
-						<li class="list-group-item"><c:out value = "Fin de l'enchères : ${articles.get(i).getDateFinEncheres()}"/></li>
-						<li class="list-group-item"><c:out value = "Vendeur : ${articles.get(i).getNo_utilisateur()}"/></li>
-					</ul>
-					<form action="ServletArticleVente" method="POST">
-						<input class="hidden" name="NoArticle" value="<c:out value = "NoArticle ${articles.get(i).getNoArticle()}"/>">
-						<div class="card-body">
-							<button class="btn btn-primary btn-block" type="submit">Détails</button>
+
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="i" begin="0" end="${articles.size()-1}">
+						<div class="col-sm-3">
+							<div class="w3-card-4">
+								<img
+									src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYAHZ0lpBtlP8lXebTIEtnA5-gDxLrPaL-CA&usqp=CAU"
+									alt="Alps" style="width: 100%"/>
+								<div class="w3-container w3-center">
+									<h3>
+										<c:out value="${articles.get(i).getNomArticle()}" />
+									</h3>
+									<p>
+										<c:out value="${articles.get(i).getDescription()}" />
+									</p>
+								</div>
+								<ul class="list-group list-group-flush">
+									<li class="list-group-item"><c:out
+											value="Prix : ${articles.get(i).getMiseAPrix()}" /></li>
+									<li class="list-group-item"><c:out
+											value="Fin de l'enchères : ${articles.get(i).getDateFinEncheres()}" />
+									</li>
+									<li class="list-group-item"><c:out
+											value="Vendeur: ${articles.get(i).getNomDeVendeur()}" /></li>
+								</ul>
+								<form action="ServletArticleVente" method="POST">
+									<input class="hidden" name="NoArticle"
+										value="<c:out value = "NoArticle ${articles.get(i).getNoArticle()}"/>">
+									<div class="card-body">
+										<button class="btn btn-primary btn-block" type="submit">Détails</button>
+									</div>
+								</form>
+							</div>
 						</div>
-					</form>
-				</div>
-			</div>
-			</c:forEach>
-			
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<footer class="container-fluid text-center">
-		<p>Footer Text</p>
+	<p>Footer Text</p>
 	</footer>
-<script>
-function myFunction() {
-	  var listeAchats = document.getElementById("listeAchats");
-	  var listeMesVentes = document.getElementById("listeMesVentes");
-	  listeAchats.classList.remove("nested");
-	  listeAchats.classList.add("active");
-	  listeMesVentes.classList.remove("active");
-		listeMesVentes.classList.add("nested");
-	}
-function affichageListeMesVentes(){
-	var listeMesVentes = document.getElementById("listeMesVentes");
-	var listeAchats = document.getElementById("listeAchats");
-	listeMesVentes.classList.remove("nested");
-	listeMesVentes.classList.add("active");
-	listeAchats.classList.remove("active");
-	listeAchats.classList.add("nested");
-}
-</script>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		
+		function myFunction() {
+			var listeAchats = document.getElementById("listeAchats");
+			var listeMesVentes = document.getElementById("listeMesVentes");
+			listeAchats.classList.remove("nested");
+			listeAchats.classList.add("active");
+			listeMesVentes.classList.remove("active");
+			listeMesVentes.classList.add("nested");
+		}
+		function affichageListeMesVentes() {
+			var listeMesVentes = document.getElementById("listeMesVentes");
+			var listeAchats = document.getElementById("listeAchats");
+			listeMesVentes.classList.remove("nested");
+			listeMesVentes.classList.add("active");
+			listeAchats.classList.remove("active");
+			listeAchats.classList.add("nested");
+		}
+	</script>
 </body>
 </html>

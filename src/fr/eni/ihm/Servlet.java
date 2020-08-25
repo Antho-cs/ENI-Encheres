@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import fr.eni.bll.ArticleManager;
 import fr.eni.bll.BLLException;
 import fr.eni.bll.CategorieManager;
+import fr.eni.bll.UtilisateurManager;
+import fr.eni.bo.ArticleAvecVendeur;
 import fr.eni.bo.ArticleVendu;
 import fr.eni.bo.Categorie;
 import fr.eni.bo.Utilisateur;
@@ -27,16 +29,28 @@ public class Servlet extends HttpServlet {
 	ArticleManager mgr = new ArticleManager();
 	ArticleVendu Article = new ArticleVendu();
 	List<ArticleVendu> articles = new ArrayList<ArticleVendu>();
+	List<ArticleAvecVendeur> articleAvecVendeur = new ArrayList<ArticleAvecVendeur>();
 	CategorieManager catMGR = new CategorieManager();
 	List<Categorie> categories = new ArrayList<Categorie>();
-	
-	
-	
+	Utilisateur vendeur;
+	UtilisateurManager userMGR = new UtilisateurManager();
+
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+
 		try {
 			articles = mgr.selectAll();
-			request.setAttribute("articles", articles);
+			for(ArticleVendu art: articles) {
+
+				articleAvecVendeur.add(
+						new ArticleAvecVendeur(art.getNoArticle(),
+								art.getNomArticle(),art.getDescription(),
+								art.getDateFinEncheres(),art.getMiseAPrix(),userMGR.selectById(art.getNo_utilisateur()).getPseudo()));
+			}
+			request.setAttribute("articles", articleAvecVendeur);
 			categories = catMGR.selectAll();
 			request.setAttribute("categories", categories);
 			HttpSession session = request.getSession(false);
@@ -50,14 +64,13 @@ public class Servlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request, response);
 		}
 		request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request, response);
-		
+
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		request.getRequestDispatcher("WEB-INF/ArticleUtilisateur.jsp").forward(request, response);
+		response.getWriter().append("hello");
 	}
 
 }
