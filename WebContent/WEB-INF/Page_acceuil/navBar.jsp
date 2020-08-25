@@ -29,7 +29,7 @@
       <a class="navbar-brand" href="Servlet">ENI-Encheres</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/WEB-INF/Page_acceuil/Page_acceuil.jsp">Enchères</a></li>
+      <li class="active"><a href="Servlet">Enchères</a></li>
       <li><a href="NewArticle">Vendre un article</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
