@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,7 @@ footer {
 </style>
 </head>
 <body>
-
+	 <jsp:useBean id="now" class="java.util.Date" />
 	<jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
 
 
@@ -78,13 +79,14 @@ footer {
 						</div>
 
 						<div class="row">
-							<label for="DateDebut">Début de l'enchère :</label> <input
-								type="Date" name="DateDebut" size="20" required>
+							<label for="DateDebut">Début de l'enchère :</label> 
+								<input type="date" name="DateDebut"  min='<fmt:formatDate  pattern="yyyy-MM-dd" value="${now}" />' size = "20" required/>
 						</div>
 
 						<div class="row">
-							<label for="DateDebut">Fin de l'enchère :</label> <input
-								type="Date" name="DateFin" size="20" required>
+							<label for="DateDebut">Fin de l'enchère :</label> 
+								<input type="date" name="DateFin"  min='<fmt:formatDate  pattern="yyyy-MM-dd" value="${now}" />' size = "20" required/>
+							
 						</div>
 					</div>
 					<div class="well">

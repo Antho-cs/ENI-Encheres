@@ -15,11 +15,11 @@ public class ArticleVendu {
 	private int no_categorie;
 	private String categorie;
 	private int no_utilisateur;
-	
+
 	public ArticleVendu() {
 		super();
 	}
-	
+
 	public ArticleVendu(int no_article, String nom_article, String description, Date date_debut_encheres,
 			Date date_fin_encheres, int prix_initial, int prix_vente, String etatVente, int no_categorie,
 			String categorie, int no_utilisateur) {

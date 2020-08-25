@@ -7,8 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.bll.ArticleManager;
+import fr.eni.bll.BLLException;
+import fr.eni.bll.UtilisateurManager;
 import fr.eni.bo.ArticleVendu;
 import fr.eni.bo.Utilisateur;
 
@@ -19,21 +22,47 @@ import fr.eni.bo.Utilisateur;
 public class ServletArticleVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	ArticleManager mgr = new ArticleManager();
-	ArticleVendu article;
-	Utilisateur user = null;
+	ArticleManager aMgr = new ArticleManager();
+	UtilisateurManager uMger = new UtilisateurManager();
+	ArticleVendu article = new ArticleVendu();
+	Utilisateur vendeur = new Utilisateur();
+	Utilisateur user;
+	HttpSession session;
 
 	/**
 	 * @author laure
+	 * @param noArticle
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.setAttribute("noArticle", article);
-		request.getRequestDispatcher("/WEB-INF/ArticleVente.jsp").forward(request, response);
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			response.sendRedirect("ServletSeConnecter");
+		} else {
+			try {
+				article = aMgr.selectByNo(article.getNoArticle());
+				request.setAttribute("article", article);
+				try {
+					vendeur = uMger.selectById(vendeur.getNo_utilisateur());
+					request.setAttribute("vendeur", vendeur);
+				} catch (BLLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			request.setAttribute("article", article);
+			request.setAttribute("vendeur", vendeur);
+			request.getRequestDispatcher("/WEB-INF/ArticleVente.jsp").forward(request, response);
+
+		}
 	}
 
 	/**
@@ -44,7 +73,9 @@ public class ServletArticleVente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getParameter("/Servlet/NoArticle");
+		article.setNoArticle(Integer.parseInt(request.getParameter("NoArticle")));
+		vendeur.setNo_utilisateur(Integer.parseInt(request.getParameter("NoUtilisateur")));
+
 		doGet(request, response);
 	}
 
