@@ -19,6 +19,10 @@ import fr.eni.bo.Utilisateur;
 public class ServletArticleVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	ArticleManager mgr = new ArticleManager();
+	ArticleVendu article;
+	Utilisateur user = null;
+
 	/**
 	 * @author laure
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -26,20 +30,9 @@ public class ServletArticleVente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ArticleManager mgr = new ArticleManager();
-		ArticleVendu article = new ArticleVendu();
-		Utilisateur user = null;
 
-		try {
-
-			article = (ArticleVendu) request.getAttribute("articleVendu");
-			request.setAttribute("article", article);
-			request.getRequestDispatcher("/WEB-INF/ArticleVente.jsp").forward(request, response);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			response.sendRedirect("ServletArticleVente");
-		}
+		request.setAttribute("noArticle", article);
+		request.getRequestDispatcher("/WEB-INF/ArticleVente.jsp").forward(request, response);
 
 	}
 
@@ -50,8 +43,8 @@ public class ServletArticleVente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(request.getParameter("NoArticle"));
-		
+
+		request.getParameter("/Servlet/NoArticle");
 		doGet(request, response);
 	}
 

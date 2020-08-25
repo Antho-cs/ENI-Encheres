@@ -63,18 +63,21 @@ public class ServletCreationCompte extends HttpServlet {
 		String mot_de_passe = request.getParameter("Mdp");
 		String confirmSaisie = request.getParameter("ConfirmMdp");
 
+		System.out.println(mot_de_passe);
+		System.out.println(confirmSaisie);
+
 		user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
 
 		try {// pseudo d√©j√† existant
 			System.out.println("Pseudo");
 			idSaisie.equals(manager.selectByPseudo(idSaisie).getPseudo());
-			msg = "* Pseudo d√©j√† utilis√©, merci de le modifier";
+			msg = "* Pseudo dÈj‡ utilisÈ, merci de le modifier";
 			doGet(request, response);
 		} catch (Exception c) {
 			try { // mail d√©j√† existant
 				System.out.println("email");
 				mailSaisie.equals(manager.selectByMail(mailSaisie).getEmail());
-				msg = "* Adresse email d√©j√† utilis√©e";
+				msg = "* Adresse email dÈj‡†utilisÈ";
 				doGet(request, response);
 			} catch (BLLException e) {
 				if (!confirmSaisie.equals(mot_de_passe)) {

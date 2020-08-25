@@ -101,11 +101,14 @@ ul, #myUL {
 			<div class="well">
 				<div class="row">
 					<label for="Article">Article :</label> 
-					<p>${articleVendu.getNomArticle()}</p>
+					<p>${ArticleVendu.getNomArticle()}</p>
+					<!--ce label devra être supprimé lors de la mise en prod de l'appli (NoARticle = hidden)	-->
+				<label for="NoArticle">NoArticle :</label> 
+					<p>${ArticleVendu.getNoArticle()}</p>
 				</div>		
 					<div class="row description">
 					<label for="Description">Description :</label>
-					<p>${articleVendu.getDescription()}</p>
+					<p>${ArticleVendu.getDescription()}</p>
 				</div>
 
 				
@@ -116,15 +119,15 @@ ul, #myUL {
 			<div class="well">
 			<div class="row">	
 				<label for="Prix">Mise à prix :</label>
-				<p>${articleVendu.getDescription()}</p>
+				<p>${ArticleVendu.getDescription()}</p>
 				<p></p>
 				</div>
 				<div class="row">
 				<label for="Prix">Début de l'enchère : </label>
-				<p>${articleVendu.getDateDebutEncheres()}</p>
+				<p>${ArticleVendu.getDateDebutEncheres()}</p>
 				<p></p>
 				<label for="Prix">Fin de l'enchère :</label>
-				<p>${articleVendu.getDateFinEncheres()}</p>
+				<p>${ArticleVendu.getDateFinEncheres()}</p>
 				<p></p>
 				<input class="btn btn-success" type="button" value="Enchérir"> 
 						</div>
