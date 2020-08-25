@@ -69,35 +69,35 @@ public class ServletMonArticle extends HttpServlet {
 		Article.setNomArticle(request.getParameter("article"));
 		Article.setDescription(request.getParameter("description"));
 		Article.setCategorie(request.getParameter("categorie"));
-		Article.setPrixVente(request.getParameter("Prix"));
-		Article.setDateDebutEncheres(request.getParameter("DateDebut"));
-		Article.setDateFinEncheres(request.getParameter("DateFin"));
+		// Article.setPrixVente(request.getParameter("Prix"));
+		// Article.setDateDebutEncheres(request.getParameter("DateDebut"));
+		// Article.setDateFinEncheres(request.getParameter("DateFin"));
 		Article.setVille(request.getParameter("ville"));
-		Article.setRue(request.getParameter("rue"));
+		// Article.setRue(request.getParameter("rue"));
 		if (request.getParameter("nouveauMotDePasse") != null) {
 			if (request.getParameter("nouveauMotDePasse").equals(request.getParameter("confirmerMotDePasse"))) {
 				user.setMot_de_passe(request.getParameter("nouveauMotDePasse"));
 			} else {
-
 				System.out.println("nouveau mot de passe != confirmer mot de passe");
 			}
+
+			mgr.updateArt(Article);
+		} else {
+
+			System.out.println("Mot de passe incorrect");
+
 		}
-		mgr.updateArticle(Article);
-	}else
+		if (request.getParameter("btn").equalsIgnoreCase("supprimer")) {
+			try {
+				mgr.deleteArt(Article.getNo_utilisateur());// Servlet.setConnected(false);
 
-	{
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-		System.out.println("Mot de passe incorrect");
-	}}catch(BLLException e)
-	{
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}}else if(request.getParameter("btn").equalsIgnoreCase("supprimer")){try{mgr.deleteUser(Article.getNo_utilisateur());Servlet.setConnected(false);}catch(
-	BLLException e)
-	{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-}doGet(request,response);}
+			doGet(request, response);
 
+		}
+	}
 }

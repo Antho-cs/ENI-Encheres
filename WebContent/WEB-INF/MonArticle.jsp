@@ -47,12 +47,12 @@ footer {
 					<div class="well">
 						<div class="row">
 							<label for="Article">Article :</label> 
-							<input type="text" class="form-control" name="article" id="Article" required>
+							<input type="text" class="form-control" name="article" required>
 						</div>
 						
 						<div class="row description">
 							<label for="Description">Description :</label>
-							<textarea id="Description" name="description" required></textarea>
+							<textarea name="description" required></textarea>
 						</div>
 
 						<div class="row">
@@ -70,14 +70,14 @@ footer {
 
 						<div class="row">
 							<label for="Img">Photo de l'article :</label> <input type="file"
-								id="Photo" name="Photo" accept="image/png, image/jpeg">
+								name="Photo" accept="image/png, image/jpeg">
 
 						</div>
 					</div>
 					<div class="well">
 						<div class="row">
 							<label for="Prix">Mise à prix :</label> <input type="number"
-								id="Prix" name="Prix" min="10" max="10000000" size="20" required>
+								name="Prix" min="10" max="10000000" size="20" required>
 						</div>
 
 						<div class="row">
@@ -96,13 +96,13 @@ footer {
 								<legend>Retrait</legend>
 
 								<label for="Rue">Rue :</label> <input type="text"
-									class="form-control" id="Rue" value="${user.getRue()}" size="20" required>
+									class="form-control" name="Rue" value="${user.getRue()}" size="20" required>
 
 								<label for="CodePostal">Code Postal :</label> 
-								<input type="text" class="form-control" id="CodePostal" value="${user.getCode_postal()}" size="20"
+								<input type="text" class="form-control" name="CodePostal" value="${user.getCode_postal()}" size="20"
 									required>
 								<label for="Ville">Ville :</label> 
-								<input type="text" class="form-control" id="Ville" value="${user.getVille()}"
+								<input type="text" class="form-control" name="Ville" value="${user.getVille()}"
 									size="20" required>
 
 							</fieldset>
@@ -122,7 +122,7 @@ footer {
 		</div>
 	</div>
 <footer class="container-fluid text-center">
-		<p>Footer Text</p>
+		<p></p>
 	</footer>
 </body>
 </html>

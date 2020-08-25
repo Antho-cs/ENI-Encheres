@@ -176,7 +176,7 @@ ul, #myUL {
 						<li class="list-group-item">Vendeur: Firas :P</li>
 					</ul>
 					<div class="card-body">
-						<a href="ServletArticleUtilisateur" class="btn btn-primary">Détails</a>
+						<a href="ServletMonArticle" class="btn btn-primary">Détails</a>
 					</div>
 				</div>
 			</div>
@@ -196,7 +196,7 @@ ul, #myUL {
 						<li class="list-group-item">Vendeur: Firas :p</li>
 					</ul>
 					<div class="card-body">
-						<a href="/WEB-INF/ArticleUtilisateur.jsp" class="btn btn-primary">Détails</a>
+						<a href="ServletArticleVente" class="btn btn-primary">Détails</a>
 					</div>
 				</div>
 			</div>
@@ -216,7 +216,7 @@ ul, #myUL {
 						<li class="list-group-item">Vendeur: Firas :p</li>
 					</ul>
 					<div class="card-body">
-						<a href="/WEB-INF/ArticleUtilisateur.jsp" class="btn btn-primary">Détails</a>
+						<a href="ServletArticleVente"  class="btn btn-primary">Détails</a>
 					</div>
 				</div>
 			</div>

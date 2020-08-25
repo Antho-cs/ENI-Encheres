@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ServletArticleUtilisateur
  */
-@WebServlet("/ServletArticleUtilisateur")
-public class ServletArticleUtilisateur extends HttpServlet {
+@WebServlet("/ServletArticleVente")
+public class ServletArticleVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -22,7 +22,7 @@ public class ServletArticleUtilisateur extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/ArticleUtilisateur.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/ArticleVente.jsp").forward(request, response);
 
 		// requête pour récupérér les données de l'article à afficher ET les données du
 		// vendeur (pseudo, CP et Ville ==> Retrait)
