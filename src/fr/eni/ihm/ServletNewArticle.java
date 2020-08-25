@@ -34,8 +34,6 @@ public class ServletNewArticle extends HttpServlet {
 			session = request.getSession(false);
 			user = (Utilisateur) session.getAttribute("user");
 			request.setAttribute("user", user);
-			// Article = mgr.selectByNo(2);
-			// request.setAttribute("article", Article);
 			request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
 
 		} catch (Exception e) {
@@ -48,21 +46,19 @@ public class ServletNewArticle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println(LocalDate.parse(request.getParameter("DateDebut")));
-		System.out.println(LocalDate.parse(request.getParameter("DateFin")));
-
 		try {
 			Article.setNomArticle(request.getParameter("article"));
 			Article.setDescription(request.getParameter("description"));
-			Article.setNoCategotie(Integer.parseInt(request.getParameter("categorie")));
-			Article.setPrixVente(Integer.parseInt(request.getParameter("Prix")));
+			Article.setNoCategotie(1);
+			Article.setMiseAPrix(Integer.parseInt(request.getParameter("Prix")));
 			Article.setDateDebutEncheres(java.sql.Date.valueOf(request.getParameter("DateDebut")));
 			Article.setDateFinEncheres(java.sql.Date.valueOf(request.getParameter("DateFin")));
 			Article.setNo_utilisateur(Integer.parseInt(request.getParameter("noUtilisateur")));
+			System.out.println(Article.getPrixVente());
 
 			mgr.insertNewArt(Article);
 
-		} catch (BLLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 
 		}

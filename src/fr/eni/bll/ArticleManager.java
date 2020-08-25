@@ -26,11 +26,11 @@ public class ArticleManager {
 			throw new BLLException("Utilisateur déjà créé");
 		}
 		try {
-			this.daoArticle.insertNewArt(Article);
+			 this.daoArticle.insertNewArt(Article);
 			System.out.println("utilisateur inséré dans la BDD");
 		} catch (DALException e) {
 			System.out.println(e.getStackTrace());
-			throw new BLLException("Echec création utilisateur");
+			throw new BLLException("Echec création Article ");
 
 		}
 

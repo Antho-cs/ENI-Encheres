@@ -6,7 +6,7 @@ import fr.eni.bo.ArticleVendu;
 
 public interface ArticleVenduDAO {
 
-	public void insertNewArt(ArticleVendu articleVendu) throws DALException;
+	public ArticleVendu insertNewArt(ArticleVendu articleVendu) throws DALException;
 
 	public void updateArt(ArticleVendu data) throws DALException;
 
