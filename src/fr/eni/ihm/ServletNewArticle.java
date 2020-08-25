@@ -1,7 +1,8 @@
 package fr.eni.ihm;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.bll.ArticleManager;
 import fr.eni.bll.BLLException;
+import fr.eni.bll.CategorieManager;
 import fr.eni.bo.ArticleVendu;
+import fr.eni.bo.Categorie;
 import fr.eni.bo.Utilisateur;
 
 /**
@@ -23,20 +26,23 @@ public class ServletNewArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ArticleManager mgr = new ArticleManager();
 	ArticleVendu Article = new ArticleVendu();
+	CategorieManager catMGR = new CategorieManager();
+	List<Categorie> categories = new ArrayList<Categorie>();
 	Utilisateur user = null;
 	HttpSession session;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		try {
-
+			categories = catMGR.selectAll();
+			request.setAttribute("categories", categories);
 			session = request.getSession(false);
 			user = (Utilisateur) session.getAttribute("user");
 			request.setAttribute("user", user);
 			request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
 
-		} catch (Exception e) {
+		} catch (BLLException e) {
 			e.printStackTrace();
 			response.sendRedirect("Servlet");
 		}
@@ -49,12 +55,12 @@ public class ServletNewArticle extends HttpServlet {
 		try {
 			Article.setNomArticle(request.getParameter("article"));
 			Article.setDescription(request.getParameter("description"));
-			Article.setNoCategotie(1);
+			Article.setNoCategotie(Integer.parseInt(request.getParameter("categorie")));
 			Article.setMiseAPrix(Integer.parseInt(request.getParameter("Prix")));
 			Article.setDateDebutEncheres(java.sql.Date.valueOf(request.getParameter("DateDebut")));
 			Article.setDateFinEncheres(java.sql.Date.valueOf(request.getParameter("DateFin")));
 			Article.setNo_utilisateur(Integer.parseInt(request.getParameter("noUtilisateur")));
-			System.out.println(Article.getPrixVente());
+			System.out.println(Integer.parseInt(request.getParameter("categorie")));
 
 			mgr.insertNewArt(Article);
 

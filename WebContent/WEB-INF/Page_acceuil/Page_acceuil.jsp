@@ -91,11 +91,9 @@ ul, #myUL {
 
 				<label for="Categorie">Catégorie: </label> <select id="Categorie"
 					class="form-control form-control-lg">
-					<option>Toutes</option>
-					<option>Informatique</option>
-					<option>Ameublement</option>
-					<option>Vetement</option>
-					<option>Sport & Loisirs</option>
+					<c:forEach var = "i" begin = "0" end = "${categories.size()-1}">
+							<option value="${i+1}"><c:out value = "${categories.get(i).getLibelle()}"/></option>
+					</c:forEach>
 				</select>
 
 				<c:choose>
@@ -160,66 +158,32 @@ ul, #myUL {
 					</c:when>
 				</c:choose>
 			</div>
+			
+			<c:forEach var = "i" begin = "0" end = "${articles.size()-1}">
 			<div class="col-sm-3">
 				<div class="w3-card-4">
 					<img
 						src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYAHZ0lpBtlP8lXebTIEtnA5-gDxLrPaL-CA&usqp=CAU"
 						alt="Alps" style="width:100%">
 					<div class="w3-container w3-center">
-						<h5>Card title</h5>
-						<p>Some quick example text to build on the card title and make
-							up the bulk of the card's content.</p>
+						<h5><c:out value = "${articles.get(i).getNomArticle()}"/></h5>
+						<p><c:out value = "${articles.get(i).getDescription()}"/></p>
 					</div>
 					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Prix : 150</li>
-						<li class="list-group-item">Fin de l'enchères : 22/08/2020</li>
-						<li class="list-group-item">Vendeur: Firas :P</li>
+						<li class="list-group-item"><c:out value = "Prix : ${articles.get(i).getMiseAPrix()}"/></li>
+						<li class="list-group-item"><c:out value = "Fin de l'enchères : ${articles.get(i).getDateFinEncheres()}"/></li>
+						<li class="list-group-item"><c:out value = "Vendeur : ${articles.get(i).getNo_utilisateur()}"/></li>
 					</ul>
-					<div class="card-body">
-						<a href="ServletMonArticle" class="btn btn-primary">Détails</a>
-					</div>
+					<form action="ServletArticleVente" method="POST">
+						<input class="hidden" name="NoArticle" value="<c:out value = "NoArticle ${articles.get(i).getNoArticle()}"/>">
+						<div class="card-body">
+							<button class="btn btn-primary" type="submit">Détails</button>
+						</div>
+					</form>
 				</div>
 			</div>
-			<div class="col-sm-3">
-				<div class="w3-card-4">
-					<img
-						src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYAHZ0lpBtlP8lXebTIEtnA5-gDxLrPaL-CA&usqp=CAU"
-						alt="Alps" style="width:100%">
-					<div class="w3-container w3-center">
-						<h5>Card title</h5>
-						<p>Some quick example text to build on the card title and make
-							up the bulk of the card's content.</p>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Prix : 150</li>
-						<li class="list-group-item">Fin de l'enchères : 22/08/2020</li>
-						<li class="list-group-item">Vendeur: Firas :p</li>
-					</ul>
-					<div class="card-body">
-						<a href="ServletArticleVente" class="btn btn-primary">Détails</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<div class="w3-card-4">
-					<img
-						src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQYAHZ0lpBtlP8lXebTIEtnA5-gDxLrPaL-CA&usqp=CAU"
-						alt="Alps" style="width:100%">
-					<div class="w3-container w3-center">
-						<h5>Card title 3</h5>
-						<p>Some quick example text to build on the card title and make
-							up the bulk of the card's content.</p>
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">Prix : 150</li>
-						<li class="list-group-item">Fin de l'enchères : 22/08/2020</li>
-						<li class="list-group-item">Vendeur: Firas :p</li>
-					</ul>
-					<div class="card-body">
-						<a href="ServletArticleVente"  class="btn btn-primary">Détails</a>
-					</div>
-				</div>
-			</div>
+			</c:forEach>
+			
 		</div>
 	</div>
 	<footer class="container-fluid text-center">

@@ -35,31 +35,9 @@
 //
 //	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 //			throws ServletException, IOException {
-//		session = request.getSession(false);
-//		user = (Utilisateur) session.getAttribute("user");
-//		request.setAttribute("user", user);
-//		request.getRequestDispatcher("/WEB-INF/MonArticle.jsp").forward(request, response);
-//		try {
-//			Article = mgr.selectByNo(2);
-//			request.setAttribute("article", Article);
-//
-//		} catch (BLLException e) {
-//			e.printStackTrace();
-//			response.sendRedirect("Servlet");
-//		}
-//		HttpSession session = request.getSession(false);
-//		if (session != null) {
-//			try {
-//				Article = mgr.selectByNo(2);
-//				request.setAttribute("user", Article);
+//		
 //				request.getRequestDispatcher("/WEB-INF/MonArticle.jsp").forward(request, response);
-//			} catch (BLLException e) {
-//				e.printStackTrace();
-//				response.sendRedirect("Servlet");
-//			}
-//		} else {
-//			response.sendRedirect("Servlet");
-//		}
+//		
 //
 //	}
 //

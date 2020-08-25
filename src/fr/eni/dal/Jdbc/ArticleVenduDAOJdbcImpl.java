@@ -230,12 +230,19 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 		List<ArticleVendu> listArticle = new ArrayList<ArticleVendu>();
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
+		ResultSet rs = null;
 
 		try {
 			cnx = ConnectionProvider.getConnection();
 
 			pStmt = cnx.prepareStatement(SQL_SELECTALL);
-			pStmt.executeUpdate();
+			rs = pStmt.executeQuery();
+			while (rs.next()) {
+				ArticleVendu art = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"),
+						rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"),
+						rs.getInt("prix_vente"), rs.getInt("no_categorie"), rs.getInt("no_utilisateur"));
+				listArticle.add(art);
+			}
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
