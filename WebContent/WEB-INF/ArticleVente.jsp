@@ -83,8 +83,8 @@ ul, #myUL {
 					<!-- <input type ="text" class="form-control" name ="Pseudo" value ="${user.getPseudo() }"> -->
 
 					<h4>Retrait</h4>
-					<label for="CodePostal">Rue :</label>
-					<p>${user.getRue()}</p>
+					<label for="CodePostal">Code Postal</label>
+					<p>${user.getCode_postal()}</p>
 					<!--<input type="text"	class="form-control"  name ="Rue" value="${user.getRue()}" size="" >-->
 					<label for="Ville">Ville :</label>
 					<p>${user.getVille()}</p>
@@ -93,15 +93,7 @@ ul, #myUL {
 					<img alt="Article à vendre"
 						src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-cat-captions-1563551842.jpg"
 						width="300" height="200" style="text-align: center" />
-					<p></p>
-					<img alt="Article à vendre"
-						src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-cat-captions-1563551842.jpg"
-						width="300" height="200" style="text-align: center" />
-					<p></p>
-					<img alt="Article à vendre"
-						src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-cat-captions-1563551842.jpg"
-						width="300" height="200" style="text-align: center" />
-					<p></p>
+					
 				</div>
 			</div>
 
@@ -109,28 +101,30 @@ ul, #myUL {
 			<div class="well">
 				<div class="row">
 					<label for="Article">Article :</label> 
-					<input type="text" class="form-control" name="article" >
+					<p>${articleVendu.getNomArticle()}</p>
 				</div>		
 					<div class="row description">
 					<label for="Description">Description :</label>
-					<input type="text" class="form-control" name="description" >
+					<p>${articleVendu.getDescription()}</p>
 				</div>
 
-				<div class="row">
-					<label for="Categorie">Catégorie :</label>
-				</div>
-			<div class="row">	
-				<label for="Prix">Mise à prix :</label>
-				<p></p>
-				</div>
+				
+			
 			</div>
 			
 		
 			<div class="well">
+			<div class="row">	
+				<label for="Prix">Mise à prix :</label>
+				<p>${articleVendu.getDescription()}</p>
+				<p></p>
+				</div>
 				<div class="row">
 				<label for="Prix">Début de l'enchère : </label>
+				<p>${articleVendu.getDateDebutEncheres()}</p>
 				<p></p>
 				<label for="Prix">Fin de l'enchère :</label>
+				<p>${articleVendu.getDateFinEncheres()}</p>
 				<p></p>
 				<input class="btn btn-success" type="button" value="Enchérir"> 
 						</div>
@@ -138,7 +132,9 @@ ul, #myUL {
 		</div>
 		</div>	
 </div>	
-	
+	<footer class="container-fluid text-center">
+		<p></p>
+	</footer>
 	
 </body>
 

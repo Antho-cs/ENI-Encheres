@@ -175,8 +175,9 @@ ul, #myUL {
 						<li class="list-group-item">Fin de l'enchères : 22/08/2020</li>
 						<li class="list-group-item">Vendeur: Firas :P</li>
 					</ul>
+					<input type="hidden" name="no_article" value="${ArticleVendu.no_article}"   /><br>
 					<div class="card-body">
-						<a href="ServletMonArticle" class="btn btn-primary">Détails</a>
+						<a href="ServletArticleVente" class="btn btn-primary">Détails</a>
 					</div>
 				</div>
 			</div>
