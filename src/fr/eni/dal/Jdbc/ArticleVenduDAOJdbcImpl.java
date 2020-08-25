@@ -23,8 +23,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 	private static final String SQL_SELECTALL = "select * from ARTICLES_VENDUS";
 
-	private static final String SQL_SELECTBYNO = "select nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_categorie"
-			+ "from articles_vendus where no_article = ?";
+	private static final String SQL_SELECTBYNO = "select * from articles_vendus where no_article = ?";
 
 	private static final String SQL_SELECTBYCATEGORIE = "select nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente"
 			+ "from articles_vendus where no_categorie = ?";
@@ -164,7 +163,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
-		ArticleVendu Article = null;
+		ArticleVendu Article;
 
 		try {
 			cnx = ConnectionProvider.getConnection();
@@ -238,9 +237,10 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			pStmt = cnx.prepareStatement(SQL_SELECTALL);
 			rs = pStmt.executeQuery();
 			while (rs.next()) {
-				ArticleVendu art = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"), rs.getString("description"),
-						rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"), rs.getInt("prix_initial"),
-						rs.getInt("prix_vente"), rs.getInt("no_categorie"), rs.getInt("no_utilisateur"));
+				ArticleVendu art = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
+						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_categorie"),
+						rs.getInt("no_utilisateur"));
 				listArticle.add(art);
 			}
 

@@ -175,7 +175,8 @@ ul, #myUL {
 						<li class="list-group-item"><c:out value = "Vendeur : ${articles.get(i).getNo_utilisateur()}"/></li>
 					</ul>
 					<form action="ServletArticleVente" method="POST">
-						<input class="hidden" name="NoArticle" value="<c:out value = "NoArticle ${articles.get(i).getNoArticle()}"/>">
+						<input class="hidden" name="NoArticle" value="<c:out value = "${articles.get(i).getNoArticle()}"/>">
+						<input class="hidden" name="NoUtilisateur" value="<c:out value = "${articles.get(i).getNo_utilisateur()}"/>">
 						<div class="card-body">
 							<button class="btn btn-primary btn-block" type="submit">Détails</button>
 						</div>
