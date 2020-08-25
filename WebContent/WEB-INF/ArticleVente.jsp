@@ -79,15 +79,15 @@ ul, #myUL {
 					<h4>Infos du vendeur</h4>
 
 					<label for="Pseudo"> Vendeur </label>
-					<p>${user.getPseudo() }</p>
+					<p>${vendeur.getPseudo() }</p>
 					<!-- <input type ="text" class="form-control" name ="Pseudo" value ="${user.getPseudo() }"> -->
 
 					<h4>Retrait</h4>
 					<label for="CodePostal">Code Postal</label>
-					<p>${user.getCode_postal()}</p>
+					<p>${vendeur.getCode_postal()}</p>
 					<!--<input type="text"	class="form-control"  name ="Rue" value="${user.getRue()}" size="" >-->
 					<label for="Ville">Ville :</label>
-					<p>${user.getVille()}</p>
+					<p>${vendeur.getVille()}</p>
 					<!--<input type="text" class="form-control" name="Ville" value="${user.getVille()}" size="" >  -->
 
 					<img alt="Article à vendre"
@@ -100,15 +100,15 @@ ul, #myUL {
 		<div class="col-sm-6">
 			<div class="well">
 				<div class="row">
-					<label for="Article">Article :</label> 
-					<p>${ArticleVendu.getNomArticle()}</p>
+					<label for ="Article"  name ="Article">Article :</label> 
+					<p>${article.getNomArticle()}</p>
 					<!--ce label devra être supprimé lors de la mise en prod de l'appli (NoARticle = hidden)	-->
 				<label for="NoArticle">NoArticle :</label> 
-					<p>${ArticleVendu.getNoArticle()}</p>
+					<p>${article.getNoArticle()}</p>
 				</div>		
 					<div class="row description">
 					<label for="Description">Description :</label>
-					<p>${ArticleVendu.getDescription()}</p>
+					<p>${article.getDescription()}</p>
 				</div>
 
 				
@@ -119,15 +119,15 @@ ul, #myUL {
 			<div class="well">
 			<div class="row">	
 				<label for="Prix">Mise à prix :</label>
-				<p>${ArticleVendu.getDescription()}</p>
+				<p>${article.getMiseAPrix()}</p>
 				<p></p>
 				</div>
 				<div class="row">
 				<label for="Prix">Début de l'enchère : </label>
-				<p>${ArticleVendu.getDateDebutEncheres()}</p>
+				<p>${article.getDateDebutEncheres()}</p>
 				<p></p>
 				<label for="Prix">Fin de l'enchère :</label>
-				<p>${ArticleVendu.getDateFinEncheres()}</p>
+				<p>${article.getDateFinEncheres()}</p>
 				<p></p>
 				<input class="btn btn-success" type="button" value="Enchérir"> 
 						</div>
