@@ -37,7 +37,6 @@ public class Servlet extends HttpServlet {
 		try {
 			articles = mgr.selectAll();
 			request.setAttribute("articles", articles);
-			System.out.println(articles.get(1).getNoArticle());
 			categories = catMGR.selectAll();
 			request.setAttribute("categories", categories);
 			HttpSession session = request.getSession(false);

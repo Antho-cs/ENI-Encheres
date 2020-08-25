@@ -177,7 +177,7 @@ ul, #myUL {
 					<form action="ServletArticleVente" method="POST">
 						<input class="hidden" name="NoArticle" value="<c:out value = "NoArticle ${articles.get(i).getNoArticle()}"/>">
 						<div class="card-body">
-							<button class="btn btn-primary" type="submit">Détails</button>
+							<button class="btn btn-primary btn-block" type="submit">Détails</button>
 						</div>
 					</form>
 				</div>
