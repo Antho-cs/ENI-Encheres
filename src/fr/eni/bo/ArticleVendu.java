@@ -15,38 +15,52 @@ public class ArticleVendu {
 	private int no_categorie;
 	private String categorie;
 	private int no_utilisateur;
-
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, int noCategotie, int no_utilisateur) {
+	
+	public ArticleVendu() {
 		super();
-		this.no_article = noArticle;
-		nom_article = nomArticle;
+	}
+	
+	public ArticleVendu(int no_article, String nom_article, String description, Date date_debut_encheres,
+			Date date_fin_encheres, int prix_initial, int prix_vente, String etatVente, int no_categorie,
+			String categorie, int no_utilisateur) {
+		super();
+		this.no_article = no_article;
+		this.nom_article = nom_article;
 		this.description = description;
-		this.date_debut_encheres = dateDebutEncheres;
-		this.date_fin_encheres = dateFinEncheres;
-		this.prix_initial = miseAPrix;
-		this.prix_vente = prixVente;
-		this.no_categorie = noCategotie;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
+		this.prix_initial = prix_initial;
+		this.prix_vente = prix_vente;
+		this.etatVente = etatVente;
+		this.no_categorie = no_categorie;
+		this.categorie = categorie;
 		this.no_utilisateur = no_utilisateur;
 	}
 
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
-			Date dateFinEncheres, int miseAPrix, int prixVente, String etatVente, int noCategotie, String categorie) {
+	public ArticleVendu(int no_article, String nom_article, String description, Date date_debut_encheres,
+			Date date_fin_encheres, int prix_initial, int prix_vente, int no_categorie, int no_utilisateur) {
 		super();
-		this.no_article = noArticle;
-		nom_article = nomArticle;
+		this.no_article = no_article;
+		this.nom_article = nom_article;
 		this.description = description;
-		this.date_debut_encheres = dateDebutEncheres;
-		this.date_fin_encheres = dateFinEncheres;
-		this.prix_initial = miseAPrix;
-		this.prix_vente = prixVente;
-		this.etatVente = etatVente;
-		this.no_categorie = noCategotie;
-		this.categorie = categorie;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
+		this.prix_initial = prix_initial;
+		this.prix_vente = prix_vente;
+		this.no_categorie = no_categorie;
+		this.no_utilisateur = no_utilisateur;
 	}
 
-	public ArticleVendu() {
+	public ArticleVendu(String nom_article, String description, Date date_debut_encheres, Date date_fin_encheres,
+			int prix_initial, int no_categorie, int no_utilisateur) {
 		super();
+		this.nom_article = nom_article;
+		this.description = description;
+		this.date_debut_encheres = date_debut_encheres;
+		this.date_fin_encheres = date_fin_encheres;
+		this.prix_initial = prix_initial;
+		this.no_categorie = no_categorie;
+		this.no_utilisateur = no_utilisateur;
 	}
 
 	public int getNoArticle() {

@@ -15,15 +15,15 @@ import fr.eni.dal.DALException;
 
 public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
-	private static final String SQL_INSERT = "insert into articles_vendus (no_article,nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_categorie,no_utilisateur)"
-			+ "values (?,?,?,?,?,?,?,?,?)";
-	private static final String SQL_UPDATE = "update articles_vendus set = no_article?,set nom_article= ?,set description= ?,set date_debut_encheres= ?,set date_fin_encheres= ?,set prix_initial= ?,set prix_vente= ?,set no_categorie= ?,set categorie= ?";
+	private static final String SQL_INSERT = "insert into articles_vendus (nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,no_categorie,no_utilisateur)"
+			+ "values (?,?,?,?,?,?,?)";
+	private static final String SQL_UPDATE = "update articles_vendus set nom_article= ?,set description= ?,set date_debut_encheres= ?,set date_fin_encheres= ?,set prix_initial= ?,set prix_vente= ?,set no_categorie= ?,set categorie= ?";
 
 	private static final String SQL_DELETE = "delete from articles_vendus where no_article =?";
 
 	private static final String SQL_SELECTALL = "select * from ARTICLES_VENDUS";
 
-	private static final String SQL_SELECTBYNO = "select nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_categorie,categorie"
+	private static final String SQL_SELECTBYNO = "select nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente,no_categorie"
 			+ "from articles_vendus where no_article = ?";
 
 	private static final String SQL_SELECTBYCATEGORIE = "select nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente"
@@ -35,7 +35,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	 * @return
 	 */
 	@Override
-	public void insertNewArt(ArticleVendu articleVendu) throws DALException {
+	public ArticleVendu insertNewArt(ArticleVendu articleVendu) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
 
@@ -44,15 +44,13 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 			pStmt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 
-			pStmt.setInt(1, articleVendu.getNoArticle());
-			pStmt.setString(2, articleVendu.getNomArticle());
-			pStmt.setString(3, articleVendu.getDescription());
-			pStmt.setDate(4, articleVendu.getDateDebutEncheres());
-			pStmt.setDate(5, articleVendu.getDateFinEncheres());
-			pStmt.setInt(6, articleVendu.getMiseAPrix());
-			pStmt.setInt(7, articleVendu.getPrixVente());
-			pStmt.setInt(8, articleVendu.getNoCategotie());
-			pStmt.setInt(9, articleVendu.getNo_utilisateur());
+			pStmt.setString(1, articleVendu.getNomArticle());
+			pStmt.setString(2, articleVendu.getDescription());
+			pStmt.setDate(3, articleVendu.getDateDebutEncheres());
+			pStmt.setDate(4, articleVendu.getDateFinEncheres());
+			pStmt.setInt(5, articleVendu.getMiseAPrix());
+			pStmt.setInt(6, articleVendu.getNoCategotie());
+			pStmt.setInt(7, articleVendu.getNo_utilisateur());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
@@ -60,8 +58,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 				System.out.println(rs.getInt(1));
 				articleVendu.setNoArticle(rs.getInt(1));
 
-				// user.setCredit(0); //créditer à 0
-				// user.setAdministrateur(0); //mettre utilisateur par défaut
 			}
 
 		} catch (SQLException e) {
@@ -78,6 +74,7 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 				e.printStackTrace();
 			}
 		}
+		return articleVendu;
 	}
 
 	/**
@@ -93,15 +90,14 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 			pStmt = cnx.prepareStatement(SQL_UPDATE, Statement.RETURN_GENERATED_KEYS);
 
-			pStmt.setInt(1, articleVendu.getNoArticle());
-			pStmt.setString(2, articleVendu.getNomArticle());
-			pStmt.setString(3, articleVendu.getDescription());
-			pStmt.setDate(4, articleVendu.getDateDebutEncheres());
-			pStmt.setDate(5, articleVendu.getDateFinEncheres());
-			pStmt.setInt(6, articleVendu.getMiseAPrix());
-			pStmt.setInt(7, articleVendu.getPrixVente());
-			pStmt.setInt(8, articleVendu.getNoCategotie());
-			pStmt.setInt(9, articleVendu.getNo_utilisateur());
+			pStmt.setString(1, articleVendu.getNomArticle());
+			pStmt.setString(2, articleVendu.getDescription());
+			pStmt.setDate(3, articleVendu.getDateDebutEncheres());
+			pStmt.setDate(4, articleVendu.getDateFinEncheres());
+			pStmt.setInt(5, articleVendu.getMiseAPrix());
+			pStmt.setInt(6, articleVendu.getPrixVente());
+			pStmt.setInt(7, articleVendu.getNoCategotie());
+			pStmt.setInt(8, articleVendu.getNo_utilisateur());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
@@ -109,8 +105,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 				System.out.println(rs.getInt(1));
 				articleVendu.setNoArticle(rs.getInt(1));
 
-				// user.setCredit(0); //créditer à 0
-				// user.setAdministrateur(0); //mettre utilisateur par défaut
 			}
 
 		} catch (SQLException e) {
