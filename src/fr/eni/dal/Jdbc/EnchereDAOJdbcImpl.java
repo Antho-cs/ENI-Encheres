@@ -33,10 +33,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			pStmt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 
 			pStmt.setInt(1, enchere.getNoEnchere());
-			pStmt.setLocalDate(2, enchere.getDateEnchere());
+			pStmt.setDate(2, enchere.getDateEnchere());
 			pStmt.setInt(3, enchere.getMontantEnchere());
-			pStmt.setArticleVendu(4, enchere.getNoArticle());
-			pStmt.setUtlilisateur(5, enchere.getNoUtilisateur());
+			pStmt.setInt(4, enchere.getNoArticle());
+			pStmt.setInt(5, enchere.getNoUtilisateur());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
@@ -74,10 +74,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			pStmt = cnx.prepareStatement(SQL_UPDATE);
 
 			pStmt.setInt(1, enchere.getNoEnchere());
-			pStmt.setLocalDateTime(2, enchere.getDateEnchere());
+			pStmt.setDate(2, enchere.getDateEnchere());
 			pStmt.setInt(3, enchere.getMontantEnchere());
-			pStmt.setArticleVendu(4, enchere.getNoArticle());
-			pStmt.setUtlilisateur(5, enchere.getNoUtilisateur());
+			pStmt.setInt(4, enchere.getNoArticle());
+			pStmt.setInt(5, enchere.getNoUtilisateur());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();

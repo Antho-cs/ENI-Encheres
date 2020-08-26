@@ -34,13 +34,14 @@ public class Servlet extends HttpServlet {
 	UtilisateurManager userMGR = new UtilisateurManager();
 	List<ArticleAvecVendeur> articleAvecVendeur;
 	List<ArticleVendu> articles = new ArrayList<ArticleVendu>();
+	boolean dopost = false;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		try {
 			articleAvecVendeur = new ArrayList<ArticleAvecVendeur>();
-			if(articles.size() == 0) {
+			if(articles.size() == 0 && !dopost) {
 				articles = mgr.selectAll();
 			}
 			for (ArticleVendu art : articles) {
@@ -76,6 +77,7 @@ public class Servlet extends HttpServlet {
 					articles = mgr.selectAll();
 				}else {
 					articles = mgr.selectByCategorie(noCategorie);
+					dopost = true;
 				}
 			}else if(formName.equals("selectByName")) {
 				String articleName = request.getParameter("selectByName");

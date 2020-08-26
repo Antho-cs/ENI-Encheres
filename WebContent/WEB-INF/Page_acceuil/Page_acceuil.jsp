@@ -70,7 +70,8 @@ ul, #myUL {
 }
 </style>
 </head>
-<body>
+<body onload="document.form1.submit()">
+
 	<jsp:include page="navBar.jsp" />
 
 
@@ -95,7 +96,7 @@ ul, #myUL {
 					</div>
 					<input type="hidden" name="formName" value="selectByName">
 				</form>
-				<form action="Servlet" method="POST">
+				<form action="Servlet" method="POST" id="form1">
 					<label for="Categorie">Catégorie: </label> <select id="Categorie"
 						class="form-control form-control-lg" name="categorie">
 						<option id="select" value="select" disabled="" selected="">Please
@@ -192,7 +193,7 @@ ul, #myUL {
 				<c:choose>
 					<c:when test="${articles.size() == 0}">
 						<div class="text-center">
-							<h1>Hi bitch</h1>
+							<img alt="rien" src="https://unsa-developpement-durable.fr/images/Photos_articles/2017-03/ddi_rien_voir2.jpg">
 						</div>
 
 					</c:when>

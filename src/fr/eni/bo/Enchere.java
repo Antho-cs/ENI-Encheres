@@ -1,17 +1,18 @@
 package fr.eni.bo;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+
 
 public class Enchere {
 
 	// Attributs
-	protected ArticleVendu noArticle;
-	protected LocalDateTime dateEnchere;
+	protected int noArticle;
+	protected Date dateEnchere;
 	protected int montantEnchere;
-	protected Utilisateur noUtilisateur;
+	protected int noUtilisateur;
 	protected int noEnchere;
 
-	public Enchere(ArticleVendu noArticle, LocalDateTime dateEnchere, int montantEnchere, Utilisateur noUtilisateur,
+	public Enchere(int noArticle, Date dateEnchere, int montantEnchere, int noUtilisateur,
 			int noEnchere) {
 		super();
 		this.noArticle = noArticle;
@@ -29,27 +30,27 @@ public class Enchere {
 		return montantEnchere;
 	}
 
-	public ArticleVendu getNoArticle() {
+	public int getNoArticle() {
 		return noArticle;
 	}
 
-	public void setNoArticle(ArticleVendu noArticle) {
+	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
 	}
 
-	public LocalDateTime getDateEnchere() {
+	public Date getDateEnchere() {
 		return dateEnchere;
 	}
 
-	public void setDateEnchere(LocalDateTime dateEnchere) {
+	public void setDateEnchere(Date dateEnchere) {
 		this.dateEnchere = dateEnchere;
 	}
 
-	public Utilisateur getNoUtilisateur() {
+	public int getNoUtilisateur() {
 		return noUtilisateur;
 	}
 
-	public void setNoUtilisateur(Utilisateur noUtilisateur) {
+	public void setNoUtilisateur(int noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
 	}
 
