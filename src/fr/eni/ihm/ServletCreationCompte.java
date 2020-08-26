@@ -51,8 +51,8 @@ public class ServletCreationCompte extends HttpServlet {
 		String idSaisie = request.getParameter("Pseudo");
 		String mailSaisie = request.getParameter("Mail");
 
-		// pour insÃ©rer le nouvel utilsateur dans la BDD
-		String pseudo = request.getParameter("Pseudo");
+		// pour insérer le nouvel utilsateur dans la BDD
+		// String pseudo = request.getParameter("Pseudo");
 		String nom = request.getParameter("Nom");
 		String prenom = request.getParameter("Prenom");
 		String email = request.getParameter("Mail");
@@ -66,15 +66,15 @@ public class ServletCreationCompte extends HttpServlet {
 		System.out.println(mot_de_passe);
 		System.out.println(confirmSaisie);
 
-		user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
+		user = new Utilisateur(idSaisie, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
 
-		try {// pseudo dÃ©jÃ  existant
+		try {// pseudo déjà  existant
 			System.out.println("Pseudo");
 			idSaisie.equals(manager.selectByPseudo(idSaisie).getPseudo());
 			msg = "* Pseudo déjà utilisé, merci de le modifier";
 			doGet(request, response);
 		} catch (Exception c) {
-			try { // mail dÃ©jÃ  existant
+			try { // mail déjà  existant
 				System.out.println("email");
 				mailSaisie.equals(manager.selectByMail(mailSaisie).getEmail());
 				msg = "* Adresse email déjà utilisé";

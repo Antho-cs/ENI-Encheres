@@ -1,6 +1,7 @@
 package fr.eni.ihm;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,48 +31,69 @@ public class ServletNewArticle extends HttpServlet {
 	List<Categorie> categories = new ArrayList<Categorie>();
 	Utilisateur user = null;
 	HttpSession session;
+	String msg = "";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		if (Article == null || Article.getNoArticle()==0) {
-			try {
-				categories = catMGR.selectAll();
-				request.setAttribute("categories", categories);
-				session = request.getSession(false);
-				user = (Utilisateur) session.getAttribute("user");
-				request.setAttribute("user", user);
-				request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
 
-			} catch (BLLException e) {
-				e.printStackTrace();
-				response.sendRedirect("Servlet");
-			}
-		}else {
-			Article = null;
+		// if (Article == null || Article.getNoArticle() == 0) {
+
+		try {
+			request.setAttribute("user", user);
+			request.setAttribute("article", Article);
+			request.setAttribute("msg", msg);
+
+			categories = catMGR.selectAll();
+			request.setAttribute("categories", categories);
+
+			session = request.getSession(false);
+			user = (Utilisateur) session.getAttribute("user");
+
+			request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
+
+		} catch (BLLException e) {
+			e.printStackTrace();
 			response.sendRedirect("Servlet");
 		}
-		 
-		
+		// } else {
+		// Article = null;
+		// response.sendRedirect("Servlet");
+		// }
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Article = new ArticleVendu();
+
+		// Variables à récuperer //
+		// String Nom_Article = request.getParameter("Article");
+		// String Description = request.getParameter("Description");
+		// String Categorie = request.getParameter("categorie");
+		// int Prix = Integer.parseInt(request.getParameter("Prix"));
+		Date Date_Debut = java.sql.Date.valueOf(request.getParameter("DateDebut"));
+		Date Date_Fin = java.sql.Date.valueOf(request.getParameter("DateFin"));
+		//
+		// ArticleVendu article = new ArticleVendu(Nom_Article, Description, Categorie,
+		// Prix, Date_Debut, Date_Fin);
+
 		try {
-			Article.setNomArticle(request.getParameter("article"));
-			Article.setDescription(request.getParameter("description"));
-			Article.setNoCategotie(Integer.parseInt(request.getParameter("categorie")));
+			Article.setNomArticle(request.getParameter("Article"));
+			Article.setDescription(request.getParameter("Description"));
+			Article.setNoCategotie(Integer.parseInt(request.getParameter("Categorie")));
 			Article.setMiseAPrix(Integer.parseInt(request.getParameter("Prix")));
 			Article.setDateDebutEncheres(java.sql.Date.valueOf(request.getParameter("DateDebut")));
 			Article.setDateFinEncheres(java.sql.Date.valueOf(request.getParameter("DateFin")));
 			Article.setNo_utilisateur(Integer.parseInt(request.getParameter("noUtilisateur")));
-			
 
-			mgr.insertNewArt(Article);
-			
+			if (Date_Debut.compareTo(Date_Fin) < 0) {
+				mgr.insertNewArt(Article);
+			} else {
+				msg = "* La date de fin d'enchère ne peut pas être inférieure à la date de début d'enchère";
+
+			}
 
 		} catch (Exception e) {
+			System.out.println("Catch");
 			e.printStackTrace();
 
 		}

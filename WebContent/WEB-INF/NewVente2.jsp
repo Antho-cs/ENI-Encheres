@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Création d'un article</title>
 
 <style type="text/css">
 footer {
@@ -24,6 +24,7 @@ footer {
 }
 </style>
 </head>
+
 <body>
 	 <jsp:useBean id="now" class="java.util.Date" />
 	<jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
@@ -31,7 +32,7 @@ footer {
 
 
 	<div class="jumbotron text-center">
-		<h2>mon article</h2>
+		<h2>Création d'un article</h2>
 	</div>
 
 	<div class="container-fluid">
@@ -46,20 +47,25 @@ footer {
 
 			<div class="col-sm-6">
 				<form method="POST" action="NewArticle">
+				
+				
 					<div class="well">
 						<div class="row">
+						<p> <i> <font color = "#FF0000" >${msg} </font></i></p>
+						</div>
+						<div class="row">
 							<label for="Article">Article :</label> <input type="text"
-								class="form-control" name="article" id="Article" required>
+								class="form-control" name="Article" id="Article"  value ="${article.nom_article}" required>
 						</div>
 
 						<div class="row description">
 							<label for="Description">Description :</label>
-							<textarea id="Description" name="description" required></textarea>
+							<textarea id="Description" name="Description"  value="${article.description}" required></textarea>
 						</div>
 
 						<div class="row">
 							<label for="Categorie">Catégorie :</label> <select
-								name="categorie" id="Categorie-select">
+								name="Categorie" id="Categorie-select">
 								<c:forEach var = "i" begin = "0" end = "${categories.size()-1}">
 									<option value="${i+1}"><c:out value = "${categories.get(i).getLibelle()}"/></option>
 								</c:forEach>
@@ -75,7 +81,7 @@ footer {
 					<div class="well">
 						<div class="row">
 							<label for="Prix">Mise à prix :</label> <input type="number"
-								id="Prix" name="Prix" min="10" max="10000000" size="20" required>
+								id="Prix" name="Prix" min="10" max="10000000" size="20" value = "${article.getMiseAPrix}"required>
 						</div>
 
 						<div class="row">
@@ -88,6 +94,7 @@ footer {
 								<input type="date" name="DateFin"  min='<fmt:formatDate  pattern="yyyy-MM-dd" value="${now}" />' size = "20" required/>
 							
 						</div>
+						
 					</div>
 					<div class="well">
 						<div class="row">
