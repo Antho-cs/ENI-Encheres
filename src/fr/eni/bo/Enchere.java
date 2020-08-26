@@ -2,7 +2,6 @@ package fr.eni.bo;
 
 import java.sql.Date;
 
-
 public class Enchere {
 
 	// Attributs
@@ -12,8 +11,7 @@ public class Enchere {
 	protected int noUtilisateur;
 	protected int noEnchere;
 
-	public Enchere(int noArticle, Date dateEnchere, int montantEnchere, int noUtilisateur,
-			int noEnchere) {
+	public Enchere(int noArticle, Date dateEnchere, int montantEnchere, int noUtilisateur, int noEnchere) {
 		super();
 		this.noArticle = noArticle;
 		this.dateEnchere = dateEnchere;

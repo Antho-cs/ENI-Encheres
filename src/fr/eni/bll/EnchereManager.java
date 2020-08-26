@@ -23,6 +23,15 @@ public class EnchereManager {
 
 	}
 
+	public Enchere selectByIdEnchere(int no_enchere) throws BLLException {
+
+		try {
+			return this.daoEnchere.selectByIdEnchere(no_enchere);
+		} catch (DALException e) {
+			throw new BLLException("Erreur dans la récupération des donnés " + no_enchere, e);
+		}
+	}
+
 	public void updateEnchere(Enchere enchere) throws BLLException {
 		try {
 			this.daoEnchere.updateEnchere(enchere);

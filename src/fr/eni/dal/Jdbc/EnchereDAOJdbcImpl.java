@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import fr.eni.bo.Enchere;
-import fr.eni.bo.Utilisateur;
 import fr.eni.dal.ConnectionProvider;
 import fr.eni.dal.DALException;
 import fr.eni.dal.EnchereDAO;
@@ -15,7 +14,8 @@ import fr.eni.dal.EnchereDAO;
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private static final String SQL_INSERT = "insert into encheres (no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur) values (?,?,?,?,?)";
-	private static final String SQL_UPDATE = "update encheres set no_enchere = ?,date_enchere = ?, montant_enchere = ?, no_article = ? ,no_utilisateur = ?";
+	// private static final String SQL_UPDATE = "update encheres set no_enchere =
+	// ?,date_enchere = ?, montant_enchere = ?, no_article = ? ,no_utilisateur = ?";
 	private static final String SQL_SELECTBYID = "select * from encheres where no_enchere = ?";
 
 	public Enchere insertNewEnchere(Enchere enchere) throws DALException {
@@ -29,10 +29,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			pStmt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 
 			pStmt.setInt(1, enchere.getNoEnchere());
-			pStmt.setLocalDate(2, enchere.getDateEnchere());
+			pStmt.setDate(2, enchere.getDateEnchere());
 			pStmt.setInt(3, enchere.getMontantEnchere());
-			pStmt.setArticleVendu(4, enchere.getNoArticle());
-			pStmt.setUtlilisateur(5, enchere.getNoUtilisateur());
+			pStmt.setInt(4, enchere.getNoArticle());
+			pStmt.setInt(5, enchere.getNoUtilisateur());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
@@ -61,7 +61,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	}
 
 	public Enchere selectByIdEnchere(int no_Enchere) throws DALException {
-		
+
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
@@ -76,16 +76,11 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			rs = pStmt.executeQuery();
 			rs.next();
-			enchere = new Enchere(
-					no_Enchere,
-					rs.getInt(""),
-					rs.getString(""),
-					rs.getString(""),
-					rs.getString("");
-				
-		
+			enchere = new Enchere(no_Enchere, rs.getDate("date_enchere"), rs.getInt("montant_enchere"),
+					rs.getInt("no_article"), rs.getInt("no_utilisateur"));
+
 		} catch (SQLException e) {
-			throw new DALException("selectById failed - id = " + no_utilisateur, e);
+			throw new DALException("selectById failed - id = " + no_Enchere, e);
 		}
 
 		return enchere;
