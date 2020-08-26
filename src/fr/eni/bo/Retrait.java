@@ -1,17 +1,19 @@
 package fr.eni.bo;
 
 public class Retrait {
-	
+
+	// Variables //
+
 	protected Utilisateur rue;
 	protected Utilisateur codePostal;
 	protected Utilisateur ville;
 	protected ArticleVendu noArticle;
-	
-		
-public Retrait() {
+
+	// Constructeurs //
+
+	public Retrait() {
 		super();
 	}
-
 
 	public Retrait(Utilisateur rue, Utilisateur codePostal, Utilisateur ville, ArticleVendu noArticle) {
 		super();
@@ -21,12 +23,10 @@ public Retrait() {
 		this.noArticle = noArticle;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Retrait [rue=" + rue + ", codePostal=" + codePostal + ", ville=" + ville + ", noArticle=" + noArticle
 				+ "]";
 	}
-	
-	
+
 }

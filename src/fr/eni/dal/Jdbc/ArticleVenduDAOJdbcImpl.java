@@ -26,9 +26,9 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	private static final String SQL_SELECTBYNO = "select * from articles_vendus where no_article = ?";
 
 	private static final String SQL_SELECTBYCATEGORIE = "select * from articles_vendus where no_categorie = ?";
-	
+
 	private static final String SQL_SELECTBYNAME = "select * from articles_vendus where nom_article like ?";
-	
+
 	private static final String SQL_SELECTBYNOUTILISATEUR = "select * from articles_vendus where no_utilisateur = ?";
 
 	/**
@@ -200,7 +200,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
 
-
 		try {
 			cnx = ConnectionProvider.getConnection();
 			pStmt = cnx.prepareStatement(SQL_SELECTBYCATEGORIE);
@@ -272,12 +271,14 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 		return listArticle;
 	}
+
+	// Méthodes de Selection par nom //
+
 	public List<ArticleVendu> selectByName(String no_article) throws DALException {
 		List<ArticleVendu> listArticle = new ArrayList<ArticleVendu>();
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
-
 
 		try {
 			cnx = ConnectionProvider.getConnection();
@@ -309,12 +310,14 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 		return listArticle;
 	}
+
+	// Selection par numéro utilisateur //
+
 	public List<ArticleVendu> selectByNoUtilisateur(int no_utilisateur) throws DALException {
 		List<ArticleVendu> listArticle = new ArrayList<ArticleVendu>();
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
 		ResultSet rs = null;
-
 
 		try {
 			cnx = ConnectionProvider.getConnection();

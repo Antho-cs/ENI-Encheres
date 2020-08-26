@@ -14,9 +14,12 @@ import fr.eni.dal.EnchereDAO;
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private static final String SQL_INSERT = "insert into encheres (no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur) values (?,?,?,?,?)";
-	// private static final String SQL_UPDATE = "update encheres set no_enchere =
-	// ?,date_enchere = ?, montant_enchere = ?, no_article = ? ,no_utilisateur = ?";
 	private static final String SQL_SELECTBYID = "select * from encheres where no_enchere = ?";
+	// private static final String SQL_UPDATE = "update encheres set no_enchere
+	// =?,date_enchere = ?, montant_enchere = ?, no_article = ? ,no_utilisateur =
+	// ?";
+
+	// Méthodes pour l'insertion d'une enchere //
 
 	public Enchere insertNewEnchere(Enchere enchere) throws DALException {
 
@@ -59,6 +62,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		return enchere;
 
 	}
+
+	// Méthodes pour la selection par numero d'enchere //
 
 	public Enchere selectByIdEnchere(int no_Enchere) throws DALException {
 

@@ -2,8 +2,12 @@ package fr.eni.bo;
 
 public class Categorie {
 
+	// Variables //
+
 	private int noCategorie;
 	private String libelle;
+
+	// Constructeurs //
 
 	public Categorie() {
 		super();
@@ -14,6 +18,8 @@ public class Categorie {
 		this.noCategorie = noCategorie;
 		this.libelle = libelle;
 	}
+
+	// Getter Setter //
 
 	public int getNoCategorie() {
 		return noCategorie;

@@ -2,6 +2,7 @@ package fr.eni.dal;
 
 import fr.eni.dal.Jdbc.ArticleVenduDAOJdbcImpl;
 import fr.eni.dal.Jdbc.CategorieDAOJdbcImpl;
+import fr.eni.dal.Jdbc.EnchereDAOJdbcImpl;
 import fr.eni.dal.Jdbc.UtilisateurDAOJdbcImpl;
 
 public class DAOFactory {
@@ -17,7 +18,10 @@ public class DAOFactory {
 
 	public static CategorieDAO getCategorieDAO() {
 		return new CategorieDAOJdbcImpl();
+	}
 
+	public static EnchereDAO getEnchereDAO() {
+		return new EnchereDAOJdbcImpl();
 	}
 
 }
