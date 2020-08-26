@@ -30,19 +30,20 @@ public class Servlet extends HttpServlet {
 	ArticleVendu Article = new ArticleVendu();
 	CategorieManager catMGR = new CategorieManager();
 	List<Categorie> categories = new ArrayList<Categorie>();
-	Utilisateur vendeur;
-	public static Utilisateur user;
+	public static Utilisateur vendeur,user;
 	UtilisateurManager userMGR = new UtilisateurManager();
 	List<ArticleAvecVendeur> articleAvecVendeur;
-	List<ArticleVendu> articles;
+	List<ArticleVendu> articles = new ArrayList<ArticleVendu>();
+	boolean dopost = false;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		try {
 			articleAvecVendeur = new ArrayList<ArticleAvecVendeur>();
-			articles = new ArrayList<ArticleVendu>();
-			articles = mgr.selectAll();
+			if(articles.size() == 0 && !dopost) {
+				articles = mgr.selectAll();
+			}
 			for (ArticleVendu art : articles) {
 
 				articleAvecVendeur.add(new ArticleAvecVendeur(art.getNoArticle(), art.getNomArticle(),
@@ -54,22 +55,52 @@ public class Servlet extends HttpServlet {
 			request.setAttribute("categories", categories);
 			HttpSession session = request.getSession(false);
 			if (session != null) {
-				user = (Utilisateur) session.getAttribute("user");
+				 user = (Utilisateur) session.getAttribute("user");
 				request.setAttribute("user", user);
-				System.out.println(session.getAttribute("user"));
 			}
 		} catch (BLLException e) {
 			e.printStackTrace();
+		}finally {
 			request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request, response);
+		
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
-		// response.getWriter().append("hello");
+		String formName = request.getParameter("formName");
+		try {
+			if(formName.equals("selectByCategorie")) {
+				int noCategorie = Integer.parseInt(request.getParameter("categorie"));
+				if(noCategorie == 1) {
+					articles = mgr.selectAll();
+				}else {
+					articles = mgr.selectByCategorie(noCategorie);
+					dopost = true;
+				}
+			}else if(formName.equals("selectByName")) {
+				String articleName = request.getParameter("selectByName");
+				articles = mgr.selectByName(articleName);
+			}else if(formName.equals("selectByNoUtilisateur")) {
+				String choix = request.getParameter("choix");
+				String checkbox = request.getParameter("checkbox");
+				System.out.println("select by n°utilisateur");
+				if(choix.equals("mesVentes")) {
+					System.out.println("mes ventes");
+					if(checkbox.equals("MesVentesEnCours")) {
+						articles = mgr.selectByNoUtilisateur(user.getNo_utilisateur());
+					}
+				}
+			}
+			
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}finally {
+			doGet(request, response);
+		}
+		
+		
 	}
 
 }

@@ -70,7 +70,8 @@ ul, #myUL {
 }
 </style>
 </head>
-<body>
+<body onload="document.form1.submit()">
+
 	<jsp:include page="navBar.jsp" />
 
 
@@ -83,98 +84,120 @@ ul, #myUL {
 		<div class="row content">
 			<div class="col-sm-3 sidenav">
 				<h4>Filtres:</h4>
-				<form>
+				<form action="Servlet" method="POST">
 					<div class="input-group">
 						<input type="text" class="form-control"
-							placeholder="Le nom de l'article contient">
+							placeholder="Le nom de l'article contient" name="selectByName">
 						<div class="input-group-btn">
 							<button class="btn btn-default" type="submit">
 								<i class="glyphicon glyphicon-search"></i>
 							</button>
 						</div>
 					</div>
+					<input type="hidden" name="formName" value="selectByName">
 				</form>
-
-				<label for="Categorie">Catégorie: </label> <select id="Categorie"
-					class="form-control form-control-lg">
-					<c:forEach var="i" begin="0" end="${categories.size()-1}">
-						<option value="${i+1}"><c:out
-								value="${categories.get(i).getLibelle()}" /></option>
-					</c:forEach>
-				</select>
-
-				<c:choose>
-					<c:when test="${user != null}">
-						<fieldset class="form-group">
-							<ul id="myUL">
-								<li>
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="choix"
-											onclick="myFunction()" id="achats" value="Achats"> <label
-											class="form-check-label" for="achats"> Achats </label>
-									</div>
-								</li>
-								<ul class="nested" id="listeAchats">
+				<form action="Servlet" method="POST" id="form1">
+					<label for="Categorie">Catégorie: </label> <select id="Categorie"
+						class="form-control form-control-lg" name="categorie">
+						<option id="select" value="select" disabled="" selected="">Please
+							Select</option>
+						<c:choose>
+							<c:when test="${categories.size() > 0}">
+								<c:forEach var="i" begin="0" end="${categories.size()-1}">
+									<option value="${i+1}"><c:out
+											value="${categories.get(i).getLibelle()}" /></option>
+								</c:forEach>
+							</c:when>
+						</c:choose>
+					</select> <input type="hidden" name="formName" value="selectByCategorie">
+				</form>
+				<form action="Servlet" method="POST">
+					<c:choose>
+						<c:when test="${user != null}">
+							<fieldset class="form-group">
+								<ul id="myUL">
 									<li>
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value=""
-												id="defaultCheck1"> <label class="form-check-label"
-												for="defaultCheck1"> Enchères ouvertes </label>
+											<input class="form-check-input" type="radio" name="choix"
+												onclick="affichageListeAchats()" id="achats" value="Achats">
+											<label class="form-check-label" for="achats"> Achats
+											</label>
 										</div>
 									</li>
-									<li><div class="form-check">
-											<input class="form-check-input" type="checkbox" value=""
-												id="defaultCheck2"> <label class="form-check-label"
-												for="defaultCheck2"> Mes enchères </label>
-										</div></li>
-									<li><div class="form-check">
-											<input class="form-check-input" type="checkbox" value=""
-												id="defaultCheck2"> <label class="form-check-label"
-												for="defaultCheck2"> Mes enchères raportées </label>
-										</div></li>
-								</ul>
-								<li>
-									<div class="form-check">
-										<input class="form-check-input" type="radio" name="choix"
-											onclick="affichageListeMesVentes()" id="mesVentes"
-											value="Mes ventes"> <label class="form-check-label"
-											for="mesVentes"> Mes ventes </label>
-									</div>
-								</li>
-								<ul class="nested" id="listeMesVentes">
+									<ul class="nested" id="listeAchats">
+										<li>
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox"
+													name="checkbox" value="EncheresOuvertes" id="defaultCheck1"
+													onChange="this.form.submit()"> <label
+													class="form-check-label" for="defaultCheck1">
+													Enchères ouvertes </label>
+											</div>
+										</li>
+										<li><div class="form-check">
+												<input class="form-check-input" type="checkbox"
+													name="checkbox" value="MesEncheres" id="defaultCheck2"
+													onChange="this.form.submit()"> <label
+													class="form-check-label" for="defaultCheck2"> Mes
+													enchères </label>
+											</div></li>
+										<li><div class="form-check">
+												<input class="form-check-input" type="checkbox"
+													name="checkbox" value="MesEncheresRaportees"
+													id="defaultCheck2" onChange="this.form.submit()"> <label
+													class="form-check-label" for="defaultCheck2"> Mes
+													enchères raportées </label>
+											</div></li>
+									</ul>
 									<li>
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value=""
-												id="defaultCheck1"> <label class="form-check-label"
-												for="defaultCheck1"> Mes ventes en cours </label>
+											<input class="form-check-input" type="radio" name="choix"
+												onclick="affichageListeMesVentes()" id="mesVentes"
+												value="mesVentes"> <label class="form-check-label"
+												for="mesVentes"> Mes ventes </label>
 										</div>
 									</li>
-									<li><div class="form-check">
-											<input class="form-check-input" type="checkbox" value=""
-												id="defaultCheck2"> <label class="form-check-label"
-												for="defaultCheck2"> Mes enchères </label>
-										</div></li>
-									<li><div class="form-check">
-											<input class="form-check-input" type="checkbox" value=""
-												id="defaultCheck2"> <label class="form-check-label"
-												for="defaultCheck2"> Mes enchères raportées </label>
-										</div></li>
+									<ul class="nested" id="listeMesVentes">
+										<li>
+											<div class="form-check">
+												<input class="form-check-input" type="checkbox"
+													name="checkbox" value="MesVentesEnCours" id="defaultCheck1"
+													onChange="this.form.submit()"> <label
+													class="form-check-label" for="defaultCheck1"> Mes
+													ventes en cours </label>
+											</div>
+										</li>
+										<li><div class="form-check">
+												<input class="form-check-input" type="checkbox"
+													name="checkbox" value="MesEncheres" id="defaultCheck2"
+													onChange="this.form.submit()"> <label
+													class="form-check-label" for="defaultCheck2"> Mes
+													enchères </label>
+											</div></li>
+										<li><div class="form-check">
+												<input class="form-check-input" type="checkbox"
+													name="checkbox" value="MesEncheresRaportees"
+													id="defaultCheck2" onChange="this.form.submit()"> <label
+													class="form-check-label" for="defaultCheck2"> Mes
+													enchères raportées </label>
+											</div></li>
+									</ul>
 								</ul>
-							</ul>
-						</fieldset>
-					</c:when>
-				</c:choose>
+							</fieldset>
+						</c:when>
+					</c:choose>
+					<input type="hidden" name="formName" value="selectByNoUtilisateur">
+				</form>
 			</div>
 			<div class="col-sm-9">
 				<c:choose>
 					<c:when test="${articles.size() == 0}">
 						<div class="text-center">
-							<h1>Hi bitch</h1>
+							<img alt="rien" src="https://unsa-developpement-durable.fr/images/Photos_articles/2017-03/ddi_rien_voir2.jpg">
 						</div>
 
 					</c:when>
 					<c:otherwise>
-
 						<c:forEach var="i" begin="0" end="${articles.size()-1}">
 							<div class="col-sm-3">
 								<div class="w3-card-4">
@@ -201,7 +224,7 @@ ul, #myUL {
 									<form action="ServletArticleVente" method="POST">
 										<input class="hidden" name="NoArticle"
 											value="<c:out value = "${articles.get(i).getNoArticle()}"/>">
-											<input class="hidden" name="NoUtilisateur"
+										<input class="hidden" name="NoUtilisateur"
 											value="<c:out value = "${articles.get(i).getNo_utilisateur()}"/>">
 										<div class="card-body">
 											<button class="btn btn-primary btn-block" type="submit">Détails</button>
@@ -220,7 +243,17 @@ ul, #myUL {
 	</footer>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
-		function myFunction() {
+		document.getElementById('Categorie').onchange = function() {
+			localStorage.setItem('selectedtem', document
+					.getElementById('Categorie').value);
+			this.form.submit();
+		};
+
+		if (localStorage.getItem('selectedtem')) {
+			document.getElementById('Categorie').options[localStorage
+					.getItem('selectedtem')].selected = true;
+		}
+		function affichageListeAchats() {
 			var listeAchats = document.getElementById("listeAchats");
 			var listeMesVentes = document.getElementById("listeMesVentes");
 			listeAchats.classList.remove("nested");
