@@ -31,6 +31,7 @@ public class Servlet extends HttpServlet {
 	CategorieManager catMGR = new CategorieManager();
 	List<Categorie> categories = new ArrayList<Categorie>();
 	Utilisateur vendeur;
+	public static Utilisateur user;
 	UtilisateurManager userMGR = new UtilisateurManager();
 	List<ArticleAvecVendeur> articleAvecVendeur;
 	List<ArticleVendu> articles;
@@ -53,7 +54,7 @@ public class Servlet extends HttpServlet {
 			request.setAttribute("categories", categories);
 			HttpSession session = request.getSession(false);
 			if (session != null) {
-				Utilisateur user = (Utilisateur) session.getAttribute("user");
+				user = (Utilisateur) session.getAttribute("user");
 				request.setAttribute("user", user);
 				System.out.println(session.getAttribute("user"));
 			}

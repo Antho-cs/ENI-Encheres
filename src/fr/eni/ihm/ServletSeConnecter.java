@@ -56,7 +56,7 @@ public class ServletSeConnecter extends HttpServlet {
 			if (Id_Saisie.equals(user.getPseudo())) {
 
 				mdp_Compare = user.getMot_de_passe();
-				System.out.println("1er IF");
+				// System.out.println("1er IF");
 
 				if (Mdp_Saisie.equals(mdp_Compare)) {
 					// session
