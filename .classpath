@@ -37,5 +37,8 @@
 	<classpathentry kind="lib" path="C:/Program Files/Java/apache-tomcat-8.5.57/lib/tomcat-util-scan.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/apache-tomcat-8.5.57/lib/tomcat-websocket.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/apache-tomcat-8.5.57/lib/websocket-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/logback-classic-1.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/logback-core-1.2.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

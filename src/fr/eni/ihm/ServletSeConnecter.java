@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import fr.eni.bll.BLLException;
 import fr.eni.bll.UtilisateurManager;
 import fr.eni.bo.Utilisateur;
@@ -22,6 +25,7 @@ public class ServletSeConnecter extends HttpServlet {
 	String msg = "";
 	Utilisateur user = new Utilisateur();
 	HttpSession session;
+	private Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni");
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -79,6 +83,7 @@ public class ServletSeConnecter extends HttpServlet {
 						session = request.getSession();
 						session.setAttribute("user", user);
 						response.sendRedirect("Servlet");
+						monLogger.info(user.getPseudo() + "s'est connecté");
 
 					} else {
 						msg = "Le mot de passe saisie n'est pas correct";
