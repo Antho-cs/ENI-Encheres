@@ -39,9 +39,12 @@ public class ServletArticleVente extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession(false);
-		if (session == null) {
+		// if (session == null) {
+		// response.sendRedirect("ServletSeConnecter");
+		// } else {
+		try {
+			session = null;
 			response.sendRedirect("ServletSeConnecter");
-		} else {
 			try {
 				article = aMgr.selectByNo(article.getNoArticle());
 				request.setAttribute("article", article);
@@ -49,19 +52,22 @@ public class ServletArticleVente extends HttpServlet {
 					vendeur = uMger.selectById(vendeur.getNo_utilisateur());
 					request.setAttribute("vendeur", vendeur);
 				} catch (BLLException e) {
-					// TODO Auto-generated catch block
+					// catch aMger
 					e.printStackTrace();
 				}
-
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
+				// try uMger
 				e.printStackTrace();
 			}
+		} catch (BLLException e) {
+			// try session
+			e.printStackTrace();
 
-			request.setAttribute("article", article);
-			request.setAttribute("vendeur", vendeur);
+			// request.setAttribute("article", article);
+			// request.setAttribute("vendeur", vendeur);
 			request.getRequestDispatcher("/WEB-INF/ArticleVente.jsp").forward(request, response);
 
+			// } end else
 		}
 	}
 
