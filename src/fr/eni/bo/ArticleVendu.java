@@ -74,6 +74,11 @@ public class ArticleVendu {
 		this.no_utilisateur = no_utilisateur;
 	}
 
+	public ArticleVendu(String nom_article, String description, String categorie, int prix, Date date_Debut,
+			Date date_Fin) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getNoArticle() {
 		return no_article;
 	}

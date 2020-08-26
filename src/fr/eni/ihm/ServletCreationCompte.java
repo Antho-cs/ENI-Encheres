@@ -69,24 +69,24 @@ public class ServletCreationCompte extends HttpServlet {
 		user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
 
 		try {// pseudo dÃ©jÃ  existant
-			System.out.println("Pseudo");
+				// System.out.println("Pseudo");
 			idSaisie.equals(manager.selectByPseudo(idSaisie).getPseudo());
-			msg = "* Pseudo déjà utilisé, merci de le modifier";
+			msg = "* Pseudo dï¿½jï¿½ utilisï¿½, merci de le modifier";
 			doGet(request, response);
 		} catch (Exception c) {
 			try { // mail dÃ©jÃ  existant
-				System.out.println("email");
+
 				mailSaisie.equals(manager.selectByMail(mailSaisie).getEmail());
-				msg = "* Adresse email déjà utilisé";
+				msg = "* Adresse email dï¿½jï¿½utilisï¿½";
 				doGet(request, response);
 			} catch (BLLException e) {
-				if (!confirmSaisie.equals(mot_de_passe)) {
-					System.out.println("mdp");
-					// mdp et confirmation identiques
+
+				if (!confirmSaisie.equals(mot_de_passe)) {// mdp et confirmation identiques
 					msg = "* Le mot de passe et la confirmation ne correspondent pas";
 					doGet(request, response);
-				} else {
-					// si tout va bien, crÃ©ation de l'utilisateur
+
+				} else {// si tout va bien, crÃ©ation de l'utilisateur
+
 					try {
 						manager.addUser(user);
 						session = request.getSession();
@@ -94,7 +94,6 @@ public class ServletCreationCompte extends HttpServlet {
 						response.sendRedirect("Servlet");
 
 					} catch (BLLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 

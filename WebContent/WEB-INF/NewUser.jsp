@@ -123,6 +123,8 @@
 			<button class="btn btn-danger " name="btn" value="supprimer"
 				type="submit">Annuler</button>
 		</div>
+		
+		</div>
 	</form>
 <footer class="container-fluid text-center">
 		<p></p>
