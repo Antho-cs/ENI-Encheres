@@ -31,33 +31,30 @@ public class Servlet extends HttpServlet {
 	CategorieManager catMGR = new CategorieManager();
 	List<Categorie> categories = new ArrayList<Categorie>();
 	Utilisateur vendeur;
+	public static Utilisateur user;
 	UtilisateurManager userMGR = new UtilisateurManager();
 	List<ArticleAvecVendeur> articleAvecVendeur;
 	List<ArticleVendu> articles;
 
-
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 
 		try {
 			articleAvecVendeur = new ArrayList<ArticleAvecVendeur>();
 			articles = new ArrayList<ArticleVendu>();
 			articles = mgr.selectAll();
-			for(ArticleVendu art: articles) {
+			for (ArticleVendu art : articles) {
 
-				articleAvecVendeur.add(
-						new ArticleAvecVendeur(art.getNoArticle(),
-								art.getNomArticle(),art.getDescription(),
-								art.getDateFinEncheres(),art.getMiseAPrix(),userMGR.selectById(art.getNo_utilisateur()).getPseudo()));
+				articleAvecVendeur.add(new ArticleAvecVendeur(art.getNoArticle(), art.getNomArticle(),
+						art.getDescription(), art.getDateFinEncheres(), art.getMiseAPrix(),
+						userMGR.selectById(art.getNo_utilisateur()).getPseudo(), art.getNo_utilisateur()));
 			}
 			request.setAttribute("articles", articleAvecVendeur);
 			categories = catMGR.selectAll();
 			request.setAttribute("categories", categories);
 			HttpSession session = request.getSession(false);
 			if (session != null) {
-				Utilisateur user = (Utilisateur) session.getAttribute("user");
+				user = (Utilisateur) session.getAttribute("user");
 				request.setAttribute("user", user);
 				System.out.println(session.getAttribute("user"));
 			}
@@ -67,13 +64,12 @@ public class Servlet extends HttpServlet {
 		}
 		request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request, response);
 
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request,response);
-//		response.getWriter().append("hello");
+		doGet(request, response);
+		// response.getWriter().append("hello");
 	}
 
 }

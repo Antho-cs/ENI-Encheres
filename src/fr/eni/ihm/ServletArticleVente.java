@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import fr.eni.bll.ArticleManager;
 import fr.eni.bll.BLLException;
@@ -27,7 +26,6 @@ public class ServletArticleVente extends HttpServlet {
 	ArticleVendu article = new ArticleVendu();
 	Utilisateur vendeur = new Utilisateur();
 	Utilisateur user;
-	HttpSession session;
 
 	/**
 	 * @author laure
@@ -38,9 +36,10 @@ public class ServletArticleVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		HttpSession session = request.getSession(false);
-		if (session == null) {
-			response.sendRedirect("ServletSeConnecter");
+		// HttpSession session = request.getSession(false);
+		// System.out.println(session);
+		if (Servlet.user == null) {
+			response.sendRedirect("Connection");
 		} else {
 			try {
 				article = aMgr.selectByNo(article.getNoArticle());
@@ -49,20 +48,16 @@ public class ServletArticleVente extends HttpServlet {
 					vendeur = uMger.selectById(vendeur.getNo_utilisateur());
 					request.setAttribute("vendeur", vendeur);
 				} catch (BLLException e) {
-					// TODO Auto-generated catch block
+					// // catch aMger
 					e.printStackTrace();
 				}
-
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
+				// // try uMger
 				e.printStackTrace();
 			}
-
-			request.setAttribute("article", article);
-			request.setAttribute("vendeur", vendeur);
 			request.getRequestDispatcher("/WEB-INF/ArticleVente.jsp").forward(request, response);
-
 		}
+
 	}
 
 	/**
@@ -75,8 +70,11 @@ public class ServletArticleVente extends HttpServlet {
 
 		article.setNoArticle(Integer.parseInt(request.getParameter("NoArticle")));
 		vendeur.setNo_utilisateur(Integer.parseInt(request.getParameter("NoUtilisateur")));
-
+		// HttpSession session = request.getSession(false);
+		// if (session != null) {
 		doGet(request, response);
+		// } else {
+		// response.sendRedirect("ServletSeConnecter");
 	}
-
+	// }
 }

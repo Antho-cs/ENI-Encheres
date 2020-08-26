@@ -64,13 +64,14 @@ public class ArticleVendu {
 	}
 
 	public ArticleVendu(int no_article, String nom_article, String description, Date date_fin_encheres,
-			int prix_initial) {
+			int prix_initial, int no_utilisateur) {
 		super();
 		this.no_article = no_article;
 		this.nom_article = nom_article;
 		this.description = description;
 		this.date_fin_encheres = date_fin_encheres;
 		this.prix_initial = prix_initial;
+		this.no_utilisateur = no_utilisateur;
 	}
 
 	public ArticleVendu(String nom_article, String description, String categorie, int prix, Date date_Debut,
