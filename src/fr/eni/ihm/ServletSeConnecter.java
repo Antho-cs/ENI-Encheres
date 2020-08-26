@@ -57,6 +57,7 @@ public class ServletSeConnecter extends HttpServlet {
 
 		try {
 			user = mgr.selectByPseudo(Id_Saisie);
+			monLogger.info(user.getPseudo() + " s'est connecté(e)");
 			if (Id_Saisie.equals(user.getPseudo())) {
 
 				mdp_Compare = user.getMot_de_passe();
@@ -77,13 +78,13 @@ public class ServletSeConnecter extends HttpServlet {
 		} catch (BLLException e) {
 			try {
 				user = mgr.selectByMail(Id_Saisie);
+				monLogger.info(user.getPseudo() + " s'est connecté(e)");
 				if (Id_Saisie.equals(user.getEmail())) {
 					mdp_Compare = user.getMot_de_passe();
 					if (Mdp_Saisie.equals(mdp_Compare)) {
 						session = request.getSession();
 						session.setAttribute("user", user);
 						response.sendRedirect("Servlet");
-						monLogger.info(user.getPseudo() + "s'est connecté");
 
 					} else {
 						msg = "Le mot de passe saisie n'est pas correct";
