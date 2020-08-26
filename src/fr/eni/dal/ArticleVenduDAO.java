@@ -17,5 +17,9 @@ public interface ArticleVenduDAO {
 	public ArticleVendu selectByNo(int noArticle) throws DALException;
 
 	public List<ArticleVendu> selectByCategorie(int no_categorie) throws DALException;
+	
+	public List<ArticleVendu> selectByName(String no_article) throws DALException;
+	
+	public List<ArticleVendu> selectByNoUtilisateur(int no_utilisateur) throws DALException;
 
 }

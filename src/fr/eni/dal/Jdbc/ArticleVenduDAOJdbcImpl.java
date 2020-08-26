@@ -25,8 +25,11 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 
 	private static final String SQL_SELECTBYNO = "select * from articles_vendus where no_article = ?";
 
-	private static final String SQL_SELECTBYCATEGORIE = "select nom_article,description,date_debut_encheres,date_fin_encheres,prix_initial,prix_vente"
-			+ "from articles_vendus where no_categorie = ?";
+	private static final String SQL_SELECTBYCATEGORIE = "select * from articles_vendus where no_categorie = ?";
+	
+	private static final String SQL_SELECTBYNAME = "select * from articles_vendus where nom_article like ?";
+	
+	private static final String SQL_SELECTBYNOUTILISATEUR = "select * from articles_vendus where no_utilisateur = ?";
 
 	/**
 	 * permet de créer un nouvel article par l'utilisateur (vendeur)
@@ -192,16 +195,24 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 	 */
 	@Override
 	public List<ArticleVendu> selectByCategorie(int no_categorie) throws DALException {
-
 		List<ArticleVendu> listArticle = new ArrayList<ArticleVendu>();
-
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+
 
 		try {
 			cnx = ConnectionProvider.getConnection();
 			pStmt = cnx.prepareStatement(SQL_SELECTBYCATEGORIE);
-			pStmt.executeUpdate();
+			pStmt.setInt(1, no_categorie);
+			rs = pStmt.executeQuery();
+			while (rs.next()) {
+				ArticleVendu art = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
+						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_categorie"),
+						rs.getInt("no_utilisateur"));
+				listArticle.add(art);
+			}
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -259,6 +270,79 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			}
 		}
 
+		return listArticle;
+	}
+	public List<ArticleVendu> selectByName(String no_article) throws DALException {
+		List<ArticleVendu> listArticle = new ArrayList<ArticleVendu>();
+		Connection cnx = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+
+
+		try {
+			cnx = ConnectionProvider.getConnection();
+			pStmt = cnx.prepareStatement(SQL_SELECTBYNAME);
+			pStmt.setString(1, no_article);
+			rs = pStmt.executeQuery();
+			while (rs.next()) {
+				ArticleVendu art = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
+						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_categorie"),
+						rs.getInt("no_utilisateur"));
+				listArticle.add(art);
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DALException("Erreur lors de l'affichage des articles :", e);
+
+		} finally {
+
+			try {
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return listArticle;
+	}
+	public List<ArticleVendu> selectByNoUtilisateur(int no_utilisateur) throws DALException {
+		List<ArticleVendu> listArticle = new ArrayList<ArticleVendu>();
+		Connection cnx = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+
+
+		try {
+			cnx = ConnectionProvider.getConnection();
+			pStmt = cnx.prepareStatement(SQL_SELECTBYNOUTILISATEUR);
+			pStmt.setInt(1, no_utilisateur);
+			rs = pStmt.executeQuery();
+			while (rs.next()) {
+				ArticleVendu art = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),
+						rs.getString("description"), rs.getDate("date_debut_encheres"), rs.getDate("date_fin_encheres"),
+						rs.getInt("prix_initial"), rs.getInt("prix_vente"), rs.getInt("no_categorie"),
+						rs.getInt("no_utilisateur"));
+				listArticle.add(art);
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new DALException("Erreur lors de l'affichage des articles :", e);
+
+		} finally {
+
+			try {
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		return listArticle;
 	}
 
