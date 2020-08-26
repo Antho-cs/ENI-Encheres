@@ -98,5 +98,24 @@ public class ArticleManager {
 			throw new BLLException("Erreur dans la récupération des donnés " + no_categorie, e);
 		}
 	}
+	public List<ArticleVendu> selectByName(String no_article) throws BLLException {
+
+		try {
+			return this.daoArticle.selectByName(no_article);
+
+		} catch (DALException e) {
+			throw new BLLException("Erreur dans la récupération des donnés " + no_article, e);
+		}
+	}
+	
+	public List<ArticleVendu> selectByNoUtilisateur(int no_utilisateur) throws BLLException {
+
+		try {
+			return this.daoArticle.selectByNoUtilisateur(no_utilisateur);
+
+		} catch (DALException e) {
+			throw new BLLException("Erreur dans la récupération des donnés " + no_utilisateur, e);
+		}
+	}
 
 }
