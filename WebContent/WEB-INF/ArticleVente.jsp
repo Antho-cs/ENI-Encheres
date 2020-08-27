@@ -81,7 +81,7 @@ ul, #myUL {
 
 					<div class="">
 						<h4>Infos du vendeur</h4>
-
+						<input name="noUtilisateur" class="hidden" value="${vendeur.getNo_utilisateur()}">
 						<label for="Pseudo"> Vendeur </label>
 						<p>${vendeur.getPseudo()}</p>
 						<h4>Retrait</h4>
@@ -89,7 +89,7 @@ ul, #myUL {
 						<p>${vendeur.getRue()}</p>
 						<label>Ville :</label>
 						<p>${vendeur.getVille()}</p>
-
+						
 						<label>Code Postal</label>
 						<p>${vendeur.getCode_postal()}</p>
 						<img alt="Article à vendre"
