@@ -87,6 +87,7 @@ public class ServletNewArticle extends HttpServlet {
 			System.out.println(Article.toString());
 			if (Date_Debut.compareTo(Date_Fin) < 0) {
 				mgr.insertNewArt(Article);
+
 			} else {
 				msg = "* La date de fin d'enchère ne peut pas être inférieure à la date de début d'enchère";
 
@@ -95,8 +96,9 @@ public class ServletNewArticle extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println("Catch");
 			e.printStackTrace();
+			doGet(request, response);
 
 		}
-		doGet(request, response);
+		response.sendRedirect("Servlet");
 	}
 }

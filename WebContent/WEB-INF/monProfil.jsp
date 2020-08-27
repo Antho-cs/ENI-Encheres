@@ -110,10 +110,10 @@
                       <div class="form-group focused">
                         <label class="form-control-label" for="nouveauMotDePasse">nouveau mot de passe</label>
                         <input type="password" id="nouveauMotDePasse" name="nouveauMotDePasse" class="form-control form-control-alternative" placeholder="votre nouveau mdp"
-                        pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre">
+                        pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre" required>
                         <label class="form-control-label" for="confirmerMotDePasse">Confirmer votre mot de passe</label>
                         <input type="password" id="confirmerMotDePasse" name="confirmerMotDePasse" class="form-control form-control-alternative" placeholder="Confirmer votre mdp">
-                        <input type="password" id="motDePasseDBB" name="motDePasseDBB" class="hidden" value="${user.getMot_de_passe()}">
+                        <input type="password" id="motDePasseDBB" name="motDePasseDBB" class="hidden" value="${user.getMot_de_passe()}" required>
                         
                       </div>
                       </div>
