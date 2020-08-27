@@ -100,7 +100,7 @@ ul, #myUL {
 				<div class="col-sm-8">
 					<div class="well">
 						<div class="row">
-							<label for="Article" name="Article">Article :</label>
+							<label for="Article" >Article :</label>
 							<p class="modifier">${article.getNomArticle()}</p>
 							<input type="text" class="form-control modifier hidden"
 								name="nomArticle" value="${article.getNomArticle()}" size="">

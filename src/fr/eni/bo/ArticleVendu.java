@@ -78,11 +78,6 @@ public class ArticleVendu {
 		this.no_utilisateur = no_utilisateur;
 	}
 
-	public ArticleVendu(String nom_article, String description, String categorie, int prix, Date date_Debut,
-			Date date_Fin) {
-		// TODO Auto-generated constructor stub
-	}
-
 	// Getter Setter //
 
 	public int getNoArticle() {
@@ -173,8 +168,13 @@ public class ArticleVendu {
 		this.no_utilisateur = no_utilisateur;
 	}
 
-	public void setVille(String ville) {
-
+	@Override
+	public String toString() {
+		return "ArticleVendu [no_article=" + no_article + ", nom_article=" + nom_article + ", description="
+				+ description + ", date_debut_encheres=" + date_debut_encheres + ", date_fin_encheres="
+				+ date_fin_encheres + ", prix_initial=" + prix_initial + ", prix_vente=" + prix_vente + ", etatVente="
+				+ etatVente + ", no_categorie=" + no_categorie + ", categorie=" + categorie + ", no_utilisateur="
+				+ no_utilisateur + "]";
 	}
 
 }
