@@ -1,6 +1,7 @@
 package fr.eni.ihm;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +29,7 @@ public class ServletArticleVente extends HttpServlet {
 	Utilisateur user;
 
 	/**
-	 * @author laure
+	 * 
 	 * @param noArticle
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -42,11 +43,14 @@ public class ServletArticleVente extends HttpServlet {
 			response.sendRedirect("Connection");
 		} else {
 			try {
+				 Date now = new Date();
+				request.setAttribute("now", now);
 				article = aMgr.selectByNo(article.getNoArticle());
 				request.setAttribute("article", article);
 				try {
 					vendeur = uMger.selectById(vendeur.getNo_utilisateur());
 					request.setAttribute("vendeur", vendeur);
+					request.setAttribute("user", Servlet.user);
 				} catch (BLLException e) {
 					// // catch aMger
 					e.printStackTrace();
@@ -60,10 +64,9 @@ public class ServletArticleVente extends HttpServlet {
 
 	}
 
-	/**
-	 * @author laure
+	/*
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

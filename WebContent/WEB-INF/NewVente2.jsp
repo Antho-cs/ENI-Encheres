@@ -100,7 +100,6 @@ footer {
 						<div class="row">
 							<fieldset>
 								<legend>Retrait</legend>
-
 								<label for="Rue">Rue :</label> <input type="text"
 									class="form-control" id="Rue" value="${user.getRue()}"
 									size="20" required> <label for="CodePostal">Code
@@ -112,9 +111,7 @@ footer {
 									type="text" name="noUtilisateur" class="form-control hidden"
 									id="Ville" value="${user.getNo_utilisateur()}" size="20"
 									required>
-
 							</fieldset>
-
 						</div>
 					</div>
 					<div class="well">
@@ -124,8 +121,6 @@ footer {
 						</div>
 					</div>
 				</form>
-
-
 			</div>
 		</div>
 	</div>
