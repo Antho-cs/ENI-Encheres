@@ -16,13 +16,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SQL_INSERT = "insert into utilisateurs (pseudo,nom, prenom, email, telephone, rue, code_postal,ville,mot_de_passe) "
 			+ " values (?,?,?,?,?,?,?,?,?)";
 	private static final String SQL_UPDATE = "update utilisateurs set pseudo = ?,nom= ?, prenom= ?, email= ?, telephone= ?, rue= ?, code_postal= ?,ville= ?,mot_de_passe= ?, credit =?, administrateur=? where no_utilisateur = ?";
-	private static final String SQL_DELETE = "delete pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe from utilisateurs where no_utilisateur = ?";
+	private static final String SQL_DELETE = "delete nom,prenom,email,telephone,rue,code_postal,ville, from utilisateurs where no_utilisateur = ?";
 	private static final String SQL_SELECTBYID = "select * from utilisateurs where no_utilisateur = ?";
 	private static final String SQL_SELECTBYPSEUDO = "select * from utilisateurs where pseudo = ?";
 	private static final String SQL_SELECTBYMAIL = "select * from utilisateurs where email = ?";
 
-	/*
-	 * (non-Javadoc) permet de créer un nouvel utilisateur dans la BDD
+	/**
+	 * @see
+	 * 
 	 */
 	@Override
 	public Utilisateur insertNewUser(Utilisateur user) throws DALException {
@@ -48,14 +49,12 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
 			if (rs.next()) {
-				System.out.println(rs.getInt(1));
 				user.setNo_utilisateur(rs.getInt(1));
 
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new DALException("Erreur à l'ajout de l'utilisateur : " + user, e);
+			throw new DALException("Erreur Ã  l'ajout de l'utilisateur : " + user, e);
 
 		} finally {
 
@@ -72,7 +71,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	/**
-	 * permet de MAJ les données de l'utilisateur
+	 * @see
 	 */
 	@Override
 	public void updateUser(Utilisateur data) throws DALException {
@@ -99,13 +98,13 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DALException("Update utilisateur a échoué - " + data, e);
+			throw new DALException("Update utilisateur a ï¿½chouï¿½ - " + data, e);
 		}
 
 	}
 
 	/**
-	 * permet de supprimer l'utilisateur
+	 * @see
 	 */
 	@Override
 	public void deleteUser(int no_utilisateur) throws DALException {
@@ -122,15 +121,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
-
-			throw new DALException("Suppression de l'utilisateur a échoué" + no_utilisateur, e);
+			throw new DALException("Suppression de l'utilisateur a ï¿½chouï¿½" + no_utilisateur, e);
 		}
 
 	}
 
 	/**
-	 * permet d'afficher les infos de l'utilisateur
 	 * 
+	 * @see
 	 * @return
 	 */
 
@@ -163,6 +161,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	}
 
+	/**
+	 * @see
+	 */
+
 	@Override
 	public Utilisateur selectByPseudo(String Pseudo) throws DALException {
 
@@ -194,6 +196,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	}
 
+	/**
+	 * @see
+	 */
 	@Override
 	public Utilisateur selectByMail(String Pseudo) throws DALException {
 

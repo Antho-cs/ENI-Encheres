@@ -142,7 +142,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 			throw new DALException("Erreur lors de la suppression de l'article : " + noArticle, e);
 
 		} finally {
@@ -214,7 +213,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 			throw new DALException("Erreur lors de l'affichage des articles :", e);
 
 		} finally {
@@ -255,7 +253,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 			throw new DALException("Erreur lors de l'affichage des articles :", e);
 
 		} finally {
@@ -272,8 +269,9 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 		return listArticle;
 	}
 
-	// Méthodes de Selection par nom //
-
+	/**
+	 * @see Méthodes de Sélection par nom
+	 */
 	public List<ArticleVendu> selectByName(String no_article) throws DALException {
 		List<ArticleVendu> listArticle = new ArrayList<ArticleVendu>();
 		Connection cnx = null;
@@ -294,7 +292,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 			throw new DALException("Erreur lors de l'affichage des articles :", e);
 
 		} finally {
@@ -311,8 +308,9 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 		return listArticle;
 	}
 
-	// Selection par numéro utilisateur //
-
+	/**
+	 * @see Selection par numéro utilisateur
+	 */
 	public List<ArticleVendu> selectByNoUtilisateur(int no_utilisateur) throws DALException {
 		List<ArticleVendu> listArticle = new ArrayList<ArticleVendu>();
 		Connection cnx = null;
@@ -333,7 +331,6 @@ public class ArticleVenduDAOJdbcImpl implements ArticleVenduDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 			throw new DALException("Erreur lors de l'affichage des articles :", e);
 
 		} finally {
