@@ -25,11 +25,21 @@ public class EnchereManager {
 
 	}
 
-	public void updateEnchere(Enchere enchere) throws BLLException {
+	public Enchere selectByIdEnchere(int no_enchere) throws BLLException {
+
 		try {
-			this.daoEnchere.updateEnchere(enchere);
+			return this.daoEnchere.selectByIdEnchere(no_enchere);
 		} catch (DALException e) {
-			throw new BLLException("Echec dans la mise Ã  jour des données d'enchère " + enchere, e);
+			throw new BLLException("Erreur dans la rÃ©cupÃ©ration des donnÃ©s " + no_enchere, e);
 		}
 	}
+
+	// public void updateEnchere(Enchere enchere) throws BLLException {
+	// try {
+	// this.daoEnchere.updateEnchere(enchere);
+	// } catch (DALException e) {
+	// throw new BLLException("Echec dans la mise Ã  jour des données d'enchère " +
+	// enchere, e);
+	// }
+	// }
 }

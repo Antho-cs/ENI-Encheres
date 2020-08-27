@@ -6,7 +6,11 @@ import fr.eni.bo.Categorie;
 
 public interface CategorieDAO {
 
+	// Selection de toutes les catégories //
+
 	public List<Categorie> selectAll() throws DALException;
+
+	// Méthodes en prévoyance //
 
 	// public Categorie insertNewCat(Categorie categorie) throws DALException;
 	//
