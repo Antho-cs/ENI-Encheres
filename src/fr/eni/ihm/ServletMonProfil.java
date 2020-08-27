@@ -47,7 +47,7 @@ public class ServletMonProfil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("btn").equalsIgnoreCase("enregistrer")) {
 			try {
-				if(user.getMot_de_passe().equals(request.getParameter("motDePasse"))) {
+				if(user.getMot_de_passe().equals(request.getParameter("motDePasse").trim())) {
 					user.setPseudo(request.getParameter("pseudo"));
 					user.setEmail(request.getParameter("email"));
 					user.setNom(request.getParameter("nom"));

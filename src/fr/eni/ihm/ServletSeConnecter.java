@@ -74,8 +74,8 @@ public class ServletSeConnecter extends HttpServlet {
 					session.setAttribute("user", user);
 					response.sendRedirect("Servlet");
 				} else {
-					msg = "<div class=\"alert alert-danger\">\r\n" + 
-							"  <strong>Erreur!</strong> Le mot de passe saisie n'est pas correct.\r\n" + 
+					msg = "<div class=\"alert alert-danger\">" + 
+							"  <strong>Erreur!</strong> Le mot de passe saisie n'est pas correct." + 
 							"</div>";
 					doGet(request, response);
 				}
@@ -93,14 +93,16 @@ public class ServletSeConnecter extends HttpServlet {
 						response.sendRedirect("Servlet");
 
 					} else {
-						msg = "\"<div class=\\\"alert alert-danger\\\">\\r\\n\" + \r\n" + 
-								"							\"  <strong>Erreur!</strong> Le mot de passe saisie n'est pas correct.\\r\\n\" + \r\n" + 
-								"							\"</div>\"";
+						msg = "<div class=\"alert alert-danger\">" + 
+								"  <strong>Erreur!</strong> Le mot de passe saisie n'est pas correct." + 
+								"</div>";
 						doGet(request, response);
 					}
 				}
 			} catch (BLLException k) {
-				msg = "Identifiant Inconnu";
+				msg = "<div class=\"alert alert-danger\">" + 
+					" <strong>Erreur!</strong> Identifiant Inconnu." + 
+						"</div>";
 				doGet(request, response);
 			}
 		}

@@ -45,7 +45,7 @@ margin-top : 10%;
   <button name="button_Connexion" type="submit" class="btn btn-primary">Connexion</button>
   
 </form>
-<p> ${msg} </p>
+<p>${msg}</p>
 
 </div>
 

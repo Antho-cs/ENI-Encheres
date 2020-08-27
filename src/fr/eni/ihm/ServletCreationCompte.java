@@ -62,24 +62,32 @@ public class ServletCreationCompte extends HttpServlet {
 
 		try {// pseudo déjà existant
 			idSaisie.equals(manager.selectByPseudo(idSaisie).getPseudo().trim());
-			msg = "* Pseudo déjà utilisé, merci de le modifier";
+			msg = "<div class=\"alert alert-danger\">" + 
+					"  <strong>Erreur!</strong>  Pseudo déjà utilisé, merci de le modifier." + 
+					"</div>";
 			doGet(request, response);
 		} catch (Exception c) {
 
 			try { // mail déjà existant
 				mailSaisie.equals(manager.selectByMail(mailSaisie).getEmail().trim());
-				msg = "* Adresse email déjà utilisée";
+				msg = "<div class=\"alert alert-danger\">" + 
+						"  <strong>Erreur!</strong> Adresse email déjà utilisée." + 
+						"</div>";
 				doGet(request, response);
 			} catch (BLLException e) {
 
 				if (!confirmSaisie.equals(mot_de_passe)) {// mdp et confirmation identiques
-					msg = "* Le mot de passe et la confirmation ne correspondent pas";
+					msg = "<div class=\"alert alert-danger\">" + 
+							"  <strong>Erreur!</strong> Le mot de passe et la confirmation ne correspondent pas." + 
+							"</div>";
 					doGet(request, response);
 				} else if (pseudo == null || nom == null || prenom == null || email == null || telephone == null
 						|| rue == null || code_postal == null || ville == null || mot_de_passe == null) { // tous les
 																											// champs
 																											// requis
-					msg = "* Tous les champs doivent être requis";
+					msg = "<div class=\"alert alert-danger\">" + 
+							"  <strong>Erreur!</strong> Tous les champs doivent être requis." + 
+							"</div>";
 					doGet(request, response);
 
 				} else {// si tout va bien, creation de l'utilisateur
