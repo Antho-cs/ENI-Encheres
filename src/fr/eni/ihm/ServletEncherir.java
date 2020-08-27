@@ -1,7 +1,7 @@
 package fr.eni.ihm;
 
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,13 +27,14 @@ public class ServletEncherir extends HttpServlet {
 	CategorieManager catMGR = new CategorieManager();
 	ArticleVendu Article =  new ArticleVendu();
 	Utilisateur vendeur = null;
-       
+	public static String messageErreur;
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		response.sendRedirect("ServletArticleVente");
 	}
 
 	/**
@@ -41,32 +42,39 @@ public class ServletEncherir extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-		if(request.getParameter("btn").equalsIgnoreCase("enregistrer")) {
-			
+			if(request.getParameter("btn").equalsIgnoreCase("enregistrer")) {
+
 				Article.setNomArticle(request.getParameter("nomArticle"));
 				Article.setDescription(request.getParameter("description"));
 				Article.setMiseAPrix(Integer.parseInt(request.getParameter("prixInitial")));
 				Article.setDateDebutEncheres(java.sql.Date.valueOf(request.getParameter("debutDeEnchere")));
 				Article.setDateFinEncheres(java.sql.Date.valueOf(request.getParameter("finDeEnchere")));
 				mgr.updateArt(Article);
-			
-		}else if (request.getParameter("btn").equalsIgnoreCase("encherir")){
-				EnchereManager mgr = new EnchereManager();
-				Date dateEnchere = new Date();
-				int montantEnchere = Integer.parseInt(request.getParameter("proposition"));
-				int noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
-				int noArticle = Integer.parseInt(request.getParameter("noArticle"));
-				Enchere enchere = new Enchere(noArticle, dateEnchere, montantEnchere,noUtilisateur);
-				System.out.println(enchere.toString());
-				mgr.insertNewEnchere(enchere);
+
+			}else if (request.getParameter("btn").equalsIgnoreCase("encherir")){
+					EnchereManager mgr = new EnchereManager();
+					long millis=System.currentTimeMillis();  
+					Date dateEnchere=new Date(millis); 
+					int montantEnchere = Integer.parseInt(request.getParameter("proposition"));
+					int noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
+					int noArticle = Integer.parseInt(request.getParameter("noArticle"));
+					Enchere enchere = new Enchere(noArticle, dateEnchere, montantEnchere,noUtilisateur);
+					try {
+						mgr.updateEnchere(enchere);
+					}catch (BLLException e) {
+						e.printStackTrace();
+						mgr.insertNewEnchere(enchere);
+					}
+					
+
 			} 
 		}catch (BLLException e) {
-				e.printStackTrace();
-			}finally {
-				doGet(request, response);
-			}
-		
-		
+			e.printStackTrace();
+		}finally {
+			doGet(request, response);
+		}
+
+
 	}
 
 }

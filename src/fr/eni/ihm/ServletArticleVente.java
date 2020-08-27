@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.bll.ArticleManager;
 import fr.eni.bll.BLLException;
+import fr.eni.bll.EnchereManager;
 import fr.eni.bll.UtilisateurManager;
 import fr.eni.bo.ArticleVendu;
+import fr.eni.bo.Enchere;
 import fr.eni.bo.Utilisateur;
 
 /**
@@ -23,10 +25,12 @@ public class ServletArticleVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	ArticleManager aMgr = new ArticleManager();
-	UtilisateurManager uMger = new UtilisateurManager();
 	ArticleVendu article = new ArticleVendu();
+	UtilisateurManager uMger = new UtilisateurManager();
 	Utilisateur vendeur = new Utilisateur();
 	Utilisateur user;
+	EnchereManager enchereMgr = new EnchereManager();
+	Enchere enchere;
 
 	/**
 	 * @author laure
@@ -37,22 +41,28 @@ public class ServletArticleVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// HttpSession session = request.getSession(false);
-		// System.out.println(session);
+		
 		if (Servlet.user == null) {
 			response.sendRedirect("Connection");
 		} else {
 			try {
-				 Date now = new Date();
-				request.setAttribute("now", now);
-				article = aMgr.selectByNo(article.getNoArticle());
-				request.setAttribute("article", article);
+				try {
+					enchere = enchereMgr.selectByNoArticle(article.getNoArticle());
+					request.setAttribute("enchere", enchere);
+					request.setAttribute("erreur", ServletEncherir.messageErreur);
+				}catch(BLLException e) {
+					e.printStackTrace();
+				}finally {
+					Date now = new Date();
+					request.setAttribute("now", now);
+					article = aMgr.selectByNo(article.getNoArticle());
+					request.setAttribute("article", article);
+				}
 				try {
 					vendeur = uMger.selectById(vendeur.getNo_utilisateur());
 					request.setAttribute("vendeur", vendeur);
 					request.setAttribute("user", Servlet.user);
 				} catch (BLLException e) {
-					// // catch aMger
 					e.printStackTrace();
 				}
 			} catch (BLLException e) {

@@ -73,35 +73,31 @@ ul, #myUL {
 			<h1>Article en vente</h1>
 		</div>
 	</header>
-
+<div class="container">
 	<div class="container-fluid">
 		<div class="row">
-			<form action="ServletEncherir" method="POST">
-				<div class="col-sm-2 sidenav">
+			<form action="ServletEncherir" method="POST" onsubmit="return checkForm(this);">
+				<div class="col-sm-4 sidenav">
 
 					<div class="">
 						<h4>Infos du vendeur</h4>
 
 						<label for="Pseudo"> Vendeur </label>
-						<p class="modifier">${vendeur.getPseudo()}</p>
-						<input type="number" name="noUtilisateur" class="modifier hidden" value="${vendeur.getNo_utilisateur()}">
-
+						<p>${vendeur.getPseudo()}</p>
 						<h4>Retrait</h4>
 						<label>Adresse</label>
-						<p class="modifier">${vendeur.getRue()}</p>
-							<label>Ville :</label>
-						<p class="modifier">${vendeur.getVille()}</p>
+						<p>${vendeur.getRue()}</p>
+						<label>Ville :</label>
+						<p>${vendeur.getVille()}</p>
 
-							<label>Code Postal</label>
-						<p class="modifier">${vendeur.getCode_postal()}</p>
-
-
+						<label>Code Postal</label>
+						<p>${vendeur.getCode_postal()}</p>
 						<img alt="Article à vendre"
 							src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-cat-captions-1563551842.jpg"
 							width="300" height="200" style="text-align: center" />
 					</div>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-8">
 					<div class="well">
 						<div class="row">
 							<label for="Article" name="Article">Article :</label>
@@ -122,8 +118,8 @@ ul, #myUL {
 							<p class="modifier">${article.getMiseAPrix()}</p>
 							<input type="text" class="form-control modifier hidden"
 								name="prixInitial" value="${article.getMiseAPrix()}" size="">
-								<input type="number" class="form-control hidden"
-								name="noArticle" value="${article.getNoArticle()}" size="">
+							<input type="number" class="form-control hidden" name="noArticle"
+								value="${article.getNoArticle()}" size="">
 							<p></p>
 						</div>
 						<div class="row">
@@ -139,18 +135,34 @@ ul, #myUL {
 								name="finDeEnchere" value="${article.getDateFinEncheres()}"
 								size="">
 							<p></p>
+							<label for="Article" name="encherir">Enchére :</label>
+							<p class="modifier">${enchere.getMontantEnchere()}</p>
 							<c:choose>
 								<c:when
 									test="${user.getNo_utilisateur() != vendeur.getNo_utilisateur()}">
-										<div class="form-group row">
-											<div class="col-xs-2">
-												<label for="Proposition">Proposition :</label> 
-												<input name="proposition" class="form-control"
-												 id="Proposition" type="number" placeholder="${article.getMiseAPrix()}"
-												  min="${article.getMiseAPrix()}" required>
-											</div>
+									<div class="form-group row">
+										<div class="col-xs-2">
+											<c:choose>
+												<c:when
+													test="${user.getCredit() < article.getMiseAPrix()}">
+													<div class="alert alert-warning alert-dismissible fade in">
+														<a href="#" class="close" data-dismiss="alert"
+															aria-label="close">&times;</a> <strong>Oops!</strong>
+														Credit insuffisant.
+													</div>
+												</c:when>
+											</c:choose>
+											<label for="Proposition">Proposition :</label> <input
+												name="proposition" class="form-control" id="Proposition"
+												type="number" placeholder="${enchere.getMontantEnchere()}"
+												min="${enchere.getMontantEnchere()}" required>
 										</div>
-										<button class="btn btn-success" type="submit" name="btn" value="encherir">Enchérir</button>
+										<input type="number" class="form-control hidden"
+								name="userCredit" id="userCredit" value="${user.getCredit()}"
+								size="">
+									</div>
+									<button class="btn btn-success" type="submit" name="btn"
+										value="encherir">Enchérir</button>
 								</c:when>
 								<c:otherwise>
 									<c:choose>
@@ -173,12 +185,26 @@ ul, #myUL {
 			</form>
 		</div>
 	</div>
+	</div>
 	<footer class="container-fluid text-center">
 		<p></p>
 	</footer>
 
 </body>
 <script type="text/javascript">
+
+	function checkForm(form){
+		
+		var credit = parseInt(form.userCredit.value);
+		var proposition = parseInt(form.Proposition.value);
+		if( credit < proposition){
+			alert("Pas assez de credit! haha");
+			return false;
+		}
+		
+		return true;
+	}
+
 	function modifier() {
 		var btnModifier = document.getElementById("modifier");
 		var btnAnnuler = document.getElementById("annuler");
