@@ -63,6 +63,7 @@ public class ServletEncherir extends HttpServlet {
 						mgr.updateEnchere(enchere);
 					}catch (BLLException e) {
 						e.printStackTrace();
+						System.out.println("je suis la");
 						mgr.insertNewEnchere(enchere);
 					}
 					
@@ -73,7 +74,6 @@ public class ServletEncherir extends HttpServlet {
 		}finally {
 			doGet(request, response);
 		}
-
 
 	}
 
