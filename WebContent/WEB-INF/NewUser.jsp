@@ -42,12 +42,12 @@
 
 				<div class="form-group col-md-6">
 					<label for="Pseudo">Pseudo :</label> <input type="text"
-						class="form-control" name="Pseudo" value = "${user.getPseudo()}" placeholder="Pseudo" required>
+						class="form-control" name="Pseudo" value = "${user.getPseudo()}" title = "tu fais ce que tu veux" placeholder="Pseudo" required>
 					</div>
 					
 				<div class="form-group col-md-6">
 					<label for="inputAddress2">Email :</label> <input type="email"
-						class="form-control" name="Mail"  value = "${user.getEmail()}"  title = "example@example.com" placeholder="Mail" required>
+						class="form-control" name="Mail"  value = "${user.getEmail()}"  title = "Adresse email valide : example@example.com" placeholder="example@example.com"  required>
 						</div>
 					
 				</div>
@@ -55,7 +55,7 @@
 					<div class="form-group col-md-6">
 						<label for="inputZip">Mot de passe :</label> <input
 							type="password" class="form-control" name="Mdp"
-							value = "${user.getMot_de_passe()}" placeholder="8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre"  pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+							value = "${user.getMot_de_passe()}" placeholder="8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre"  title = "8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre"  pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
 							 required>
 
 					</div>
@@ -72,13 +72,13 @@
 		
 		<div class="form-group col-md-6">
 			<label for="Nom">Nom :</label> <input type="text"
-				class="form-control" name="Nom" value = "${user.getNom()}" pattern="[A-Za-z]{*}"  placeholder="Nom" required>
+				class="form-control" name="Nom" value = "${user.getNom()}" pattern="[A-Za-z]{1,30}"  title = " je sais que tu veux mettre des chiffes, mais t'es pas n°47" placeholder="Nom" required>
 	
 		</div>
 
 		<div class="form-group col-md-6">
 			<label for="inputAddress">Prénom :</label> <input type="text"
-				class="form-control" name="Prenom"  value = "${user.getPrenom()}" pattern="[A-Za-z]{*}"  placeholder="Nom" required>
+				class="form-control" name="Prenom"  value = "${user.getPrenom()}" pattern="[A-Za-z]{1,30}"  title = "cf message précédent, je sais que c'est frais dans le cerveau..." placeholder="Nom" required>
 
 		</div>
 
@@ -87,7 +87,7 @@
 
 			<div class="form-group col-md-6">
 				<label for="inputCity">Teléphone :</label> <input type="tel"
-					class="form-control" name="Telephone" placeholder="Telephone"  pattern="[/^0\d(\s|-)?(\d{2}(\s|-)?){4}$/"  value = "${user.getTelephone()}" title="ex: 0102030405"
+					class="form-control" name="Telephone" placeholder="Telephone"  pattern="[0-9]{2}-0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" value = "${user.getTelephone()}" title="ex: 0102030405"
 					required>
 
 			</div>
@@ -104,13 +104,13 @@
 
 			<div class="form-group col-md-6">
 				<label for="inputZip">Code postal :</label> <input type="text" 
-					class="form-control" name="Cdp"  value = "${user.getCode_postal()}" pattern="[0-9]{5}"  title = "France métropolitaine : 01000 à 95750" placeholder="Code postal" required>
+					class="form-control" name="Cdp"  value = "${user.getCode_postal()}" pattern="[0-9]{5}"  title = "France métropolitaine : 01000 à 95750... fuck les DOM-TOM, on livre pas" placeholder="Code postal" required>
 
 			</div>
 
 			<div class="form-group col-md-6">
 				<label for="inputZip">Ville :</label> <input type="text"
-					class="form-control" name="Ville"  value = "${user.getVille()}"  placeholder="Ville" required>
+					class="form-control" name="Ville"  value = "${user.getVille()}" pattern="[A-Za-z]{1,30}"  title = "t'as toujours pas compris ? une ville, c'est avec des lettres !" placeholder="Ville" required>
 
 			</div>
 			
