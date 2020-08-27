@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Page d'accueil</title>
@@ -70,7 +70,7 @@ ul, #myUL {
 }
 </style>
 </head>
-<body onload="document.form1.submit()">
+<body>
 
 	<jsp:include page="navBar.jsp" />
 
@@ -103,9 +103,9 @@ ul, #myUL {
 							Select</option>
 						<c:choose>
 							<c:when test="${categories.size() > 0}">
-								<c:forEach var="i" begin="0" end="${categories.size()-1}">
-									<option value="${i+1}"><c:out
-											value="${categories.get(i).getLibelle()}" /></option>
+								<c:forEach items = "${categories}" var="i">
+									<option value="${i.getNoCategorie()}"><c:out
+											value="${i.getLibelle()}" /></option>
 								</c:forEach>
 							</c:when>
 						</c:choose>
@@ -193,12 +193,13 @@ ul, #myUL {
 				<c:choose>
 					<c:when test="${articles.size() == 0}">
 						<div class="text-center">
-							<img alt="rien" src="https://unsa-developpement-durable.fr/images/Photos_articles/2017-03/ddi_rien_voir2.jpg">
+							<img alt="rien"
+								src="https://unsa-developpement-durable.fr/images/Photos_articles/2017-03/ddi_rien_voir2.jpg">
 						</div>
 
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="i" begin="0" end="${articles.size()-1}">
+						<c:forEach items = "${articles}" var="i">
 							<div class="col-sm-3">
 								<div class="w3-card-4">
 									<img
@@ -206,26 +207,26 @@ ul, #myUL {
 										alt="Alps" style="width: 100%; height: 100%" />
 									<div class="w3-container w3-center">
 										<h3>
-											<c:out value="${articles.get(i).getNomArticle()}" />
+											<c:out value="${i.getNomArticle()}" />
 										</h3>
 										<p>
-											<c:out value="${articles.get(i).getDescription()}" />
+											<c:out value="${i.getDescription()}" />
 										</p>
 									</div>
 									<ul class="list-group list-group-flush">
 										<li class="list-group-item"><c:out
-												value="Prix : ${articles.get(i).getMiseAPrix()}" /></li>
+												value="Prix : ${i.getMiseAPrix()}" /></li>
 										<li class="list-group-item"><c:out
-												value="Fin de l'enchères : ${articles.get(i).getDateFinEncheres()}" />
+												value="Fin de l'enchères : ${i.getDateFinEncheres()}" />
 										</li>
 										<li class="list-group-item"><c:out
-												value="Vendeur: ${articles.get(i).getNomDeVendeur()}" /></li>
+												value="Vendeur: ${i.getNomDeVendeur()}" /></li>
 									</ul>
 									<form action="ServletArticleVente" method="POST">
 										<input class="hidden" name="NoArticle"
-											value="<c:out value = "${articles.get(i).getNoArticle()}"/>">
+											value="<c:out value = "${i.getNoArticle()}"/>">
 										<input class="hidden" name="NoUtilisateur"
-											value="<c:out value = "${articles.get(i).getNo_utilisateur()}"/>">
+											value="<c:out value = "${i.getNo_utilisateur()}"/>">
 										<div class="card-body">
 											<button class="btn btn-primary btn-block" type="submit">Détails</button>
 										</div>
@@ -248,11 +249,20 @@ ul, #myUL {
 					.getElementById('Categorie').value);
 			this.form.submit();
 		};
-
 		if (localStorage.getItem('selectedtem')) {
 			document.getElementById('Categorie').options[localStorage
 					.getItem('selectedtem')].selected = true;
-		}
+		};
+		
+		
+
+			document.getElementById("vendreUnArticle").classList.remove("active");
+			document.getElementById("pageProfil").classList.remove("active");
+			document.getElementById("pageAcceuil").classList.add("active");
+
+		
+
+		
 		function affichageListeAchats() {
 			var listeAchats = document.getElementById("listeAchats");
 			var listeMesVentes = document.getElementById("listeMesVentes");

@@ -1,9 +1,9 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Mon Profil</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -122,7 +122,7 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                       <button class="btn btn-success" name="btn" value="enregistrer" type="submit">Enregistrer</button>
-                      <button class="btn btn-danger" name="btn" value="supprimer" type="submit">Désactiver mon compte</button>
+                      <button class="btn btn-danger" name="btn" value="supprimer" type="submit">DÃ©sactiver mon compte</button>
                       </div>
                     </div>
                    
@@ -134,6 +134,12 @@
           </div>
   </div>
   <script>
+
+	document.getElementById("vendreUnArticle").classList.remove("active");
+	document.getElementById("pageAcceuil").classList.remove("active");
+	document.getElementById("pageProfil").classList.add("active");
+	
+
   function modifier() {
 	  var btnModifier = document.getElementById("modifier");
 	  var btnAnnuler = document.getElementById("annuler");

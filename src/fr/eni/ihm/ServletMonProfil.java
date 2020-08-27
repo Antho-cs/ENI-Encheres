@@ -51,14 +51,15 @@ public class ServletMonProfil extends HttpServlet {
 		if (request.getParameter("btn").equalsIgnoreCase("enregistrer")) {
 			try {
 				if (user.getMot_de_passe().equals(request.getParameter("motDePasse").trim())) {
-					user.setPseudo(request.getParameter("pseudo").trim());
-					user.setEmail(request.getParameter("email").trim());
-					user.setNom(request.getParameter("nom").trim());
+					user.setPseudo(request.getParameter("pseudo"));
+					user.setEmail(request.getParameter("email"));
+					user.setNom(request.getParameter("nom"));
 					user.setPrenom(request.getParameter("prenom"));
 					user.setCode_postal(request.getParameter("codePostal"));
 					user.setTelephone(request.getParameter("telephone"));
-					user.setVille(request.getParameter("ville").trim());
-					user.setRue(request.getParameter("rue").trim());
+					user.setVille(request.getParameter("ville"));
+					user.setRue(request.getParameter("rue"));
+					user.setCredit(100);
 					if (!request.getParameter("nouveauMotDePasse").equals("")) {
 						user.setMot_de_passe(request.getParameter("nouveauMotDePasse"));
 					}

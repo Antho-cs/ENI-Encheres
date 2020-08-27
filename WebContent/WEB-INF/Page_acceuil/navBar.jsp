@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 
 
 <!-- Latest compiled and minified CSS -->
@@ -47,11 +47,11 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="Servlet">Enchères</a></li>
-				<li><a href="NewArticle">Vendre un article</a></li>
+				<li class="active" id="pageAcceuil"><a href="Servlet">EnchÃ¨res</a></li>
+				<li class="" id="vendreUnArticle"><a href="NewArticle">Vendre un article</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="monProfil"><span
+				<li class="" id="pageProfil"><a href="monProfil"><span
 						class="glyphicon glyphicon-user"></span> ${user.getPseudo()}</a></li>
 				<li><a href="deconnexion"><span
 						class="glyphicon glyphicon-log-out"></span> Logout</a></li>

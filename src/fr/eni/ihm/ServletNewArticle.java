@@ -71,6 +71,7 @@ public class ServletNewArticle extends HttpServlet {
 		Article = new ArticleVendu();
 
 		try {
+
 			Article.setNomArticle(request.getParameter("Article").trim());
 			Article.setDescription(request.getParameter("Description").trim());
 			Article.setNoCategotie(Integer.parseInt(request.getParameter("Categorie").trim()));
@@ -82,9 +83,7 @@ public class ServletNewArticle extends HttpServlet {
 				mgr.insertNewArt(Article);
 
 			} else {
-				msg = "<div class=\"alert alert-danger\">"
-						+ "  <strong>Erreur!</strong> La date de fin d'enchère ne peut pas être inférieure à la date de début d'enchère."
-						+ "</div>";
+				msg = "* La date de fin d'enchère ne peut pas être inférieure à la date de début d'enchère";
 
 			}
 
