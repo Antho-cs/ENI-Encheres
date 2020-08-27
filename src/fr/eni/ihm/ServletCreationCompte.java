@@ -13,9 +13,6 @@ import fr.eni.bll.BLLException;
 import fr.eni.bll.UtilisateurManager;
 import fr.eni.bo.Utilisateur;
 
-/***
- * @author Laure
- */
 @WebServlet("/ServletCreationCompte")
 public class ServletCreationCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +22,6 @@ public class ServletCreationCompte extends HttpServlet {
 	HttpSession session;
 
 	/**
-	 * @author Laure / Firas
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -38,7 +34,6 @@ public class ServletCreationCompte extends HttpServlet {
 	}
 
 	/**
-	 * @author Laure / Firas
 	 * @see doPost
 	 * 
 	 */
@@ -71,13 +66,13 @@ public class ServletCreationCompte extends HttpServlet {
 		try {// pseudo déjà existant
 				// System.out.println("Pseudo");
 			idSaisie.equals(manager.selectByPseudo(idSaisie).getPseudo());
-			msg = "* Pseudo d�j� utilis�, merci de le modifier";
+			msg = "* Pseudo déjà utilisé, merci de le modifier";
 			doGet(request, response);
 		} catch (Exception c) {
-			try { // mail déjà existant
 
+			try { // mail déjà existant
 				mailSaisie.equals(manager.selectByMail(mailSaisie).getEmail());
-				msg = "* Adresse email d�j�utilis�";
+				msg = "* Adresse email déjà utilisé";
 				doGet(request, response);
 			} catch (BLLException e) {
 
@@ -85,7 +80,7 @@ public class ServletCreationCompte extends HttpServlet {
 					msg = "* Le mot de passe et la confirmation ne correspondent pas";
 					doGet(request, response);
 
-				} else {// si tout va bien, création de l'utilisateur
+				} else {// si tout va bien, creation de l'utilisateur
 
 					try {
 						manager.addUser(user);

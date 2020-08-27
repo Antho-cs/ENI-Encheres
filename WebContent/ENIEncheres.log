@@ -1,0 +1,5 @@
+2020-08-27 12:13:12,713  pseudo2test s'est connecté(e)
+12:17:30  INFO [http-nio-8080-exec-3] fr.eni.ihm.ServletSeConnecter [ServletSeConnecter.java:64] pseudo2test s'est connecté(e)
+12:17:33  INFO [http-nio-8080-exec-5] fr.eni [deconnexion.java:38] pseudo2test s'est déconnecté(e)
+12:19:00  INFO fr.eni.ihm.ServletSeConnecter [ServletSeConnecter.java:64] pseudo2test s'est connecté(e)
+13:02:58  INFO fr.eni [deconnexion.java:38] pseudi3test s'est déconnecté(e)

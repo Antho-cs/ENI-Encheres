@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+ 
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>C:\Users\lbadiavi2020\Documents\GitHub\ENI-Encheres\WebContent\ENIEncheres.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss}  %level %logger{30} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss} - %logger{30} %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    
+    <!-- Envoi des logs a la console et au fichier -->
+    <logger name="fr.eni">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT"/>
+    </logger>
+    
+    <root level="debug">
+        <appender-ref ref="stdout" />
+    </root>
+    
+    <!-- suppression des logs tous les 6 mois  -->
+        <appender name="fichier" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>C:\Users\lbadiavi2020\ENIEnchere\EniEnchere.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>C:\Users\lbadiavi2020\Documents\GitHub\ENI-Encheres\WebContent\ENIEncheres.log.%d{HH:mm:ss}.log</fileNamePattern>
+      <maxHistory>186</maxHistory>
+    </rollingPolicy>
+</appender>
+    
+</configuration>

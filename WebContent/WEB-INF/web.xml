@@ -6,10 +6,7 @@
       <welcome-file>Servlet</welcome-file>
     </welcome-file-list>
   
-  <error-page>
-        <error-code>500</error-code>
-        <location>/WebContent/error500.html</location>
-    </error-page>
+
   
   <session-config>
   

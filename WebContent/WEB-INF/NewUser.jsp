@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
-<title>ENI Encheres</title>
+<title>Inscritpion Utilisateur</title>
 
 
 <style>
@@ -31,7 +31,7 @@
 	<jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
 
 	<div class="jumbotron text-center">
-		<h2>Mon profil</h2>
+		<h2>Création d'un profil</h2>
 	</div>
 
 	<form action="ServletCreationCompte" method="POST">
@@ -46,8 +46,8 @@
 					</div>
 					
 				<div class="form-group col-md-6">
-					<label for="inputAddress2">Email :</label> <input type="text"
-						class="form-control" name="Mail"  value = "${user.getEmail()}"placeholder="Mail" required>
+					<label for="inputAddress2">Email :</label> <input type="email"
+						class="form-control" name="Mail"  value = "${user.getEmail()}"  title = "example@example.com" placeholder="Mail" required>
 						</div>
 					
 				</div>
@@ -72,13 +72,13 @@
 		
 		<div class="form-group col-md-6">
 			<label for="Nom">Nom :</label> <input type="text"
-				class="form-control" name="Nom" value = "${user.getNom()}" placeholder="Nom" required>
+				class="form-control" name="Nom" value = "${user.getNom()}" pattern="[A-Za-z]{*}"  placeholder="Nom" required>
 	
 		</div>
 
 		<div class="form-group col-md-6">
 			<label for="inputAddress">Prénom :</label> <input type="text"
-				class="form-control" name="Prenom"  value = "${user.getPrenom()}" placeholder="Nom" required>
+				class="form-control" name="Prenom"  value = "${user.getPrenom()}" pattern="[A-Za-z]{*}"  placeholder="Nom" required>
 
 		</div>
 
@@ -87,7 +87,7 @@
 
 			<div class="form-group col-md-6">
 				<label for="inputCity">Teléphone :</label> <input type="tel"
-					class="form-control" name="Telephone" placeholder="Telephone" value = "${user.getTelephone()}" title="10 chiffres ex: 0102030405"
+					class="form-control" name="Telephone" placeholder="Telephone"  pattern="[/^0\d(\s|-)?(\d{2}(\s|-)?){4}$/"  value = "${user.getTelephone()}" title="ex: 0102030405"
 					required>
 
 			</div>
@@ -103,14 +103,14 @@
 		<div class="row">
 
 			<div class="form-group col-md-6">
-				<label for="inputZip">Code postal :</label> <input type="number"
-					class="form-control" name="Cdp"  value = "${user.getCode_postal()}" placeholder="Code postal" required>
+				<label for="inputZip">Code postal :</label> <input type="text" 
+					class="form-control" name="Cdp"  value = "${user.getCode_postal()}" pattern="[0-9]{5}"  title = "France métropolitaine : 01000 à 95750" placeholder="Code postal" required>
 
 			</div>
 
 			<div class="form-group col-md-6">
 				<label for="inputZip">Ville :</label> <input type="text"
-					class="form-control" name="Ville"  value = "${user.getVille()}" placeholder="Ville" required>
+					class="form-control" name="Ville"  value = "${user.getVille()}"  placeholder="Ville" required>
 
 			</div>
 			
@@ -127,7 +127,7 @@
 		</div>
 	</form>
 <footer class="container-fluid text-center">
-		<p></p>
+		<p>ⓒ AnFiLa 2020</p>
 	</footer>
 </body>
 
