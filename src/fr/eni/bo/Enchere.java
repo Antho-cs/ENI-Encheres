@@ -1,20 +1,19 @@
 package fr.eni.bo;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 public class Enchere {
 
-	// Variables //
-
+	// Attributs
 	protected int noArticle;
 	protected Date dateEnchere;
 	protected int montantEnchere;
 	protected int noUtilisateur;
 	protected int noEnchere;
 
-	// Constructeurs //
-
-	public Enchere(int noArticle, Date dateEnchere, int montantEnchere, int noUtilisateur, int noEnchere) {
+	public Enchere(int noArticle, Date dateEnchere, int montantEnchere, int noUtilisateur,
+			int noEnchere) {
 		super();
 		this.noArticle = noArticle;
 		this.dateEnchere = dateEnchere;
@@ -27,7 +26,13 @@ public class Enchere {
 		super();
 	}
 
-	// Getter Setter //
+	public Enchere(int noArticle, Date dateEnchere2, int montantEnchere, int noUtilisateur) {
+		super();
+		this.noArticle = noArticle;
+		this.dateEnchere = dateEnchere2;
+		this.montantEnchere = montantEnchere;
+		this.noUtilisateur = noUtilisateur;
+	}
 
 	public int getMontantEnchere() {
 		return montantEnchere;

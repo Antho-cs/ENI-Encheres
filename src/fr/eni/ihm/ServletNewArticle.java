@@ -73,8 +73,7 @@ public class ServletNewArticle extends HttpServlet {
 		Date Date_Debut = java.sql.Date.valueOf(request.getParameter("DateDebut"));
 		Date Date_Fin = java.sql.Date.valueOf(request.getParameter("DateFin"));
 		//
-		// ArticleVendu article = new ArticleVendu(Nom_Article, Description, Categorie,
-		// Prix, Date_Debut, Date_Fin);
+		 Article = new ArticleVendu();
 
 		try {
 			Article.setNomArticle(request.getParameter("Article"));

@@ -9,15 +9,17 @@ public class EnchereManager {
 	private EnchereDAO daoEnchere;
 
 	public void insertNewEnchere(Enchere enchere) throws BLLException {
+		System.out.println(enchere.toString());
 		if (enchere.getNoEnchere() != 0) {
 			throw new BLLException("Enchere déjà créée");
 		}
 		try {
+			System.out.println(enchere.toString());
 			this.daoEnchere.insertNewEnchere(enchere);
 			System.out.println("Enchere inséré dans la BDD");
 		} catch (DALException e) {
 			System.out.println(e.getStackTrace());
-			throw new BLLException("Echec création utilisateur");
+			throw new BLLException("Echec création Enchere");
 
 		}
 
