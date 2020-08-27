@@ -71,7 +71,7 @@ public class ServletNewArticle extends HttpServlet {
 		Article = new ArticleVendu();
 
 		try {
-			System.out.println(request.getParameter("Article").trim() + "nom d'article");
+
 			Article.setNomArticle(request.getParameter("Article").trim());
 			Article.setDescription(request.getParameter("Description").trim());
 			Article.setNoCategotie(Integer.parseInt(request.getParameter("Categorie").trim()));

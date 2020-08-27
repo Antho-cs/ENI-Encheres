@@ -21,3 +21,7 @@
 20:10:34  INFO fr.eni.ihm.ServletSeConnecter [ServletSeConnecter.java:64] vb s'est connecté(e)
 20:14:08  INFO fr.eni.ihm.ServletSeConnecter [ServletSeConnecter.java:64] FirasHM s'est connecté(e)
 20:19:40  INFO fr.eni.ihm.ServletSeConnecter [ServletSeConnecter.java:64] FirasHM s'est connecté(e)
+20:26:37  INFO fr.eni.ihm.ServletSeConnecter [ServletSeConnecter.java:64] FirasHM s'est connecté(e)
+20:36:58  INFO fr.eni.ihm.ServletSeConnecter [ServletSeConnecter.java:64] FirasHM s'est connecté(e)
+20:40:59  INFO fr.eni.ihm.ServletSeConnecter [ServletSeConnecter.java:64] FirasHM s'est connecté(e)
+20:41:16  INFO fr.eni.ihm.deconnexion [deconnexion.java:40] FirasHM s'est déconnecté(e)
