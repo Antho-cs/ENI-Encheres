@@ -101,11 +101,14 @@ ul, #myUL {
 						class="form-control form-control-lg" name="categorie">
 						<option id="select" value="select" disabled="" selected="">Please
 							Select</option>
-						<option value="1">Toutes</option>
-						<option value="2">Informatique</option>
-						<option value="3">Ameublement</option>
-						<option value="4">Vetement</option>
-						<option value="5">Sport & Loisirs</option>
+						<c:choose>
+							<c:when test="${categories.size() > 0}">
+								<c:forEach items = "${categories}" var="i">
+									<option value="${i.getNoCategorie()}"><c:out
+											value="${i.getLibelle()}" /></option>
+								</c:forEach>
+							</c:when>
+						</c:choose>
 					</select> <input type="hidden" name="formName" value="selectByCategorie">
 				</form>
 				<form action="Servlet" method="POST">
@@ -196,7 +199,7 @@ ul, #myUL {
 
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="i" begin="0" end="${articles.size()-1}">
+						<c:forEach items = "${articles}" var="i">
 							<div class="col-sm-3">
 								<div class="w3-card-4">
 									<img
@@ -204,26 +207,26 @@ ul, #myUL {
 										alt="Alps" style="width: 100%; height: 100%" />
 									<div class="w3-container w3-center">
 										<h3>
-											<c:out value="${articles.get(i).getNomArticle()}" />
+											<c:out value="${i.getNomArticle()}" />
 										</h3>
 										<p>
-											<c:out value="${articles.get(i).getDescription()}" />
+											<c:out value="${i.getDescription()}" />
 										</p>
 									</div>
 									<ul class="list-group list-group-flush">
 										<li class="list-group-item"><c:out
-												value="Prix : ${articles.get(i).getMiseAPrix()}" /></li>
+												value="Prix : ${i.getMiseAPrix()}" /></li>
 										<li class="list-group-item"><c:out
-												value="Fin de l'enchères : ${articles.get(i).getDateFinEncheres()}" />
+												value="Fin de l'enchères : ${i.getDateFinEncheres()}" />
 										</li>
 										<li class="list-group-item"><c:out
-												value="Vendeur: ${articles.get(i).getNomDeVendeur()}" /></li>
+												value="Vendeur: ${i.getNomDeVendeur()}" /></li>
 									</ul>
 									<form action="ServletArticleVente" method="POST">
 										<input class="hidden" name="NoArticle"
-											value="<c:out value = "${articles.get(i).getNoArticle()}"/>">
+											value="<c:out value = "${i.getNoArticle()}"/>">
 										<input class="hidden" name="NoUtilisateur"
-											value="<c:out value = "${articles.get(i).getNo_utilisateur()}"/>">
+											value="<c:out value = "${i.getNo_utilisateur()}"/>">
 										<div class="card-body">
 											<button class="btn btn-primary btn-block" type="submit">Détails</button>
 										</div>
@@ -241,21 +244,20 @@ ul, #myUL {
 	</footer>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
-	document.getElementById("vendreUnArticle").classList.remove("active");
-	document.getElementById("pageAcceuil").classList.add("active");
-	
-	
-	
 		document.getElementById('Categorie').onchange = function() {
 			localStorage.setItem('selectedtem', document
 					.getElementById('Categorie').value);
 			this.form.submit();
 		};
-
 		if (localStorage.getItem('selectedtem')) {
 			document.getElementById('Categorie').options[localStorage
 					.getItem('selectedtem')].selected = true;
-		}
+		};
+		
+		document.getElementById("vendreUnArticle").classList.remove("active");
+		document.getElementById("pageAcceuil").classList.add("active");
+
+		
 		function affichageListeAchats() {
 			var listeAchats = document.getElementById("listeAchats");
 			var listeMesVentes = document.getElementById("listeMesVentes");
