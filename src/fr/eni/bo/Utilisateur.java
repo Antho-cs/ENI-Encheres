@@ -2,6 +2,8 @@ package fr.eni.bo;
 
 public class Utilisateur {
 
+	// Variables //
+
 	private int no_utilisateur;
 	private String pseudo;
 	private String nom;
@@ -14,6 +16,8 @@ public class Utilisateur {
 	private String mot_de_passe;
 	private int credit;
 	private byte administrateur;
+
+	// Constructeurs //
 
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String telephone,
 			String rue, String code_postal, String ville, String mot_de_passe, int credit, byte administrateur) {
@@ -80,6 +84,8 @@ public class Utilisateur {
 	public Utilisateur() {
 		super();
 	}
+
+	// Getter Setter //
 
 	public int getNo_utilisateur() {
 		return no_utilisateur;

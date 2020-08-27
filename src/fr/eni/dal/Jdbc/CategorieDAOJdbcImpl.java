@@ -16,6 +16,10 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 
 	private static final String SQL_SELECTALL = "select * from CATEGORIES";
 
+	/**
+	 * permet à l'utilisateur (acquéreur) de visualiser tous les articles
+	 */
+
 	public List<Categorie> selectAll() throws DALException {
 		List<Categorie> listCategorie = new ArrayList<Categorie>();
 		Connection cnx = null;
@@ -28,10 +32,9 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 			pStmt = cnx.prepareStatement(SQL_SELECTALL);
 			rs = pStmt.executeQuery();
 			while (rs.next()) {
-				Categorie cat = new Categorie(rs.getInt("no_categorie"),rs.getString("libelle"));
+				Categorie cat = new Categorie(rs.getInt("no_categorie"), rs.getString("libelle"));
 				listCategorie.add(cat);
 			}
-			
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -50,6 +53,8 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 
 		return listCategorie;
 	}
+
+	// en prévoyance //
 
 	// public Categorie insertNewCat(Categorie categorie) throws DALException {
 	//

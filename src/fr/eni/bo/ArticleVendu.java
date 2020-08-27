@@ -4,6 +4,8 @@ import java.sql.Date;
 
 public class ArticleVendu {
 
+	// Variables //
+
 	private int no_article;
 	private String nom_article;
 	private String description;
@@ -15,6 +17,8 @@ public class ArticleVendu {
 	private int no_categorie;
 	private String categorie;
 	private int no_utilisateur;
+
+	// Constructeurs //
 
 	public ArticleVendu() {
 		super();
@@ -78,6 +82,8 @@ public class ArticleVendu {
 			Date date_Fin) {
 		// TODO Auto-generated constructor stub
 	}
+
+	// Getter Setter //
 
 	public int getNoArticle() {
 		return no_article;

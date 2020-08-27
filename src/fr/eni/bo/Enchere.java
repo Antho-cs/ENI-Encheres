@@ -4,12 +4,15 @@ import java.sql.Date;
 
 public class Enchere {
 
-	// Attributs
+	// Variables //
+
 	protected int noArticle;
 	protected Date dateEnchere;
 	protected int montantEnchere;
 	protected int noUtilisateur;
 	protected int noEnchere;
+
+	// Constructeurs //
 
 	public Enchere(int noArticle, Date dateEnchere, int montantEnchere, int noUtilisateur, int noEnchere) {
 		super();
@@ -23,6 +26,8 @@ public class Enchere {
 	public Enchere() {
 		super();
 	}
+
+	// Getter Setter //
 
 	public int getMontantEnchere() {
 		return montantEnchere;
