@@ -17,7 +17,7 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 	private static final String SQL_SELECTALL = "select * from CATEGORIES";
 
 	/**
-	 * permet à l'utilisateur (acquéreur) de visualiser tous les articles
+	 * @see permet Ã  l'utilisateur (acquÃ©reur) de visualiser tous les articles
 	 */
 
 	public List<Categorie> selectAll() throws DALException {
@@ -37,7 +37,6 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 			}
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
 			throw new DALException("Erreur lors de l'affichage des Categories :", e);
 
 		} finally {
@@ -54,21 +53,4 @@ public class CategorieDAOJdbcImpl implements CategorieDAO {
 		return listCategorie;
 	}
 
-	// en prévoyance //
-
-	// public Categorie insertNewCat(Categorie categorie) throws DALException {
-	//
-	// }
-	//
-	// public void updateCat(Categorie libelle) throws DALException {
-	//
-	// }
-	//
-	// public void deleteCat(int no_categorie) throws DALException{
-	//
-	// }
-	//
-	// public Categorie selectByIdCat(int no_categorie) throws DALException{
-	//
-	// }
 }

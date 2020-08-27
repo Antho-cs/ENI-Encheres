@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Page d'acceuil</title>
+<title>Page d'accueil</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -77,7 +77,7 @@ ul, #myUL {
 
 
 	<div class="jumbotron text-center">
-		<h1>Liste des enchères</h1>
+		<h1>Liste des enchÃ¨res</h1>
 	</div>
 
 	<div class="container-fluid">
@@ -87,7 +87,7 @@ ul, #myUL {
 				<form action="Servlet" method="POST">
 					<div class="input-group">
 						<input type="text" class="form-control"
-							placeholder="Le nom de l'article contient" name="selectByName">
+							placeholder="Nom exact de l'article" name="selectByName">
 						<div class="input-group-btn">
 							<button class="btn btn-default" type="submit">
 								<i class="glyphicon glyphicon-search"></i>
@@ -97,7 +97,7 @@ ul, #myUL {
 					<input type="hidden" name="formName" value="selectByName">
 				</form>
 				<form action="Servlet" method="POST" id="form1">
-					<label for="Categorie">Catégorie: </label> <select id="Categorie"
+					<label for="Categorie">CatÃ©gorie: </label> <select id="Categorie"
 						class="form-control form-control-lg" name="categorie">
 						<option id="select" value="select" disabled="" selected="">Please
 							Select</option>
@@ -131,7 +131,7 @@ ul, #myUL {
 													name="checkbox" value="EncheresOuvertes" id="defaultCheck1"
 													onChange="this.form.submit()"> <label
 													class="form-check-label" for="defaultCheck1">
-													Enchères ouvertes </label>
+													EnchÃ¨res ouvertes </label>
 											</div>
 										</li>
 										<li><div class="form-check">
@@ -139,14 +139,14 @@ ul, #myUL {
 													name="checkbox" value="MesEncheres" id="defaultCheck2"
 													onChange="this.form.submit()"> <label
 													class="form-check-label" for="defaultCheck2"> Mes
-													enchères </label>
+													enchÃ¨res </label>
 											</div></li>
 										<li><div class="form-check">
 												<input class="form-check-input" type="checkbox"
 													name="checkbox" value="MesEncheresRaportees"
 													id="defaultCheck2" onChange="this.form.submit()"> <label
 													class="form-check-label" for="defaultCheck2"> Mes
-													enchères raportées </label>
+													enchÃ¨res raportÃ©es </label>
 											</div></li>
 									</ul>
 									<li>
@@ -172,14 +172,14 @@ ul, #myUL {
 													name="checkbox" value="MesEncheres" id="defaultCheck2"
 													onChange="this.form.submit()"> <label
 													class="form-check-label" for="defaultCheck2"> Mes
-													enchères </label>
+													enchÃ¨res </label>
 											</div></li>
 										<li><div class="form-check">
 												<input class="form-check-input" type="checkbox"
 													name="checkbox" value="MesEncheresRaportees"
 													id="defaultCheck2" onChange="this.form.submit()"> <label
 													class="form-check-label" for="defaultCheck2"> Mes
-													enchères raportées </label>
+													enchÃ¨res raportÃ©es </label>
 											</div></li>
 									</ul>
 								</ul>
@@ -216,7 +216,7 @@ ul, #myUL {
 										<li class="list-group-item"><c:out
 												value="Prix : ${articles.get(i).getMiseAPrix()}" /></li>
 										<li class="list-group-item"><c:out
-												value="Fin de l'enchères : ${articles.get(i).getDateFinEncheres()}" />
+												value="Fin de l'enchÃ¨res : ${articles.get(i).getDateFinEncheres()}" />
 										</li>
 										<li class="list-group-item"><c:out
 												value="Vendeur: ${articles.get(i).getNomDeVendeur()}" /></li>
@@ -227,7 +227,7 @@ ul, #myUL {
 										<input class="hidden" name="NoUtilisateur"
 											value="<c:out value = "${articles.get(i).getNo_utilisateur()}"/>">
 										<div class="card-body">
-											<button class="btn btn-primary btn-block" type="submit">Détails</button>
+											<button class="btn btn-primary btn-block" type="submit">DÃ©tails</button>
 										</div>
 									</form>
 								</div>
@@ -239,7 +239,7 @@ ul, #myUL {
 		</div>
 	</div>
 	<footer class="container-fluid text-center">
-	<p>Footer Text</p>
+	<p>â“’ AnFiLa 2020</p>
 	</footer>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>

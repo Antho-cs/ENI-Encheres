@@ -41,7 +41,6 @@ public class ServletArticleVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
 		if (Servlet.user == null) {
 			response.sendRedirect("Connection");
 		} else {
@@ -49,9 +48,9 @@ public class ServletArticleVente extends HttpServlet {
 				try {
 					enchere = enchereMgr.selectByNoArticle(article.getNoArticle());
 					request.setAttribute("enchere", enchere);
-				}catch(BLLException e) {
+				} catch (BLLException e) {
 					e.printStackTrace();
-				}finally {
+				} finally {
 					Date now = new Date();
 					request.setAttribute("now", now);
 					article = aMgr.selectByNo(article.getNoArticle());
@@ -65,7 +64,6 @@ public class ServletArticleVente extends HttpServlet {
 					e.printStackTrace();
 				}
 			} catch (BLLException e) {
-				// // try uMger
 				e.printStackTrace();
 			}
 			request.getRequestDispatcher("/WEB-INF/ArticleVente.jsp").forward(request, response);
@@ -82,11 +80,8 @@ public class ServletArticleVente extends HttpServlet {
 
 		article.setNoArticle(Integer.parseInt(request.getParameter("NoArticle")));
 		vendeur.setNo_utilisateur(Integer.parseInt(request.getParameter("NoUtilisateur")));
-		// HttpSession session = request.getSession(false);
-		// if (session != null) {
 		doGet(request, response);
-		// } else {
-		// response.sendRedirect("ServletSeConnecter");
+
 	}
-	// }
+
 }

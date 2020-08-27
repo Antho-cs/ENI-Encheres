@@ -122,7 +122,7 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                       <button class="btn btn-success" name="btn" value="enregistrer" type="submit">Enregistrer</button>
-                      <button class="btn btn-danger" name="btn" value="supprimer" type="submit">Supprimer mon compte</button>
+                      <button class="btn btn-danger" name="btn" value="supprimer" type="submit">Désactiver mon compte</button>
                       </div>
                     </div>
                    
