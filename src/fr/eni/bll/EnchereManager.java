@@ -32,11 +32,12 @@ public class EnchereManager {
 		}
 	}
 
-	public void updateEnchere(Enchere enchere) throws BLLException {
-		try {
-			this.daoEnchere.updateEnchere(enchere);
-		} catch (DALException e) {
-			throw new BLLException("Echec dans la mise Ã  jour des données d'enchère " + enchere, e);
-		}
-	}
+	// public void updateEnchere(Enchere enchere) throws BLLException {
+	// try {
+	// this.daoEnchere.updateEnchere(enchere);
+	// } catch (DALException e) {
+	// throw new BLLException("Echec dans la mise Ã  jour des données d'enchère " +
+	// enchere, e);
+	// }
+	// }
 }
