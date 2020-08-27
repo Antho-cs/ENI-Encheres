@@ -25,7 +25,7 @@ public class ServletSeConnecter extends HttpServlet {
 	String msg = "";
 	Utilisateur user = new Utilisateur();
 	HttpSession session;
-	private Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni");
+	private Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni.hm.ServletSeConnecter");
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse

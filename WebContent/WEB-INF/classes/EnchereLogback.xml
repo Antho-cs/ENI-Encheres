@@ -1,23 +1,23 @@
+<?xml version="1.0"?>
 <configuration>
-	<appender name="fichier" 
-		class="ch.qos.logback.core.FileAppender">
-		<file>C:\Users\lbadiavi2020\ENIEnchere\EniEnchere.log</file>
-		<encoder>
-			<pattern>%d{HH:mm:ss} %-5level %logger{36} - %msg%n
-			</pattern>
-		</encoder>
-	</appender>
-	<appender name="stdout"
-		class="ch.qos.logback.core.ConsoleAppender">
-		<encoder>
-			<pattern>%d{HH:mm:ss} %-5level %logger{36} - %msg%n
-			</pattern>
-		</encoder>
-	</appender>
-	<logger name="fr.eni">
-		<appender-ref ref="fichier" />
-	</logger>
-	<root level="debug">
-		<appender-ref ref="stdout" />
-	</root>
+
+<appender class="ch.qos.logback.core.FileAppender" name="FILE">
+<file> C:\Users\lbadiavi2020\ENIEnchere\EniEnchere.log </file>
+<encoder>
+<pattern>%d{HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+</encoder>
+</appender>
+<!-- suppression des logs tous les 6 mois  -->
+		<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>folderName/logFile.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>C:\Users\lbadiavi2020\ENIEnchere\EniEnchere.log.%d{HH:mm:ss}.log</fileNamePattern>
+      <maxHistory>186</maxHistory>
+    </rollingPolicy>
+</appender>
+
+
+<logger name="fr.eni.ecole">
+<appender-ref ref="FILE"> </appender-ref>
+</logger>
 </configuration>
