@@ -47,16 +47,10 @@ public class ServletSeConnecter extends HttpServlet {
 		String Id_Saisie = request.getParameter("Identifiant");
 		String Mdp_Saisie = request.getParameter("Mdp");
 
-		// System.out.println(Id_Saisie);
-		// System.out.println(Mdp_Saisie);
-
 		// id est-il existant ?
 		UtilisateurManager mgr = new UtilisateurManager();
 
 		// Test des Identifiants utlilisateurs //
-
-		// Utilisateur userPseudo = mgr.selectByPseudo(Id_Saisie);
-		// Utilisateur userMail = mgr.selectByMail(Id_Saisie);
 		String mdp_Compare;
 
 		try {
@@ -65,7 +59,6 @@ public class ServletSeConnecter extends HttpServlet {
 			if (Id_Saisie.equals(user.getPseudo())) {
 
 				mdp_Compare = user.getMot_de_passe();
-				// System.out.println("1er IF");
 
 				if (Mdp_Saisie.equals(mdp_Compare)) {
 					// session
@@ -74,9 +67,8 @@ public class ServletSeConnecter extends HttpServlet {
 					session.setAttribute("user", user);
 					response.sendRedirect("Servlet");
 				} else {
-					msg = "<div class=\"alert alert-danger\">" + 
-							"  <strong>Erreur!</strong> Le mot de passe saisie n'est pas correct." + 
-							"</div>";
+					msg = "<div class=\"alert alert-danger\">"
+							+ "  <strong>Erreur!</strong> Le mot de passe saisi n'est pas correct." + "</div>";
 					doGet(request, response);
 				}
 
@@ -93,16 +85,14 @@ public class ServletSeConnecter extends HttpServlet {
 						response.sendRedirect("Servlet");
 
 					} else {
-						msg = "<div class=\"alert alert-danger\">" + 
-								"  <strong>Erreur!</strong> Le mot de passe saisie n'est pas correct." + 
-								"</div>";
+						msg = "<div class=\"alert alert-danger\">"
+								+ "  <strong>Erreur!</strong> Le mot de passe saisi n'est pas correct." + "</div>";
 						doGet(request, response);
 					}
 				}
 			} catch (BLLException k) {
-				msg = "<div class=\"alert alert-danger\">" + 
-					" <strong>Erreur!</strong> Identifiant Inconnu." + 
-						"</div>";
+				msg = "<div class=\"alert alert-danger\">" + " <strong>Erreur!</strong> Identifiant Inconnu."
+						+ "</div>";
 				doGet(request, response);
 			}
 		}

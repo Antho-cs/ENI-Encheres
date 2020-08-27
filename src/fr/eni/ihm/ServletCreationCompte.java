@@ -50,7 +50,7 @@ public class ServletCreationCompte extends HttpServlet {
 		String pseudo = request.getParameter("Pseudo").trim();
 		String nom = request.getParameter("Nom").trim();
 		String prenom = request.getParameter("Prenom").trim();
-		String email = request.getParameter("Mail");
+		String email = request.getParameter("Mail").trim();
 		String telephone = request.getParameter("Telephone");
 		String rue = request.getParameter("Rue").trim();
 		String code_postal = request.getParameter("Cdp");
@@ -62,32 +62,29 @@ public class ServletCreationCompte extends HttpServlet {
 
 		try {// pseudo déjà existant
 			idSaisie.equals(manager.selectByPseudo(idSaisie).getPseudo().trim());
-			msg = "<div class=\"alert alert-danger\">" + 
-					"  <strong>Erreur!</strong>  Pseudo déjà utilisé, merci de le modifier." + 
-					"</div>";
+			msg = "<div class=\"alert alert-danger\">"
+					+ "  <strong>Erreur!</strong>  Pseudo déjà utilisé, merci de le modifier." + "</div>";
 			doGet(request, response);
 		} catch (Exception c) {
 
 			try { // mail déjà existant
 				mailSaisie.equals(manager.selectByMail(mailSaisie).getEmail().trim());
-				msg = "<div class=\"alert alert-danger\">" + 
-						"  <strong>Erreur!</strong> Adresse email déjà utilisée." + 
-						"</div>";
+				msg = "<div class=\"alert alert-danger\">" + "  <strong>Erreur!</strong> Adresse email déjà utilisée."
+						+ "</div>";
 				doGet(request, response);
 			} catch (BLLException e) {
 
 				if (!confirmSaisie.equals(mot_de_passe)) {// mdp et confirmation identiques
-					msg = "<div class=\"alert alert-danger\">" + 
-							"  <strong>Erreur!</strong> Le mot de passe et la confirmation ne correspondent pas." + 
-							"</div>";
+					msg = "<div class=\"alert alert-danger\">"
+							+ "  <strong>Erreur!</strong> Le mot de passe et la confirmation ne correspondent pas."
+							+ "</div>";
 					doGet(request, response);
 				} else if (pseudo == null || nom == null || prenom == null || email == null || telephone == null
 						|| rue == null || code_postal == null || ville == null || mot_de_passe == null) { // tous les
 																											// champs
 																											// requis
-					msg = "<div class=\"alert alert-danger\">" + 
-							"  <strong>Erreur!</strong> Tous les champs doivent être requis." + 
-							"</div>";
+					msg = "<div class=\"alert alert-danger\">"
+							+ "  <strong>Erreur!</strong> Tous les champs doivent être requis." + "</div>";
 					doGet(request, response);
 
 				} else {// si tout va bien, creation de l'utilisateur
