@@ -21,7 +21,7 @@ import fr.eni.bo.Utilisateur;
 @WebServlet("/deconnexion")
 public class deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni");
+	final Logger monLogger = (Logger) LoggerFactory.getLogger(deconnexion.class);
 	Utilisateur user = new Utilisateur();
 	UtilisateurManager mgr = new UtilisateurManager();
 

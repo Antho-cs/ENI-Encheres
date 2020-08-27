@@ -46,8 +46,8 @@
 					</div>
 					
 				<div class="form-group col-md-6">
-					<label for="inputAddress2">Email :</label> <input type="text"
-						class="form-control" name="Mail"  value = "${user.getEmail()}" pattern=".+@.+.com"  title = "adresse mail valide type adresse@hebergeur.com/fr" placeholder="Mail" required>
+					<label for="inputAddress2">Email :</label> <input type="email"
+						class="form-control" name="Mail"  value = "${user.getEmail()}"  title = "example@example.com" placeholder="Mail" required>
 						</div>
 					
 				</div>
@@ -72,13 +72,13 @@
 		
 		<div class="form-group col-md-6">
 			<label for="Nom">Nom :</label> <input type="text"
-				class="form-control" name="Nom" value = "${user.getNom()}" pattern="[a-z]"  maxlength = "20"  placeholder="Nom" required>
+				class="form-control" name="Nom" value = "${user.getNom()}" pattern="[A-Za-z]{*}"  placeholder="Nom" required>
 	
 		</div>
 
 		<div class="form-group col-md-6">
 			<label for="inputAddress">Prénom :</label> <input type="text"
-				class="form-control" name="Prenom"  value = "${user.getPrenom()}" pattern="[a-z]"  maxlength = "20"  placeholder="Nom" required>
+				class="form-control" name="Prenom"  value = "${user.getPrenom()}" pattern="[A-Za-z]{*}"  placeholder="Nom" required>
 
 		</div>
 
@@ -87,7 +87,7 @@
 
 			<div class="form-group col-md-6">
 				<label for="inputCity">Teléphone :</label> <input type="tel"
-					class="form-control" name="Telephone" placeholder="Telephone" value = "${user.getTelephone()}" title="ex: 0102030405"
+					class="form-control" name="Telephone" placeholder="Telephone"  pattern="[/^0\d(\s|-)?(\d{2}(\s|-)?){4}$/"  value = "${user.getTelephone()}" title="ex: 0102030405"
 					required>
 
 			</div>
