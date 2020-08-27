@@ -55,12 +55,12 @@ footer {
 						</div>
 						<div class="row">
 							<label for="Article">Article :</label> <input type="text"
-								class="form-control" name="Article" id="Article"  value ="${article.nom_article}" required>
+								class="form-control" name="Article" id="Article"  value ="${article.getNomArticle()}" required>
 						</div>
 
 						<div class="row description">
 							<label for="Description">Description :</label>
-							<textarea id="Description" name="Description"  value="${article.description}" required></textarea>
+							<textarea id="Description" name="Description"  value="${article.getDescription()}" required></textarea>
 						</div>
 
 						<div class="row">
@@ -81,7 +81,7 @@ footer {
 					<div class="well">
 						<div class="row">
 							<label for="Prix">Mise à prix :</label> <input type="number"
-								id="Prix" name="Prix" min="10" max="10000000" size="20" value = "${article.getMiseAPrix}"required>
+								id="Prix" name="Prix" min="10" max="10000000" size="20" value = "${article.getMiseAPrix()}"required>
 						</div>
 
 						<div class="row">

@@ -49,7 +49,6 @@ public class ServletArticleVente extends HttpServlet {
 				try {
 					enchere = enchereMgr.selectByNoArticle(article.getNoArticle());
 					request.setAttribute("enchere", enchere);
-					request.setAttribute("erreur", ServletEncherir.messageErreur);
 				}catch(BLLException e) {
 					e.printStackTrace();
 				}finally {

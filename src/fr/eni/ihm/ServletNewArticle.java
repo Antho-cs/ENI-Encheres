@@ -65,7 +65,7 @@ public class ServletNewArticle extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Variables à récuperer //
+		// Variables à récuperer pour les tests //
 		// String Nom_Article = request.getParameter("Article");
 		// String Description = request.getParameter("Description");
 		// String Categorie = request.getParameter("categorie");
@@ -73,9 +73,10 @@ public class ServletNewArticle extends HttpServlet {
 		Date Date_Debut = java.sql.Date.valueOf(request.getParameter("DateDebut"));
 		Date Date_Fin = java.sql.Date.valueOf(request.getParameter("DateFin"));
 		//
-		 Article = new ArticleVendu();
+		Article = new ArticleVendu();
 
 		try {
+			System.out.println(request.getParameter("Article") + "nom d'article");
 			Article.setNomArticle(request.getParameter("Article"));
 			Article.setDescription(request.getParameter("Description"));
 			Article.setNoCategotie(Integer.parseInt(request.getParameter("Categorie")));
@@ -83,7 +84,7 @@ public class ServletNewArticle extends HttpServlet {
 			Article.setDateDebutEncheres(java.sql.Date.valueOf(request.getParameter("DateDebut")));
 			Article.setDateFinEncheres(java.sql.Date.valueOf(request.getParameter("DateFin")));
 			Article.setNo_utilisateur(Integer.parseInt(request.getParameter("noUtilisateur")));
-
+			System.out.println(Article.toString());
 			if (Date_Debut.compareTo(Date_Fin) < 0) {
 				mgr.insertNewArt(Article);
 			} else {
