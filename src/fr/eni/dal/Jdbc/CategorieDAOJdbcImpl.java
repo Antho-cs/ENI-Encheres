@@ -14,7 +14,7 @@ import fr.eni.dal.DALException;
 
 public class CategorieDAOJdbcImpl implements CategorieDAO {
 
-	private static final String SQL_SELECTALL = "select * from CATEGORIES";
+	private static final String SQL_SELECTALL = "select  from CATEGORIES";
 
 	/**
 	 * permet à l'utilisateur (acquéreur) de visualiser tous les articles

@@ -31,16 +31,20 @@ public class deconnexion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		try {
+			HttpSession session = request.getSession(false);
 
-		HttpSession session = request.getSession(false);
+			// logger
+			monLogger.info(((Utilisateur) session.getAttribute("user")).getPseudo() + " s'est déconnecté(e)");
+			// fin du logger
+			session.invalidate();
 
-		// logger
-		monLogger.info(((Utilisateur) session.getAttribute("user")).getPseudo() + " s'est déconnecté(e)");
-		// fin du logger
-		session.invalidate();
-		response.sendRedirect("Servlet");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			response.sendRedirect("Servlet");
+		}
 
-		// request.getRequestDispatcher("Servlet").forward(request, response);
 	}
 
 	/**
