@@ -1,7 +1,6 @@
 package fr.eni.dal.Jdbc;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +14,8 @@ import fr.eni.dal.EnchereDAO;
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private static final String SQL_INSERT = "insert into encheres (date_enchere, montant_enchere, no_article, no_utilisateur) values (?,?,?,?)";
-	private static final String SQL_UPDATE = "update encheres set no_enchere = ?,date_enchere = ?, montant_enchere = ?, no_article = ? ,no_utilisateur = ?";
+	private static final String SQL_UPDATE = "update encheres set date_enchere = ?, montant_enchere = ?, no_article = ? ,no_utilisateur = ?";
+	private static final String SQL_SELECTBYNOARTICLE = "select * from encheres where no_article = ?";
 
 	// private static final String SQL_DELETE = "delete
 	// pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe from
@@ -24,16 +24,16 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	// where no_utilisateur = ?";
 
 	public Enchere insertNewEnchere(Enchere enchere) throws DALException {
-
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
-
+		
 		try {
+			System.out.println(enchere.toString());
 			cnx = ConnectionProvider.getConnection();
-
+			
 			pStmt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 
-			pStmt.setDate(1, (Date) enchere.getDateEnchere());
+			pStmt.setDate(1,enchere.getDateEnchere());
 			pStmt.setInt(2, enchere.getMontantEnchere());
 			pStmt.setInt(3, enchere.getNoArticle());
 			pStmt.setInt(4, enchere.getNoUtilisateur());
@@ -73,19 +73,13 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			pStmt = cnx.prepareStatement(SQL_UPDATE);
 
-			pStmt.setInt(1, enchere.getNoEnchere());
-			pStmt.setDate(2, (Date) enchere.getDateEnchere());
-			pStmt.setInt(3, enchere.getMontantEnchere());
-			pStmt.setInt(4, enchere.getNoArticle());
-			pStmt.setInt(5, enchere.getNoUtilisateur());
+	
+			pStmt.setDate(1,enchere.getDateEnchere());
+			pStmt.setInt(2, enchere.getMontantEnchere());
+			pStmt.setInt(3, enchere.getNoArticle());
+			pStmt.setInt(4, enchere.getNoUtilisateur());
 
 			pStmt.executeUpdate();
-			ResultSet rs = pStmt.getGeneratedKeys();
-			if (rs.next()) {
-				System.out.println(rs.getInt(1));
-				enchere.setNoEnchere(rs.getInt(1));
-
-			}
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -103,4 +97,30 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 		}
 
 	}
+
+	@Override
+	public Enchere selectByNoArticle(int no_article) throws DALException {
+		Connection cnx = null;
+		PreparedStatement pStmt = null;
+		ResultSet rs = null;
+		Enchere enchere;
+
+		try {
+			cnx = ConnectionProvider.getConnection();
+
+			pStmt = cnx.prepareStatement(SQL_SELECTBYNOARTICLE);
+
+			pStmt.setInt(1, no_article);
+
+			rs = pStmt.executeQuery();
+			rs.next();
+			enchere = new Enchere(no_article, rs.getDate("date_enchere"),rs.getInt("montant_enchere"),rs.getInt("no_utilisateur"),rs.getInt("no_enchere"));
+
+		} catch (SQLException e) {
+			throw new DALException("selectByNo failed - No = " + no_article, e);
+		}
+
+		return enchere;
+	}
+
 }
