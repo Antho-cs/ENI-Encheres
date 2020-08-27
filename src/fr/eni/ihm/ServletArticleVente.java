@@ -28,7 +28,7 @@ public class ServletArticleVente extends HttpServlet {
 	Utilisateur user;
 
 	/**
-	 * @author laure
+	 * 
 	 * @param noArticle
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -60,10 +60,9 @@ public class ServletArticleVente extends HttpServlet {
 
 	}
 
-	/**
-	 * @author laure
+	/*
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
