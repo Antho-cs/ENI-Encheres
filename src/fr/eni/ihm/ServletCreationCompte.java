@@ -58,17 +58,15 @@ public class ServletCreationCompte extends HttpServlet {
 		String mot_de_passe = request.getParameter("Mdp".trim());
 		String confirmSaisie = request.getParameter("ConfirmMdp").trim();
 
-		user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
-
 		try {// pseudo d√©j√† existant
 			idSaisie.equals(manager.selectByPseudo(idSaisie).getPseudo().trim());
-			msg = "* Pseudo d√©j√† utilis√©, merci de le modifier";
+			msg = "* Pseudo dÈj‡†utilisÈ, merci de le modifier";
 			doGet(request, response);
 		} catch (Exception c) {
 
 			try { // mail d√©j√† existant
 				mailSaisie.equals(manager.selectByMail(mailSaisie).getEmail().trim());
-				msg = "* Adresse email d√©j√† utilis√©e";
+				msg = "* Adresse email dÈj‡ utilisÈ";
 				doGet(request, response);
 			} catch (BLLException e) {
 
@@ -79,12 +77,14 @@ public class ServletCreationCompte extends HttpServlet {
 						|| rue == null || code_postal == null || ville == null || mot_de_passe == null) { // tous les
 																											// champs
 																											// requis
-					msg = "* Tous les champs doivent √™tre requis";
+					msg = "* Tous les champs doivent Ítre requis";
 					doGet(request, response);
 
 				} else {// si tout va bien, creation de l'utilisateur
 
 					try {
+						user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville,
+								mot_de_passe);
 						manager.addUser(user);
 						session = request.getSession();
 						session.setAttribute("user", user);

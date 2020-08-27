@@ -27,7 +27,7 @@ import fr.eni.bo.Utilisateur;
 public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ArticleManager mgr = new ArticleManager();
-	ArticleVendu Article = new ArticleVendu(); 
+	ArticleVendu Article = new ArticleVendu();
 	CategorieManager catMGR = new CategorieManager();
 	List<Categorie> categories = new ArrayList<Categorie>();
 	public static Utilisateur vendeur, user;
@@ -59,6 +59,8 @@ public class Servlet extends HttpServlet {
 				request.setAttribute("user", user);
 			}
 		} catch (BLLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			request.getRequestDispatcher("/WEB-INF/Page_acceuil/Page_acceuil.jsp").forward(request, response);

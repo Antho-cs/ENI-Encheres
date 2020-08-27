@@ -52,7 +52,7 @@ public class ServletNewArticle extends HttpServlet {
 
 			request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
 
-		} catch (BLLException e) {
+		} catch (BLLException | NullPointerException e) {
 			e.printStackTrace();
 			response.sendRedirect("Servlet");
 		}
