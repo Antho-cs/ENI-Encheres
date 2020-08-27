@@ -27,7 +27,7 @@ import fr.eni.bo.Utilisateur;
 public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	ArticleManager mgr = new ArticleManager();
-	ArticleVendu Article = new ArticleVendu();
+	ArticleVendu Article = new ArticleVendu(); 
 	CategorieManager catMGR = new CategorieManager();
 	List<Categorie> categories = new ArrayList<Categorie>();
 	public static Utilisateur vendeur, user;
@@ -84,7 +84,6 @@ public class Servlet extends HttpServlet {
 			} else if (formName.equals("selectByNoUtilisateur")) {
 				String choix = request.getParameter("choix");
 				String checkbox = request.getParameter("checkbox");
-				System.out.println("select by n�utilisateur");
 				if (choix.equals("mesVentes")) {
 					System.out.println("mes ventes");
 					if (checkbox.equals("MesVentesEnCours")) {
