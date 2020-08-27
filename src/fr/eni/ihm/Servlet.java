@@ -74,8 +74,6 @@ public class Servlet extends HttpServlet {
 		try {
 			if (formName.equals("selectByCategorie")) {
 				int noCategorie = Integer.parseInt(request.getParameter("categorie"));
-				System.out.println(formName);
-				System.out.println(noCategorie);
 				if (noCategorie == 1) {
 					articles = mgr.selectAll();
 				} else {

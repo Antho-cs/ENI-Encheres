@@ -134,6 +134,12 @@
           </div>
   </div>
   <script>
+
+	document.getElementById("vendreUnArticle").classList.remove("active");
+	document.getElementById("pageAcceuil").classList.remove("active");
+	document.getElementById("pageProfil").classList.add("active");
+	
+
   function modifier() {
 	  var btnModifier = document.getElementById("modifier");
 	  var btnAnnuler = document.getElementById("annuler");

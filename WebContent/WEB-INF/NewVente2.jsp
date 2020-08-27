@@ -138,9 +138,9 @@ footer {
 		<p>Footer Text</p>
 	</footer>
 	<script type="text/javascript">
-	
 	document.getElementById("vendreUnArticle").classList.add("active");
 	document.getElementById("pageAcceuil").classList.remove("active");
+	document.getElementById("pageProfil").classList.remove("active");
 	
 	</script>
 </body>

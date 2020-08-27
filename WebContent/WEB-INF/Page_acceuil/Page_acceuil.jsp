@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE >
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Page d'accueil</title>
@@ -70,7 +70,7 @@ ul, #myUL {
 }
 </style>
 </head>
-<body onload="document.form1.submit()">
+<body>
 
 	<jsp:include page="navBar.jsp" />
 
@@ -254,8 +254,13 @@ ul, #myUL {
 					.getItem('selectedtem')].selected = true;
 		};
 		
-		document.getElementById("vendreUnArticle").classList.remove("active");
-		document.getElementById("pageAcceuil").classList.add("active");
+		
+
+			document.getElementById("vendreUnArticle").classList.remove("active");
+			document.getElementById("pageProfil").classList.remove("active");
+			document.getElementById("pageAcceuil").classList.add("active");
+
+		
 
 		
 		function affichageListeAchats() {
