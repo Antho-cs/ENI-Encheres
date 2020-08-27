@@ -101,14 +101,11 @@ ul, #myUL {
 						class="form-control form-control-lg" name="categorie">
 						<option id="select" value="select" disabled="" selected="">Please
 							Select</option>
-						<c:choose>
-							<c:when test="${categories.size() > 0}">
-								<c:forEach var="i" begin="0" end="${categories.size()-1}">
-									<option value="${i+1}"><c:out
-											value="${categories.get(i).getLibelle()}" /></option>
-								</c:forEach>
-							</c:when>
-						</c:choose>
+						<option value="1">Toutes</option>
+						<option value="2">Informatique</option>
+						<option value="3">Ameublement</option>
+						<option value="4">Vetement</option>
+						<option value="5">Sport & Loisirs</option>
 					</select> <input type="hidden" name="formName" value="selectByCategorie">
 				</form>
 				<form action="Servlet" method="POST">
@@ -193,7 +190,8 @@ ul, #myUL {
 				<c:choose>
 					<c:when test="${articles.size() == 0}">
 						<div class="text-center">
-							<img alt="rien" src="https://unsa-developpement-durable.fr/images/Photos_articles/2017-03/ddi_rien_voir2.jpg">
+							<img alt="rien"
+								src="https://unsa-developpement-durable.fr/images/Photos_articles/2017-03/ddi_rien_voir2.jpg">
 						</div>
 
 					</c:when>
@@ -243,6 +241,11 @@ ul, #myUL {
 	</footer>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
+	document.getElementById("vendreUnArticle").classList.remove("active");
+	document.getElementById("pageAcceuil").classList.add("active");
+	
+	
+	
 		document.getElementById('Categorie').onchange = function() {
 			localStorage.setItem('selectedtem', document
 					.getElementById('Categorie').value);

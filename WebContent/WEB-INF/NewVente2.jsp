@@ -26,7 +26,7 @@ footer {
 </head>
 
 <body>
-	 <jsp:useBean id="now" class="java.util.Date" />
+	<jsp:useBean id="now" class="java.util.Date" />
 	<jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
 
 
@@ -47,28 +47,33 @@ footer {
 
 			<div class="col-sm-6">
 				<form method="POST" action="NewArticle">
-				
-				
+
+
 					<div class="well">
 						<div class="row">
-						<p> <i> <font color = "#FF0000" >${msg} </font></i></p>
+							<p>
+								<i> <font color="#FF0000">${msg} </font></i>
+							</p>
 						</div>
 						<div class="row">
 							<label for="Article">Article :</label> <input type="text"
-								class="form-control" name="Article" id="Article"  value ="${article.getNomArticle()}" required>
+								class="form-control" name="Article" id="Article"
+								value="${article.getNomArticle()}" required>
 						</div>
 
 						<div class="row description">
 							<label for="Description">Description :</label>
-							<textarea id="Description" name="Description"  value="${article.getDescription()}" required></textarea>
+							<textarea id="Description" name="Description"
+								value="${article.getDescription()}" required></textarea>
 						</div>
 
 						<div class="row">
 							<label for="Categorie">Catégorie :</label> <select
 								name="Categorie" id="Categorie-select">
-								<c:forEach var = "i" begin = "0" end = "${categories.size()-1}">
-									<option value="${i+1}"><c:out value = "${categories.get(i).getLibelle()}"/></option>
-								</c:forEach>
+								<option value="2">Informatique</option>
+								<option value="3">Ameublement</option>
+								<option value="4">Vetement</option>
+								<option value="5">Sport & Loisirs</option>
 							</select>
 						</div>
 
@@ -81,20 +86,25 @@ footer {
 					<div class="well">
 						<div class="row">
 							<label for="Prix">Mise à prix :</label> <input type="number"
-								id="Prix" name="Prix" min="10" max="10000000" size="20" value = "${article.getMiseAPrix()}"required>
+								id="Prix" name="Prix" min="10" max="10000000" size="20"
+								value="${article.getMiseAPrix()}" required>
 						</div>
 
 						<div class="row">
-							<label for="DateDebut">Début de l'enchère :</label> 
-								<input type="date" name="DateDebut"  min='<fmt:formatDate  pattern="yyyy-MM-dd" value="${now}" />' size = "20" required/>
+							<label for="DateDebut">Début de l'enchère :</label> <input
+								type="date" name="DateDebut"
+								min='<fmt:formatDate  pattern="yyyy-MM-dd" value="${now}" />'
+								size="20" required />
 						</div>
 
 						<div class="row">
-							<label for="DateDebut">Fin de l'enchère :</label> 
-								<input type="date" name="DateFin"  min='<fmt:formatDate  pattern="yyyy-MM-dd" value="${now}" />' size = "20" required/>
-							
+							<label for="DateDebut">Fin de l'enchère :</label> <input
+								type="date" name="DateFin"
+								min='<fmt:formatDate  pattern="yyyy-MM-dd" value="${now}" />'
+								size="20" required />
+
 						</div>
-						
+
 					</div>
 					<div class="well">
 						<div class="row">
@@ -127,5 +137,11 @@ footer {
 	<footer class="container-fluid text-center">
 		<p>Footer Text</p>
 	</footer>
+	<script type="text/javascript">
+	
+	document.getElementById("vendreUnArticle").classList.add("active");
+	document.getElementById("pageAcceuil").classList.remove("active");
+	
+	</script>
 </body>
 </html>

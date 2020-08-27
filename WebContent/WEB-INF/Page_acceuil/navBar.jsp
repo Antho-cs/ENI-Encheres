@@ -47,8 +47,8 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="Servlet">Enchères</a></li>
-				<li><a href="NewArticle">Vendre un article</a></li>
+				<li class="active " id="pageAcceuil"><a href="Servlet">Enchères</a></li>
+				<li class="" id="vendreUnArticle"><a href="NewArticle">Vendre un article</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="monProfil"><span
