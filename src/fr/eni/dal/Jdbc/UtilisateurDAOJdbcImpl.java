@@ -22,7 +22,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SQL_SELECTBYMAIL = "select * from utilisateurs where email = ?";
 
 	/*
-	 * (non-Javadoc) permet de créer un nouvel utilisateur dans la BDD
+	 * (non-Javadoc) permet de crï¿½er un nouvel utilisateur dans la BDD
 	 */
 	@Override
 	public Utilisateur insertNewUser(Utilisateur user) throws DALException {
@@ -55,7 +55,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			throw new DALException("Erreur à l'ajout de l'utilisateur : " + user, e);
+			throw new DALException("Erreur Ã  l'ajout de l'utilisateur : " + user, e);
 
 		} finally {
 
@@ -72,7 +72,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	/**
-	 * permet de MAJ les données de l'utilisateur
+	 * permet de MAJ les donnÃ©es de l'utilisateur
 	 */
 	@Override
 	public void updateUser(Utilisateur data) throws DALException {
@@ -99,7 +99,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DALException("Update utilisateur a échoué - " + data, e);
+			throw new DALException("Update utilisateur a ï¿½chouï¿½ - " + data, e);
 		}
 
 	}
@@ -123,7 +123,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 		} catch (SQLException e) {
 
-			throw new DALException("Suppression de l'utilisateur a échoué" + no_utilisateur, e);
+			throw new DALException("Suppression de l'utilisateur a ï¿½chouï¿½" + no_utilisateur, e);
 		}
 
 	}

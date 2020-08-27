@@ -64,7 +64,6 @@ public class ServletCreationCompte extends HttpServlet {
 		user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
 
 		try {// pseudo déjà existant
-				// System.out.println("Pseudo");
 			idSaisie.equals(manager.selectByPseudo(idSaisie).getPseudo());
 			msg = "* Pseudo déjà utilisé, merci de le modifier";
 			doGet(request, response);
