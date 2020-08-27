@@ -25,7 +25,7 @@ public class ServletSeConnecter extends HttpServlet {
 	String msg = "";
 	Utilisateur user = new Utilisateur();
 	HttpSession session;
-	private Logger monLogger = (Logger) LoggerFactory.getLogger("fr.eni.hm.ServletSeConnecter");
+	private Logger monLogger = (Logger) LoggerFactory.getLogger(ServletSeConnecter.class);
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -36,6 +36,10 @@ public class ServletSeConnecter extends HttpServlet {
 		request.setAttribute("msg", msg);
 		request.getRequestDispatcher("/WEB-INF/ConnexionUser.jsp").forward(request, response);
 	}
+
+	/**
+	 * @see
+	 */
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -98,5 +102,3 @@ public class ServletSeConnecter extends HttpServlet {
 		}
 	}
 }
-
-// si oui le mdp saisie est-il celui de l'utilisateur existant

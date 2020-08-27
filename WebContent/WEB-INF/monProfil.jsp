@@ -51,13 +51,13 @@
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-first-name">Nom</label>
-                        <input type="text" id="input-first-name" name="nom" class="form-control form-control-alternative readonly" placeholder="Nom" value="${user.getNom()}" readonly required>
+                        <input type="text" id="input-first-name" name="nom" class="form-control form-control-alternative readonly" placeholder="Nom" value="${user.getNom()}" pattern="[A-Za-z]{*}"  maxlength = "20"  readonly required>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-last-name">Prenom</label>
-                        <input type="text" id="input-last-name" name="prenom" class="form-control form-control-alternative readonly" placeholder="Prenom" value="${user.getPrenom()}" readonly required>
+                        <input type="text" id="input-last-name" name="prenom" class="form-control form-control-alternative readonly" placeholder="Prenom" value="${user.getPrenom()}" pattern="[A-Za-z]{*}"  maxlength = "20"  readonly required>
                       </div>
                     </div>
                   </div>
@@ -84,13 +84,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Code postal</label>
-                        <input type="number" id="input-postal-code" name="codePostal" class="form-control form-control-alternative readonly" placeholder="Code postal" value="${user.getCode_postal()}" readonly required>
+                        <input type="number" id="input-postal-code" name="codePostal" class="form-control form-control-alternative readonly" pattern="[0-9]{5}"  title = "France métropolitaine : 01000 à 95750"  placeholder="Code postal" value="${user.getCode_postal()}" readonly required>
                       </div>
                     </div> 
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Telephone</label>
-                        <input type="number" id="input-telephone" name="telephone" class="form-control form-control-alternative readonly" placeholder="Tel" value="${user.getTelephone()}" readonly required>
+                        <input type="number" id="input-telephone" name="telephone" class="form-control form-control-alternative readonly" pattern="[/^0\d(\s|-)?(\d{2}(\s|-)?){4}$/"  placeholder="Tel" value="${user.getTelephone()}" readonly required>
                       </div>
                     </div>
                   </div>
