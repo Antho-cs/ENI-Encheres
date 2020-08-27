@@ -34,10 +34,12 @@ public class deconnexion extends HttpServlet {
 		
 		try {
 			HttpSession session = request.getSession(false);
-			// logger
-			monLogger.info(((Utilisateur) session.getAttribute("user")).getPseudo() + " s'est déconnecté(e)");
-			// fin du logger
+			String userPseudo = ((Utilisateur) session.getAttribute("user")).getPseudo();
 			session.invalidate();
+			// logger
+			monLogger.info(userPseudo + " s'est déconnecté(e)");
+			// fin du logger
+			
 			
 		}catch(Exception e) {
 			e.printStackTrace();
