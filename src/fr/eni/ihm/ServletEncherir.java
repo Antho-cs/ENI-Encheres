@@ -23,7 +23,7 @@ import fr.eni.bo.Utilisateur;
 @WebServlet("/ServletEncherir")
 public class ServletEncherir extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	ArticleManager mgr = new ArticleManager();
+	ArticleManager artMgr = new ArticleManager();
 	CategorieManager catMGR = new CategorieManager();
 	ArticleVendu Article =  new ArticleVendu();
 	Utilisateur vendeur = null;
@@ -41,6 +41,8 @@ public class ServletEncherir extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Enchere enchere=null;
+		EnchereManager mgr=null;
 		try {
 			if(request.getParameter("btn").equalsIgnoreCase("enregistrer")) {
 
@@ -49,25 +51,17 @@ public class ServletEncherir extends HttpServlet {
 				Article.setMiseAPrix(Integer.parseInt(request.getParameter("prixInitial")));
 				Article.setDateDebutEncheres(java.sql.Date.valueOf(request.getParameter("debutDeEnchere")));
 				Article.setDateFinEncheres(java.sql.Date.valueOf(request.getParameter("finDeEnchere")));
-				mgr.updateArt(Article);
+				artMgr.updateArt(Article);
 
 			}else if (request.getParameter("btn").equalsIgnoreCase("encherir")){
-					EnchereManager mgr = new EnchereManager();
-					long millis=System.currentTimeMillis();  
-					Date dateEnchere=new Date(millis); 
-					int montantEnchere = Integer.parseInt(request.getParameter("proposition"));
-					int noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
-					int noArticle = Integer.parseInt(request.getParameter("noArticle"));
-					Enchere enchere = new Enchere(noArticle, dateEnchere, montantEnchere,noUtilisateur);
-					try {
-						mgr.updateEnchere(enchere);
-					}catch (BLLException e) {
-						e.printStackTrace();
-						System.out.println("je suis la");
-						mgr.insertNewEnchere(enchere);
-					}
-					
-
+				mgr = new EnchereManager();
+				long millis=System.currentTimeMillis();  
+				Date dateEnchere=new Date(millis); 
+				int montantEnchere = Integer.parseInt(request.getParameter("proposition"));
+				int noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
+				int noArticle = Integer.parseInt(request.getParameter("noArticle"));
+				enchere = new Enchere(noArticle, dateEnchere, montantEnchere,noUtilisateur);
+				mgr.insertNewEnchere(enchere);
 			} 
 		}catch (BLLException e) {
 			e.printStackTrace();

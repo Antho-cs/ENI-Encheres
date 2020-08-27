@@ -31,7 +31,7 @@ public class EnchereManager {
 	public void updateEnchere( Enchere enchere) throws BLLException {
 
 		try {
-			 this.daoEnchere.updateEnchere(enchere);
+			  this.daoEnchere.updateEnchere(enchere);
 		} catch (DALException e) {
 			throw new BLLException("Erreur dans la récupération des donnés " + enchere, e);
 		}

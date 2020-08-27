@@ -14,26 +14,24 @@ import fr.eni.dal.EnchereDAO;
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private static final String SQL_INSERT = "insert into encheres (date_enchere, montant_enchere, no_article, no_utilisateur) values (?,?,?,?)";
-	private static final String SQL_UPDATE = "update encheres set date_enchere = ?, montant_enchere = ?, no_article = ? ,no_utilisateur = ?";
+	private static final String SQL_UPDATE = "update encheres set date_enchere = ?, montant_enchere = ?, no_article = ? where no_utilisateur = ?";
 	private static final String SQL_SELECTBYNOARTICLE = "select * from encheres where no_article = ?";
 
-	// private static final String SQL_DELETE = "delete
-	// pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe from
-	// utilisateurs where no_utilisateur = ?";
-	// private static final String SQL_SELECTBYID = "select * from utilisateurs
-	// where no_utilisateur = ?";
+	/**
+	 * @see
+	 */
 
 	public Enchere insertNewEnchere(Enchere enchere) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pStmt = null;
-		
+
 		try {
 			System.out.println(enchere.toString());
 			cnx = ConnectionProvider.getConnection();
-			
+
 			pStmt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 
-			pStmt.setDate(1,enchere.getDateEnchere());
+			pStmt.setDate(1, enchere.getDateEnchere());
 			pStmt.setInt(2, enchere.getMontantEnchere());
 			pStmt.setInt(3, enchere.getNoArticle());
 			pStmt.setInt(4, enchere.getNoUtilisateur());
@@ -73,17 +71,17 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			pStmt = cnx.prepareStatement(SQL_UPDATE);
 
-	
-			pStmt.setDate(1,enchere.getDateEnchere());
+			pStmt.setDate(1, enchere.getDateEnchere());
 			pStmt.setInt(2, enchere.getMontantEnchere());
 			pStmt.setInt(3, enchere.getNoArticle());
 			pStmt.setInt(4, enchere.getNoUtilisateur());
 
 			pStmt.executeUpdate();
 
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			throw new DALException("Erreur lors de la mise à jour de l'enchère : " + enchere, e);
+			throw new DALException("Erreur lors de la mise ï¿½ jour de l'enchï¿½re : " + enchere, e);
 
 		} finally {
 
@@ -95,7 +93,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				e.printStackTrace();
 			}
 		}
-
+	
 	}
 
 	@Override
@@ -114,7 +112,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			rs = pStmt.executeQuery();
 			rs.next();
-			enchere = new Enchere(no_article, rs.getDate("date_enchere"),rs.getInt("montant_enchere"),rs.getInt("no_utilisateur"),rs.getInt("no_enchere"));
+			enchere = new Enchere(no_article, rs.getDate("date_enchere"), rs.getInt("montant_enchere"),
+					rs.getInt("no_utilisateur"), rs.getInt("no_enchere"));
 
 		} catch (SQLException e) {
 			throw new DALException("selectByNo failed - No = " + no_article, e);

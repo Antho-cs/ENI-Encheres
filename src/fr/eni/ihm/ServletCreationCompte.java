@@ -47,36 +47,39 @@ public class ServletCreationCompte extends HttpServlet {
 		String mailSaisie = request.getParameter("Mail");
 
 		// pour insérer le nouvel utilsateur dans la BDD
-		String pseudo = request.getParameter("Pseudo");
-		String nom = request.getParameter("Nom");
-		String prenom = request.getParameter("Prenom");
+		String pseudo = request.getParameter("Pseudo").trim();
+		String nom = request.getParameter("Nom").trim();
+		String prenom = request.getParameter("Prenom").trim();
 		String email = request.getParameter("Mail");
 		String telephone = request.getParameter("Telephone");
-		String rue = request.getParameter("Rue");
+		String rue = request.getParameter("Rue").trim();
 		String code_postal = request.getParameter("Cdp");
-		String ville = request.getParameter("Ville");
-		String mot_de_passe = request.getParameter("Mdp");
-		String confirmSaisie = request.getParameter("ConfirmMdp");
-
-		System.out.println(mot_de_passe);
-		System.out.println(confirmSaisie);
+		String ville = request.getParameter("Ville").trim();
+		String mot_de_passe = request.getParameter("Mdp".trim());
+		String confirmSaisie = request.getParameter("ConfirmMdp").trim();
 
 		user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe);
 
 		try {// pseudo déjà existant
-			idSaisie.equals(manager.selectByPseudo(idSaisie).getPseudo());
+			idSaisie.equals(manager.selectByPseudo(idSaisie).getPseudo().trim());
 			msg = "* Pseudo déjà utilisé, merci de le modifier";
 			doGet(request, response);
 		} catch (Exception c) {
 
 			try { // mail déjà existant
-				mailSaisie.equals(manager.selectByMail(mailSaisie).getEmail());
-				msg = "* Adresse email déjà utilisé";
+				mailSaisie.equals(manager.selectByMail(mailSaisie).getEmail().trim());
+				msg = "* Adresse email déjà utilisée";
 				doGet(request, response);
 			} catch (BLLException e) {
 
 				if (!confirmSaisie.equals(mot_de_passe)) {// mdp et confirmation identiques
 					msg = "* Le mot de passe et la confirmation ne correspondent pas";
+					doGet(request, response);
+				} else if (pseudo == null || nom == null || prenom == null || email == null || telephone == null
+						|| rue == null || code_postal == null || ville == null || mot_de_passe == null) { // tous les
+																											// champs
+																											// requis
+					msg = "* Tous les champs doivent être requis";
 					doGet(request, response);
 
 				} else {// si tout va bien, creation de l'utilisateur
@@ -92,6 +95,7 @@ public class ServletCreationCompte extends HttpServlet {
 					}
 
 				}
+
 			}
 		}
 	}

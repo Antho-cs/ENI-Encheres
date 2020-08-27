@@ -6,18 +6,13 @@ import fr.eni.bo.Categorie;
 
 public interface CategorieDAO {
 
-	// Selection de toutes les catégories //
+	/**
+	 * // Selection de toutes les catï¿½gories //
+	 * 
+	 * @return
+	 * @throws DALException
+	 */
 
 	public List<Categorie> selectAll() throws DALException;
-
-	// Méthodes en prévoyance //
-
-	// public Categorie insertNewCat(Categorie categorie) throws DALException;
-	//
-	// public void updateCat(Categorie libelle) throws DALException;
-	//
-	// public void deleteCat(int no_categorie) throws DALException;
-	//
-	// public Categorie selectByIdCat(int no_categorie) throws DALException;
 
 }

@@ -26,9 +26,7 @@ public class UtilisateurManager {
 		}
 		try {
 			this.daoUtilisateur.insertNewUser(user);
-			System.out.println("utilisateur inséré dans la BDD");
 		} catch (DALException e) {
-			System.out.println(e.getStackTrace());
 			throw new BLLException("Echec création utilisateur");
 
 		}
@@ -49,7 +47,7 @@ public class UtilisateurManager {
 	}
 
 	/**
-	 * supprime l'utilisateur
+	 * supprime les données personnelles de l'utilisateur
 	 * 
 	 * @throws BLLException
 	 */
@@ -73,10 +71,17 @@ public class UtilisateurManager {
 		try {
 			return this.daoUtilisateur.selectById(no_utilisateur);
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des donnés " + no_utilisateur, e);
+			throw new BLLException("Erreur dans la récupération des données " + no_utilisateur, e);
 		}
 
 	}
+
+	/**
+	 * 
+	 * @param Pseudo
+	 * @return
+	 * @throws BLLException
+	 */
 
 	public Utilisateur selectByPseudo(String Pseudo) throws BLLException {
 
@@ -84,17 +89,23 @@ public class UtilisateurManager {
 			return this.daoUtilisateur.selectByPseudo(Pseudo);
 
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des donnés " + Pseudo, e);
+			throw new BLLException("Erreur dans la récupération des données " + Pseudo, e);
 		}
 	}
 
+	/**
+	 * 
+	 * @param Pseudo
+	 * @return
+	 * @throws BLLException
+	 */
 	public Utilisateur selectByMail(String Pseudo) throws BLLException {
 
 		try {
 			return this.daoUtilisateur.selectByMail(Pseudo);
 
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des donnés " + Pseudo, e);
+			throw new BLLException("Erreur dans la récupération des données " + Pseudo, e);
 		}
 	}
 

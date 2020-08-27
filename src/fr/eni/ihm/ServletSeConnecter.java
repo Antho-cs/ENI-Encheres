@@ -74,7 +74,9 @@ public class ServletSeConnecter extends HttpServlet {
 					session.setAttribute("user", user);
 					response.sendRedirect("Servlet");
 				} else {
-					msg = "Le mot de passe saisie n'est pas correct";
+					msg = "<div class=\"alert alert-danger\">\r\n" + 
+							"  <strong>Erreur!</strong> Le mot de passe saisie n'est pas correct.\r\n" + 
+							"</div>";
 					doGet(request, response);
 				}
 
@@ -91,7 +93,9 @@ public class ServletSeConnecter extends HttpServlet {
 						response.sendRedirect("Servlet");
 
 					} else {
-						msg = "Le mot de passe saisie n'est pas correct";
+						msg = "\"<div class=\\\"alert alert-danger\\\">\\r\\n\" + \r\n" + 
+								"							\"  <strong>Erreur!</strong> Le mot de passe saisie n'est pas correct.\\r\\n\" + \r\n" + 
+								"							\"</div>\"";
 						doGet(request, response);
 					}
 				}

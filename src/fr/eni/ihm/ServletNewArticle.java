@@ -33,10 +33,11 @@ public class ServletNewArticle extends HttpServlet {
 	HttpSession session;
 	String msg = "";
 
+	/**
+	 * @see
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		// if (Article == null || Article.getNoArticle() == 0) {
 
 		try {
 			request.setAttribute("user", user);
@@ -55,46 +56,38 @@ public class ServletNewArticle extends HttpServlet {
 			e.printStackTrace();
 			response.sendRedirect("Servlet");
 		}
-		// } else {
-		// Article = null;
-		// response.sendRedirect("Servlet");
-		// }
 
 	}
 
+	/**
+	 * @see
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Variables à récuperer pour les tests //
-		// String Nom_Article = request.getParameter("Article");
-		// String Description = request.getParameter("Description");
-		// String Categorie = request.getParameter("categorie");
-		// int Prix = Integer.parseInt(request.getParameter("Prix"));
 		Date Date_Debut = java.sql.Date.valueOf(request.getParameter("DateDebut"));
 		Date Date_Fin = java.sql.Date.valueOf(request.getParameter("DateFin"));
 		//
 		Article = new ArticleVendu();
 
 		try {
-			System.out.println(request.getParameter("Article") + "nom d'article");
-			Article.setNomArticle(request.getParameter("Article"));
-			Article.setDescription(request.getParameter("Description"));
-			Article.setNoCategotie(Integer.parseInt(request.getParameter("Categorie")));
+			System.out.println(request.getParameter("Article").trim() + "nom d'article");
+			Article.setNomArticle(request.getParameter("Article").trim());
+			Article.setDescription(request.getParameter("Description").trim());
+			Article.setNoCategotie(Integer.parseInt(request.getParameter("Categorie").trim()));
 			Article.setMiseAPrix(Integer.parseInt(request.getParameter("Prix")));
 			Article.setDateDebutEncheres(java.sql.Date.valueOf(request.getParameter("DateDebut")));
 			Article.setDateFinEncheres(java.sql.Date.valueOf(request.getParameter("DateFin")));
 			Article.setNo_utilisateur(Integer.parseInt(request.getParameter("noUtilisateur")));
-			System.out.println(Article.toString());
 			if (Date_Debut.compareTo(Date_Fin) < 0) {
 				mgr.insertNewArt(Article);
 
 			} else {
-				msg = "* La date de fin d'enchère ne peut pas être inférieure à la date de début d'enchère";
+				msg = "* La date de fin d'enchÃ¨re ne peut pas Ãªtre infÃ©rieure Ã  la date de dÃ©but d'enchÃ¨re";
 
 			}
 
 		} catch (Exception e) {
-			System.out.println("Catch");
 			e.printStackTrace();
 			doGet(request, response);
 

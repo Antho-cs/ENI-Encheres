@@ -15,29 +15,27 @@ public class ArticleManager {
 	}
 
 	/**
-	 * Ajoute un utilisateur dans la BDD
+	 * Ajoute un article à vendre dans la BDD
 	 * 
-	 * @param newUser
+	 * @param
 	 * @throws BLLException
 	 */
 	public void insertNewArt(ArticleVendu Article) throws BLLException {
 
 		if (Article.getNoArticle() != 0) {
-			throw new BLLException("Article d�j� cr��e");
+			throw new BLLException("Article déjà créé");
 		}
 		try {
 			this.daoArticle.insertNewArt(Article);
-			System.out.println("Article ins�r� dans la BDD");
 		} catch (DALException e) {
-			System.out.println(e.getStackTrace());
-			throw new BLLException("Echec cr�ation Article ");
+			throw new BLLException("Echec de la création Article ");
 
 		}
 
 	}
 
 	/**
-	 * MAJ des données de l'utilisateur
+	 * MAJ des données de l'article
 	 * 
 	 * @throws BLLException
 	 */
@@ -45,12 +43,12 @@ public class ArticleManager {
 		try {
 			this.daoArticle.updateArt(Article);
 		} catch (DALException e) {
-			throw new BLLException("Echec dans la mise � jour des donn�es utilisateur " + Article, e);
+			throw new BLLException("Echec dans la mise à jour des données utilisateur " + Article, e);
 		}
 	}
 
 	/**
-	 * supprime l'utilisateur
+	 * supprime l'article
 	 * 
 	 * @throws BLLException
 	 */
@@ -64,9 +62,10 @@ public class ArticleManager {
 	}
 
 	/**
-	 * Affiche les données de l'utilisateur pour modification
+	 * Affiche les données de l'article pour modification
 	 * 
-	 * @throws BLLException
+	 * @see
+	 * 
 	 */
 
 	public List<ArticleVendu> selectAll() throws BLLException {
@@ -74,10 +73,17 @@ public class ArticleManager {
 		try {
 			return this.daoArticle.selectAll();
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la r�cup�ration des donn�es " + e);
+			throw new BLLException("Erreur dans la récupération des données " + e);
 		}
 
 	}
+
+	/**
+	 * @see
+	 * @param noArticle
+	 * @return
+	 * @throws BLLException
+	 */
 
 	public ArticleVendu selectByNo(int noArticle) throws BLLException {
 
@@ -85,19 +91,32 @@ public class ArticleManager {
 			return this.daoArticle.selectByNo(noArticle);
 
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des donnés " + noArticle, e);
+			throw new BLLException("Erreur dans la récupération des données " + noArticle, e);
 		}
 	}
 
+	/**
+	 * 
+	 * @param no_categorie
+	 * @return
+	 * @throws BLLException
+	 */
 	public List<ArticleVendu> selectByCategorie(int no_categorie) throws BLLException {
 
 		try {
 			return this.daoArticle.selectByCategorie(no_categorie);
 
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des donnés " + no_categorie, e);
+			throw new BLLException("Erreur dans la récupération des données " + no_categorie, e);
 		}
 	}
+
+	/**
+	 * @see
+	 * @param no_article
+	 * @return
+	 * @throws BLLException
+	 */
 
 	public List<ArticleVendu> selectByName(String no_article) throws BLLException {
 
@@ -105,17 +124,23 @@ public class ArticleManager {
 			return this.daoArticle.selectByName(no_article);
 
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des donnés " + no_article, e);
+			throw new BLLException("Erreur dans la récupération des données " + no_article, e);
 		}
 	}
 
+	/**
+	 * @see
+	 * @param no_utilisateur
+	 * @return
+	 * @throws BLLException
+	 */
 	public List<ArticleVendu> selectByNoUtilisateur(int no_utilisateur) throws BLLException {
 
 		try {
 			return this.daoArticle.selectByNoUtilisateur(no_utilisateur);
 
 		} catch (DALException e) {
-			throw new BLLException("Erreur dans la récupération des donnés " + no_utilisateur, e);
+			throw new BLLException("Erreur dans la récupération des données " + no_utilisateur, e);
 		}
 	}
 
