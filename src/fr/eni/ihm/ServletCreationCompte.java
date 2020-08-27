@@ -13,9 +13,6 @@ import fr.eni.bll.BLLException;
 import fr.eni.bll.UtilisateurManager;
 import fr.eni.bo.Utilisateur;
 
-/***
- * @author Laure
- */
 @WebServlet("/ServletCreationCompte")
 public class ServletCreationCompte extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +22,6 @@ public class ServletCreationCompte extends HttpServlet {
 	HttpSession session;
 
 	/**
-	 * @author Laure / Firas
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -38,7 +34,6 @@ public class ServletCreationCompte extends HttpServlet {
 	}
 
 	/**
-	 * @author Laure / Firas
 	 * @see doPost
 	 * 
 	 */

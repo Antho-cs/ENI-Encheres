@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>ENI Encheres</title>
+<title>Connexion Utilisateur</title>
 <style>
 .jumbotron {
   background-image: url("https://happier1.imgix.net/img/blog/20150319-20150319-shutterstock_81215629.jpg?w=700");
@@ -41,12 +41,6 @@ margin-top : 10%;
     
   </div>
   
-  <div class="form-group form-check">
-  
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="SaveMe">
-    <label class="form-check-label" for="exampleCheck1">Se souvenir de moi</label>
-    
-  </div>
   
   <button name="button_Connexion" type="submit" class="btn btn-primary">Connexion</button>
   

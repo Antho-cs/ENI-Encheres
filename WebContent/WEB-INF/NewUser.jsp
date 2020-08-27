@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
-<title>ENI Encheres</title>
+<title>Inscritpion Utilisateur</title>
 
 
 <style>
@@ -31,7 +31,7 @@
 	<jsp:include page="/WEB-INF/Page_acceuil/navBar.jsp" />
 
 	<div class="jumbotron text-center">
-		<h2>Mon profil</h2>
+		<h2>Création d'un profil</h2>
 	</div>
 
 	<form action="ServletCreationCompte" method="POST">
