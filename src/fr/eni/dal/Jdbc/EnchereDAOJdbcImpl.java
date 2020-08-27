@@ -1,6 +1,7 @@
 package fr.eni.dal.Jdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ import fr.eni.dal.EnchereDAO;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
-	private static final String SQL_INSERT = "insert into encheres (no_enchere, date_enchere, montant_enchere, no_article, no_utilisateur) values (?,?,?,?,?)";
+	private static final String SQL_INSERT = "insert into encheres (date_enchere, montant_enchere, no_article, no_utilisateur) values (?,?,?,?)";
 	private static final String SQL_UPDATE = "update encheres set no_enchere = ?,date_enchere = ?, montant_enchere = ?, no_article = ? ,no_utilisateur = ?";
 
 	// private static final String SQL_DELETE = "delete
@@ -32,11 +33,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			pStmt = cnx.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 
-			pStmt.setInt(1, enchere.getNoEnchere());
-			pStmt.setDate(2, enchere.getDateEnchere());
-			pStmt.setInt(3, enchere.getMontantEnchere());
-			pStmt.setInt(4, enchere.getNoArticle());
-			pStmt.setInt(5, enchere.getNoUtilisateur());
+			pStmt.setDate(1, (Date) enchere.getDateEnchere());
+			pStmt.setInt(2, enchere.getMontantEnchere());
+			pStmt.setInt(3, enchere.getNoArticle());
+			pStmt.setInt(4, enchere.getNoUtilisateur());
 
 			pStmt.executeUpdate();
 			ResultSet rs = pStmt.getGeneratedKeys();
@@ -48,7 +48,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-			throw new DALException("Erreur à l'ajout de l'utilisateur : " + enchere, e);
+			throw new DALException("Erreur à l'ajout de l'enchere : " + enchere, e);
 
 		} finally {
 
@@ -74,7 +74,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			pStmt = cnx.prepareStatement(SQL_UPDATE);
 
 			pStmt.setInt(1, enchere.getNoEnchere());
-			pStmt.setDate(2, enchere.getDateEnchere());
+			pStmt.setDate(2, (Date) enchere.getDateEnchere());
 			pStmt.setInt(3, enchere.getMontantEnchere());
 			pStmt.setInt(4, enchere.getNoArticle());
 			pStmt.setInt(5, enchere.getNoUtilisateur());

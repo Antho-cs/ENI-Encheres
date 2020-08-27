@@ -1,6 +1,6 @@
 package fr.eni.bo;
 
-import java.sql.Date;
+import java.util.Date;
 
 
 public class Enchere {
@@ -24,6 +24,14 @@ public class Enchere {
 
 	public Enchere() {
 		super();
+	}
+
+	public Enchere(int noArticle, Date dateEnchere2, int montantEnchere, int noUtilisateur) {
+		super();
+		this.noArticle = noArticle;
+		this.dateEnchere = dateEnchere2;
+		this.montantEnchere = montantEnchere;
+		this.noUtilisateur = noUtilisateur;
 	}
 
 	public int getMontantEnchere() {
