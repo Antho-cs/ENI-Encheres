@@ -52,7 +52,7 @@ public class ServletNewArticle extends HttpServlet {
 
 			request.getRequestDispatcher("/WEB-INF/NewVente2.jsp").forward(request, response);
 
-		} catch (BLLException e) {
+		} catch (BLLException | NullPointerException e) {
 			e.printStackTrace();
 			response.sendRedirect("Servlet");
 		}
@@ -81,6 +81,7 @@ public class ServletNewArticle extends HttpServlet {
 			Article.setNo_utilisateur(Integer.parseInt(request.getParameter("noUtilisateur")));
 			if (Date_Debut.compareTo(Date_Fin) < 0) {
 				mgr.insertNewArt(Article);
+
 			} else {
 				msg = "* La date de fin d'enchère ne peut pas être inférieure à la date de début d'enchère";
 
@@ -88,8 +89,9 @@ public class ServletNewArticle extends HttpServlet {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+			doGet(request, response);
 
 		}
-		doGet(request, response);
+		response.sendRedirect("Servlet");
 	}
 }
