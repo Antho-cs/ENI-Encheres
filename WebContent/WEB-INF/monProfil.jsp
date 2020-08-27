@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -84,7 +84,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Code postal</label>
-                        <input type="number" id="input-postal-code" name="codePostal" class="form-control form-control-alternative readonly" pattern="[0-9]{5}"  title = "France métropolitaine : 01000 à 95750"  placeholder="Code postal" value="${user.getCode_postal()}" readonly required>
+                        <input type="number" id="input-postal-code" name="codePostal" class="form-control form-control-alternative readonly" pattern="[0-9]{5}"  title = "France mÃ©tropolitaine : 01000 Ã  95750"  placeholder="Code postal" value="${user.getCode_postal()}" readonly required>
                       </div>
                     </div> 
                     <div class="col-lg-6">
@@ -95,7 +95,7 @@
                     </div>
                   </div>
                 <hr class="my-4">
-                <h6 class="heading-small text-muted mb-4">Sécurité</h6>
+                <h6 class="heading-small text-muted mb-4">SÃ©curitÃ©</h6>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group focused">
@@ -110,7 +110,7 @@
                       <div class="form-group focused">
                         <label class="form-control-label" for="nouveauMotDePasse">nouveau mot de passe</label>
                         <input type="password" id="nouveauMotDePasse" name="nouveauMotDePasse" class="form-control form-control-alternative" placeholder="votre nouveau mdp"
-                        pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="8 Caractères Alphanumériques minimum. Contient au moins 1 Majuscule et 1 chiffre">
+                        pattern ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="8 CaractÃ¨res AlphanumÃ©riques minimum. Contient au moins 1 Majuscule et 1 chiffre">
                         <label class="form-control-label" for="confirmerMotDePasse">Confirmer votre mot de passe</label>
                         <input type="password" id="confirmerMotDePasse" name="confirmerMotDePasse" class="form-control form-control-alternative" placeholder="Confirmer votre mdp">
                         <input type="password" id="motDePasseDBB" name="motDePasseDBB" class="hidden" value="${user.getMot_de_passe()}">

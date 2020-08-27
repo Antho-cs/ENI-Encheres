@@ -85,7 +85,6 @@ public class Servlet extends HttpServlet {
 				String choix = request.getParameter("choix");
 				String checkbox = request.getParameter("checkbox");
 				if (choix.equals("mesVentes")) {
-					System.out.println("mes ventes");
 					if (checkbox.equals("MesVentesEnCours")) {
 						articles = mgr.selectByNoUtilisateur(user.getNo_utilisateur());
 					}

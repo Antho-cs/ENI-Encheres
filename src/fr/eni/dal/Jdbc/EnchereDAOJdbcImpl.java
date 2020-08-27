@@ -14,7 +14,7 @@ import fr.eni.dal.EnchereDAO;
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	private static final String SQL_INSERT = "insert into encheres (date_enchere, montant_enchere, no_article, no_utilisateur) values (?,?,?,?)";
-	private static final String SQL_UPDATE = "update encheres set date_enchere = ?, montant_enchere = ?, no_article = ? ,no_utilisateur = ?";
+	private static final String SQL_UPDATE = "update encheres set date_enchere = ?, montant_enchere = ?, no_article = ? where no_utilisateur = ?";
 	private static final String SQL_SELECTBYNOARTICLE = "select * from encheres where no_article = ?";
 
 	// private static final String SQL_DELETE = "delete
@@ -81,6 +81,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 			pStmt.executeUpdate();
 
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new DALException("Erreur lors de la mise à jour de l'enchère : " + enchere, e);
@@ -95,7 +96,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				e.printStackTrace();
 			}
 		}
-
+	
 	}
 
 	@Override

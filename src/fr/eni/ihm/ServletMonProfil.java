@@ -26,20 +26,19 @@ public class ServletMonProfil extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-			try {
-				session=request.getSession(false);  
-		        user = (Utilisateur) session.getAttribute("user");
-//				user= mgr.selectById(user.getNo_utilisateur());
-				request.setAttribute("user", user);
-				request.getRequestDispatcher("/WEB-INF/monProfil.jsp").forward(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-				response.sendRedirect("Servlet");
-			}
-		
-		
-		
+
+		try {
+			session=request.getSession(false);  
+			user = (Utilisateur) session.getAttribute("user");
+			request.setAttribute("user", user);
+			request.getRequestDispatcher("/WEB-INF/monProfil.jsp").forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.sendRedirect("Servlet");
+		}
+
+
+
 	}
 
 	/**
@@ -48,39 +47,29 @@ public class ServletMonProfil extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("btn").equalsIgnoreCase("enregistrer")) {
 			try {
-		if(user.getMot_de_passe().equals(request.getParameter("motDePasse"))) {
-			user.setPseudo(request.getParameter("pseudo"));
-			user.setEmail(request.getParameter("email"));
-			user.setNom(request.getParameter("nom"));
-			user.setPrenom(request.getParameter("prenom"));
-			user.setCode_postal(request.getParameter("codePostal"));
-			user.setTelephone(request.getParameter("telephone"));
-			user.setVille(request.getParameter("ville"));
-			user.setRue(request.getParameter("rue"));
-			if(request.getParameter("nouveauMotDePasse") != null) {
-					if(request.getParameter("nouveauMotDePasse").equals(request.getParameter("confirmerMotDePasse"))) {
+				if(user.getMot_de_passe().equals(request.getParameter("motDePasse"))) {
+					user.setPseudo(request.getParameter("pseudo"));
+					user.setEmail(request.getParameter("email"));
+					user.setNom(request.getParameter("nom"));
+					user.setPrenom(request.getParameter("prenom"));
+					user.setCode_postal(request.getParameter("codePostal"));
+					user.setTelephone(request.getParameter("telephone"));
+					user.setVille(request.getParameter("ville"));
+					user.setRue(request.getParameter("rue"));
+					if(!request.getParameter("nouveauMotDePasse").equals("")) {
 						user.setMot_de_passe(request.getParameter("nouveauMotDePasse"));
-					}else {
-						
-						System.out.println("nouveau mot de passe != confirmer mot de passe");
 					}
+					mgr.updateUser(user);
 				}
-			mgr.updateUser(user);
-			}else {
-				
-				System.out.println("Mot de passe incorrect");
+			} catch (BLLException e) {
+				e.printStackTrace();
 			}
-		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		}else if(request.getParameter("btn").equalsIgnoreCase("supprimer")) {
 			try {
 				mgr.deleteUser(user.getNo_utilisateur());
 				HttpSession session=request.getSession(false);  
-		        session.invalidate();
+				session.invalidate();
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
